@@ -27,21 +27,11 @@ namespace TestApp {
             try {
                 Worksheet ws = ExcelInputOutputOperations.WorkSheetUsed;
                 Microsoft.Office.Interop.Excel.Range cell = ws.Cells[rowNumber, columnNumber];
-                if ("Bakon Krisztián Attila".Equals(cell.Value)) {
-                    String b = "3";
-                }
-                if (cell != null) {
-                    String a = cell.Value.ToString();
-                }
                 result = cell.Value;
             } catch (Exception e) {
                 Console.WriteLine("Excel file can not be opened.");
             }
             return result;
         }
-
-        //private bool CheckIfNumber(Microsoft.Office.Interop.Excel.Range cell) {
-           
-        //}
     }
 }
