@@ -28,5 +28,4 @@ namespace TestApp {
             return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}, Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}";
         }
     }
-
 }
