@@ -13,10 +13,10 @@ namespace TestApp {
         public ExcelInputOutputOperations(String filePath, String worksheet) {
             try {
                 AlreadyOpenedExcelProcesses = FindCurrentExcelProcesses();
-                this.Application = new Application();
+                Application = new Application();
                 OurProcessId = FindThisExcelProcess();
-                this.WorkbookUsed = Application.Workbooks.Open(filePath);
-                this.WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
+                WorkbookUsed = Application.Workbooks.Open(filePath);
+                WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
             } catch (Exception e) {
                 Console.WriteLine("Excel file can not be opened.");
                 CloseApplication();

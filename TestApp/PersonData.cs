@@ -9,25 +9,25 @@ namespace TestApp {
         public String Id { get; set; }
         public String Name { get; set; }
         public String Month { get; set; }
-        public String Credit { get; set; }
-        public String Debit { get; set; }
+        public String CreditCostCenter { get; set; }
+        public String DebitCostCenter { get; set; }
         public int Salary { get; set; }
         public int Tax { get; set; }
         public String Note { get; set; }
 
         public PersonData(String id, String name, String month, String credit, String debit, int salary, int tax, String note ) {
-            this.Id = id;
-            this.Name = name;
-            this.Month = month;
-            this.Credit = credit;
-            this.Debit = debit;
-            this.Salary = salary;
-            this.Tax = tax;
-            this.Note = note;
+            Id = id;
+            Name = name;
+            Month = month;
+            CreditCostCenter = credit;
+            DebitCostCenter = debit;
+            Salary = salary;
+            Tax = tax;
+            Note = note;
         }
 
         public override string ToString() {
-            return $"Id: {Id}, Név: {Name}, Hónap: {Month}, Terhelés: {Credit}, Számfejtés: {Debit}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}";
+            return $"Id: {Id}, Név: {Name}, Hónap: {Month}, Terhelés: {CreditCostCenter}, Számfejtés: {DebitCostCenter}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}";
         }
     }
 }

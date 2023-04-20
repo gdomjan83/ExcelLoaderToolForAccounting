@@ -5,7 +5,7 @@ namespace TestApp {
         public ExcelInputOutputOperations ExcelInputOutputOperations { get; set; }
 
         public ExcelReadOperation(ExcelInputOutputOperations excelInputOutputOperations) {
-            this.ExcelInputOutputOperations = excelInputOutputOperations;
+            ExcelInputOutputOperations = excelInputOutputOperations;
         }
            
         public List<String> ReadExcelRange(String rangeLabels) { //rangeLabels - pl. "A1:A2"
