@@ -11,11 +11,11 @@ namespace TestApp {
         public String Month { get; set; }
         public String CreditCostCenter { get; set; }
         public String DebitCostCenter { get; set; }
-        public int Salary { get; set; }
-        public int Tax { get; set; }
+        public String Salary { get; set; }
+        public String Tax { get; set; }
         public String Note { get; set; }
 
-        public PersonData(String id, String name, String month, String credit, String debit, int salary, int tax, String note ) {
+        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note ) {
             Id = id;
             Name = name;
             Month = month;

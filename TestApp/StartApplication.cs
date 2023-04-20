@@ -14,9 +14,9 @@ namespace TestApp {
 
             ExcelInputOutputOperations operations = new ExcelInputOutputOperations(filepath, "Bérköltség");
             ExcelReadOperation readExcel = new ExcelReadOperation(operations);
-            PersonDataConverter converter = new PersonDataConverter(readExcel);
+            PersonDataConverter converter = new PersonDataConverter(readExcel, "2023.03");
 
-            List<PersonData> result = converter.SavePersonDataToList("2023.03");
+            List<PersonData> result = converter.SavePersonDataToList();
             foreach (PersonData actual in result) {
                 Console.WriteLine(actual);
             }

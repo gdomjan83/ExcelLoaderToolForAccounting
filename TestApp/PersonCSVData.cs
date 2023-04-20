@@ -10,12 +10,12 @@ namespace TestApp {
         public String Note { get; set; }
         public String CreditDebitCode { get; set; }
         public String LedgerNumber { get; set; }
-        public int Amount { get; set; }
+        public String Amount { get; set; }
         public String Comment { get; set; }
         public String CostCenter { get; set;}
         public String FunctionCode { get; set; }
 
-        public PersonCSVData(string note, string creditDebitCode, string ledgerNumber, int amount, string comment, string costCenter, string functionCode) {
+        public PersonCSVData(string note, string creditDebitCode, string ledgerNumber, String amount, string comment, string costCenter, string functionCode) {
             Note = note;
             CreditDebitCode = creditDebitCode;
             LedgerNumber = ledgerNumber;
