@@ -58,36 +58,39 @@ namespace TestApp {
         }
 
         public List<PersonData> SavePersonDataToList(String monthFilter) {
-            Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
-            Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
-            int lastRow = ExcelRowColumnCounter.GetLastRow(wb, ws);
-            int idNumber = 1;
-            for (int i = 2; i <= lastRow; i++) {
-                String month = ExcelReadOperation.ReadExcelCell(i, ColumnTitles["Hónap"]);
-                if (monthFilter.Equals(month)) {
-                    ProcessedPeople.Add(SavePerson(i, idNumber, month));
-                    idNumber++;
+            try {
+                Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
+                Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
+                int lastRow = ExcelRowColumnCounter.GetLastRow(wb, ws);
+                int idNumber = 1;
+                for (int i = 2; i <= lastRow; i++) {
+                    String month = ExcelReadOperation.ReadExcelCell(i, ColumnTitles["Hónap"]);
+                    if (monthFilter.Equals(month)) {
+                        ProcessedPeople.Add(SavePerson(i, idNumber, month));
+                        idNumber++;
+                    }
                 }
-            }
-            ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+            } finally {
+                ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+            }            
             return ProcessedPeople;
         }
 
         private PersonData SavePerson(int rowNumber, int id, String month) {
-            String idNumber = id.ToString();
-            String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
-            String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
-            String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Számfejtés"]);
-            int salary = FormatStringToNumber(ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]));
-            int tax = FormatStringToNumber(ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]));
-            String note = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["okmány"]);
-            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note);
-        }
-
-        private int FormatStringToNumber(String input) {
-            String trimmedString = input.Trim();
-            String result = new String(trimmedString.ToCharArray().Where(c => Char.IsDigit(c)).ToArray());
-            return Int32.Parse(result);
+            PersonData person = null;
+            try {                
+                String idNumber = id.ToString();
+                String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
+                String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
+                String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Számfejtés"]);
+                int salary = Int32.Parse(ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]));
+                int tax = Int32.Parse(ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]));
+                String note = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Okmány"]);
+                person = new PersonData(idNumber, name, month, credit, debit, salary, tax, note);
+            } catch (Exception e) {
+                Console.WriteLine("Error during Save Person.");
+            }
+            return person;            
         }
     }
 }

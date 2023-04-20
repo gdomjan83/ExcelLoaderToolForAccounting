@@ -27,7 +27,9 @@ namespace TestApp {
             try {
                 Worksheet ws = ExcelInputOutputOperations.WorkSheetUsed;
                 Microsoft.Office.Interop.Excel.Range cell = ws.Cells[rowNumber, columnNumber];
-                result = cell.Value;
+                if (cell.Value != null) {
+                    result = cell.Value.ToString();
+                }
             } catch (Exception e) {
                 Console.WriteLine("Excel file can not be opened.");
             }
