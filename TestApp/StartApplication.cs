@@ -32,8 +32,6 @@ namespace TestApp {
             //String c = "1200";
             //String d = c.ToString();
             //Console.WriteLine(Int32.Parse(d));
-
-
         }
     }
 }
