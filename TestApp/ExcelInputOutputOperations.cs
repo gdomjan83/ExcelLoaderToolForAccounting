@@ -7,7 +7,6 @@ namespace TestApp {
         public Application Application { get; set; }
         public Workbook WorkbookUsed { get; set; }
         public Worksheet WorkSheetUsed { get; set; }
-
         public Process[] AlreadyOpenedExcelProcesses { get; set; }
         public int OurProcessId { get; set; }
 
