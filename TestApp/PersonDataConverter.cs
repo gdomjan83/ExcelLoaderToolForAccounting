@@ -71,9 +71,10 @@ namespace TestApp {
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {
             String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["Hónap"]);
-            if (monthToFilter.Equals(currentMonth)) {
-                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonth));
-                return currentId++;
+            String currentMonthCleaned = currentMonth.Length > 7 ? currentMonth.Substring(0, 7) : currentMonth;
+            if (monthToFilter.Equals(currentMonthCleaned)) {
+                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned));
+                currentId++;
             }
             return currentId;
         }

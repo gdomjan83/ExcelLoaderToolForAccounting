@@ -8,7 +8,7 @@ namespace TestApp {
     public class StartApplication {
 
         public static void Main() {
-            ExcelInputOutputOperations operations = new ExcelInputOutputOperations("C:\\Users\\felhasználó\\Desktop\\rrf_teszt.xlsx", "Bérköltség");
+            ExcelInputOutputOperations operations = new ExcelInputOutputOperations("C:\\Users\\felhasználó\\Desktop\\np_teszt.xlsx", "Bérköltség");
             ExcelReadOperation readExcel = new ExcelReadOperation(operations);
             PersonDataConverter converter = new PersonDataConverter(readExcel);
 
@@ -23,7 +23,7 @@ namespace TestApp {
             //operations.CloseApplication();
 
             converter.FindColumnTitles();
-            List<PersonData> result = converter.SavePersonDataToList("2023.03");
+            List<PersonData> result = converter.SavePersonDataToList("2023.02");
             foreach (PersonData actual in result) {
                 Console.WriteLine(actual);
             }
