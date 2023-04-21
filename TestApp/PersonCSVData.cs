@@ -15,7 +15,9 @@ namespace TestApp {
         public String CostCenter { get; set;}
         public String FunctionCode { get; set; }
 
-        public PersonCSVData(string note, string creditDebitCode, string ledgerNumber, String amount, string comment, string costCenter, string functionCode) {
+        public String ProjectName { get; set; }
+
+        public PersonCSVData(String note, String creditDebitCode, String ledgerNumber, String amount, String comment, String costCenter, String functionCode, String projectName) {
             Note = note;
             CreditDebitCode = creditDebitCode;
             LedgerNumber = ledgerNumber;
@@ -23,9 +25,11 @@ namespace TestApp {
             Comment = comment;
             CostCenter = costCenter;
             FunctionCode = functionCode;
+            ProjectName = projectName;
         }
         public override string ToString() {
-            return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}, Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}";
+            return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}," +
+                $" Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}, Projekt név: {ProjectName}";
         }
     }
 }

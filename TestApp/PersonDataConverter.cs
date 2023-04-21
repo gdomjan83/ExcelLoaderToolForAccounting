@@ -13,8 +13,7 @@ namespace TestApp {
         public static readonly String TAX_LEDGER_NUMBER = "561000";
         public static readonly String CREDIT_CODE = "40";
         public static readonly String DEBIT_CODE = "50";
-        public static readonly int LINES_IN_ONE_NOTE = 80;
-
+        public static readonly int LINES_IN_ONE_NOTE = 0;
         public Dictionary<String, int> ColumnTitles { get; set; }
 
         public ExcelReadOperation ExcelReadOperation { get; set; }
@@ -22,11 +21,13 @@ namespace TestApp {
         public List<PersonData> ProcessedPeople { get; set; } = new List<PersonData>();
 
         public String MonthToFilter { get; set; }
+        public String FileName { get; set; }
 
-        public PersonDataConverter(ExcelReadOperation excelReadOperation, String monthToFilter) {
+        public PersonDataConverter(ExcelReadOperation excelReadOperation, String monthToFilter, String fileName) {
             ExcelReadOperation = excelReadOperation;
             ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(excelReadOperation);
             MonthToFilter = monthToFilter;
+            FileName = fileName;
         }
 
         public List<PersonData> SavePersonDataToList() {
@@ -59,25 +60,25 @@ namespace TestApp {
         private PersonCSVData TransformCreditSalary(PersonData person) {
             String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";
             return new PersonCSVData(person.Note, CREDIT_CODE, SALARY_LEDGER_NUMBER, person.Salary, 
-                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3));
+                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformCreditTax(PersonData person) {
             String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";
             return new PersonCSVData(person.Note, CREDIT_CODE, TAX_LEDGER_NUMBER, person.Tax,
-                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3));
+                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformDebitSalary(PersonData person) {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
             return new PersonCSVData(person.Note, DEBIT_CODE, SALARY_LEDGER_NUMBER, person.Salary, 
-                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3));
+                comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformDebitTax(PersonData person) {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
             return new PersonCSVData(person.Note, DEBIT_CODE, TAX_LEDGER_NUMBER, person.Tax,
-                comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3));
+                comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private List<PersonData> ChangeNoteNumbers(List<PersonData> inputData, NoteCounterData noteCounterData) {
@@ -110,17 +111,17 @@ namespace TestApp {
             return false;
         }
 
-        private PersonData SavePerson(int rowNumber, int id, String month) {
+        private PersonData SavePerson(int rowNumber, int id, String month, String fileName) {
             PersonData person = null;
             try {
-                person = CreateNewPerson(rowNumber, id, month);
+                person = CreateNewPerson(rowNumber, id, month, fileName);
             } catch (Exception e) {
                 Console.WriteLine("Error during Save Person.");
             }
             return person;            
         }
 
-        private PersonData CreateNewPerson(int rowNumber, int id, String month) {
+        private PersonData CreateNewPerson(int rowNumber, int id, String month, String fileName) {
             String idNumber = id.ToString();
             String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
             String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
@@ -128,14 +129,14 @@ namespace TestApp {
             String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             String note = "0";
-            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note);
+            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {
             String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["Hónap"]);
             String currentMonthCleaned = currentMonth.Length > 7 ? currentMonth.Substring(0, 7) : currentMonth;
             if (monthToFilter.Equals(currentMonthCleaned)) {
-                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned));
+                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned, FileName));
                 currentId++;
             }
             return currentId;

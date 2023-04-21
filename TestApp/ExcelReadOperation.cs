@@ -35,7 +35,7 @@ namespace TestApp {
             Microsoft.Office.Interop.Excel.Range cell = ws.Range[rangeLabels];
             foreach (String actual in cell.Value) {
                 resultList.Add(actual);
-            }
+            }            
             return resultList;
         }
 

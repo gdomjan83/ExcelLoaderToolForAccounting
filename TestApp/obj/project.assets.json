@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\gdomj\\.nuget\\packages\\": {}
+    "C:\\Users\\felhasználó\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\TestApp.csproj",
+      "projectUniqueName": "C:\\Users\\felhasználó\\source\\repos\\TestApp\\TestApp\\TestApp.csproj",
       "projectName": "TestApp",
-      "projectPath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\TestApp.csproj",
-      "packagesPath": "C:\\Users\\gdomj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\obj\\",
+      "projectPath": "C:\\Users\\felhasználó\\source\\repos\\TestApp\\TestApp\\TestApp.csproj",
+      "packagesPath": "C:\\Users\\felhasználó\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\felhasználó\\source\\repos\\TestApp\\TestApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gdomj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\felhasználó\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

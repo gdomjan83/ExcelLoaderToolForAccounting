@@ -15,7 +15,9 @@ namespace TestApp {
         public String Tax { get; set; }
         public String Note { get; set; }
 
-        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note ) {
+        public String ProjectName { get; set; }
+
+        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note , String projectName) {
             Id = id;
             Name = name;
             Month = month;
@@ -24,10 +26,12 @@ namespace TestApp {
             Salary = salary;
             Tax = tax;
             Note = note;
+            ProjectName = projectName;
         }
 
         public override string ToString() {
-            return $"Id: {Id}, Név: {Name}, Hónap: {Month}, Terhelés: {CreditCostCenter}, Számfejtés: {DebitCostCenter}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}";
+            return $"Id: {Id}, Név: {Name}, Hónap: {Month}, Terhelés: {CreditCostCenter}," +
+                $" Számfejtés: {DebitCostCenter}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}, Projekt név: {ProjectName}";
         }
     }
 }
