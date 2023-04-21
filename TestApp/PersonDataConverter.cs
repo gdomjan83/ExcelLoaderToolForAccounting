@@ -13,7 +13,7 @@ namespace TestApp {
         public static readonly String TAX_LEDGER_NUMBER = "561000";
         public static readonly String CREDIT_CODE = "40";
         public static readonly String DEBIT_CODE = "50";
-        public static readonly int LINES_IN_ONE_NOTE = 0;
+        public static readonly int LINES_IN_ONE_NOTE = 80;
         public Dictionary<String, int> ColumnTitles { get; set; }
 
         public ExcelReadOperation ExcelReadOperation { get; set; }

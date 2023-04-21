@@ -32,9 +32,10 @@ namespace TestApp {
 
             ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(files, noteCounterData, "2023.03", "Bérköltség");
             List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
-            foreach (PersonCSVData actual in csvResult) {
-                Console.WriteLine(actual);
-            }
+            //foreach (PersonCSVData actual in csvResult) {
+            //    Console.WriteLine(actual);
+            //}
+            excelFilesProcessor.WriteCSVFile("C:\\Users\\felhasználó\\Munka\\!PROJEKTEK\\SAP tananyag", csvResult);
         }
     }
 }

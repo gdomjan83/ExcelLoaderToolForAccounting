@@ -37,6 +37,10 @@ namespace TestApp {
             return result;
         }
 
+        public void WriteCSVFile(String targetPath, List<PersonCSVData> personData) {
+            Operations.WriteListToCSVFile(targetPath, personData);
+        }
+
         private PersonDataConverter CreateExcelObjectsForFileReading(String filepath, String monthToFilter, String workSheetName, String fileName) {
             Operations = new ExcelInputOutputOperations(filepath, workSheetName);
             ReadExcel = new ExcelReadOperation(Operations);

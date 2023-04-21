@@ -27,7 +27,11 @@ namespace TestApp {
             FunctionCode = functionCode;
             ProjectName = projectName;
         }
-        public override string ToString() {
+
+        public String CSVFormating() {
+            return $"{Note};{CreditDebitCode};{LedgerNumber};{LedgerNumber};;{Amount};;;{Comment};{CostCenter};{FunctionCode};;{ProjectName}";
+        }
+        public override String ToString() {
             return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}," +
                 $" Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}, Projekt név: {ProjectName}";
         }

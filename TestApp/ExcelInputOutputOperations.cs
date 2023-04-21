@@ -1,5 +1,8 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Text.Unicode;
 
 namespace TestApp {
     public class ExcelInputOutputOperations {
@@ -26,6 +29,30 @@ namespace TestApp {
             WorkbookUsed?.Close();               
             Application.Quit();
             KillProcessById(OurProcessId);            
+        }
+
+        public void WriteListToCSVFile(String filePath, List<PersonCSVData> personCSVDatas) {
+            String currentFileName = CreateNewFile(filePath);
+            using (StreamWriter sw = new StreamWriter(new FileStream(currentFileName, FileMode.Open, FileAccess.ReadWrite), Encoding.UTF8)) {
+                foreach (PersonCSVData actual in personCSVDatas) {
+                    sw.WriteLine(actual.CSVFormating());
+                }
+                sw.Close();
+            }
+        }
+
+        private String CreateNewFile(String filePath) {
+            String currentFileName = AppendTimeToFilepath(filePath);
+            using (FileStream fs = File.Create(currentFileName)) {
+                fs.Close();
+            }
+            return currentFileName;
+        }
+
+        private String AppendTimeToFilepath(String filePath) {
+            DateTime now = DateTime.Now;
+            String time = now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
+            return filePath + "\\TET_" + time + ".csv";
         }
 
         private Process[] FindCurrentExcelProcesses() {
