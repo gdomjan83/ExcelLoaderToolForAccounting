@@ -15,8 +15,11 @@ namespace TestApp {
             String[] files = Directory.GetFiles(excelDirectory);
             String targetDirectory = Path.Combine(currentDirectory, @"..\..\..\Result");
 
+            Console.WriteLine("Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):");
+            String month = Console.ReadLine();       
+
             NoteCounterData noteCounterData = new NoteCounterData();          
-            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(files, noteCounterData, "2023.03", "Bérköltség");
+            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(files, noteCounterData, month);
             List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
             excelFilesProcessor.WriteCSVFile(targetDirectory, csvResult);
             UIController uiController = new UIController(excelDirectory, targetDirectory);

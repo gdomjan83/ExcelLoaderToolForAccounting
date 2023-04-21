@@ -12,13 +12,12 @@ namespace TestApp {
         public PersonDataConverter Converter { get; set; }
         public NoteCounterData NoteCounterData { get; set; }
         public String MonthToFilter { get; set; }
-        public String WorkSheetName { get; set; }
+        public String WorkSheetName { get; set; } = "Bérköltség";
 
-        public ExcelFilesProcessor(String[] filePaths, NoteCounterData noteCounterData, String monthToFilter, String workSheetName) {
+        public ExcelFilesProcessor(String[] filePaths, NoteCounterData noteCounterData, String monthToFilter) {
             FilePaths = filePaths;
             NoteCounterData = noteCounterData;
             MonthToFilter = monthToFilter;
-            WorkSheetName = workSheetName;
         }
 
         public List<PersonData> CreateCompleteListFromPersonDataInAllFiles() {
