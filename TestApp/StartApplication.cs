@@ -12,9 +12,8 @@ namespace TestApp {
         public static void Main() {
             String currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             String excelDirectory = Path.Combine(currentDirectory, @"..\..\..\Resources");
-            String fileLocation = Path.Combine(currentDirectory, @"..\..\..\Resources\np_teszt.xlsx");
             String[] files = Directory.GetFiles(excelDirectory);
-            String targetDirectory = "C:\\Users\\felhasználó\\Munka\\!PROJEKTEK\\SAP tananyag";
+            String targetDirectory = Path.Combine(currentDirectory, @"..\..\..\Result");
 
             NoteCounterData noteCounterData = new NoteCounterData();          
             ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(files, noteCounterData, "2023.03", "Bérköltség");

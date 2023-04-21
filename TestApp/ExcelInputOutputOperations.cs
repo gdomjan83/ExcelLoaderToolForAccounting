@@ -42,6 +42,8 @@ namespace TestApp {
         }
 
         private String CreateNewFile(String filePath) {
+            Directory.CreateDirectory(filePath);
+
             String currentFileName = AppendTimeToFilepath(filePath);
             using (FileStream fs = File.Create(currentFileName)) {
                 fs.Close();
