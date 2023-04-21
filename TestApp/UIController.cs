@@ -22,8 +22,8 @@ namespace TestApp {
             if (finished) {
                 FinishTask();
             }
-
         }
+
         private void FinishTask() {
             Console.WriteLine(GOODBYE_TEXT);
             Console.ReadLine();
