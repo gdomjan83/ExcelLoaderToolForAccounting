@@ -8,12 +8,9 @@ namespace TestApp {
     public static class FolderOperation {
 
         public static String[] FindFilesInSourceDirectory(String sourcePath) {
-            String[] result = Directory.GetFiles(sourcePath);
-            if (result.Length == 0) {
-                Console.WriteLine("Nem találtam excel fájlokat a könyveléshez.");
-            }
-            return result;
+            return Directory.GetFiles(sourcePath);
         }
+
         public static String CreateNewFile(String filePath) {
             String currentFileName = AppendTimeToFilepath(filePath);
             using (FileStream fs = File.Create(currentFileName)) {

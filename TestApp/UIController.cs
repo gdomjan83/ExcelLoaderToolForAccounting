@@ -8,14 +8,16 @@ namespace TestApp {
 
         public String MonthToFilter { get; set; }
 
-        private const String GOODBYE_TEXT = "Nyomd meg az Entert a végeredmény megtekintéséhez.";
+        private const String GOODBYE_TEXT = "Nyomj Entert a végeredmény megtekintéséhez.";
+        private const String MONTH_TEXT = "Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):";
+        private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás könyvtárban.";
+        private const String END_TEXT = "Nyomj Entert a kilépéshez.";
 
-        public UIController(NoteCounterData noteCounterData) {
-            NoteCounterData = noteCounterData;
+        public UIController() {
+            NoteCounterData = new NoteCounterData();
             SetupFolders();
         }        
-        public void RunApplication() {
-            MonthToFilter = AskInputForMonth();
+        public void RunApplication() {            
             bool finished = RunExcelOperations();
             if (finished) {
                 FinishTask();
@@ -23,36 +25,39 @@ namespace TestApp {
 
         }
         private void FinishTask() {
-            Console.WriteLine("Nyomj Entert a végeredmény megtekintéséhez.");
+            Console.WriteLine(GOODBYE_TEXT);
             Console.ReadLine();
             Process.Start("explorer.exe", TargetFilesFolder);
         }
 
         private void SetupFolders() {
             String currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            SourceFilesFolder = Path.Combine(currentDirectory, @"..\..\..\Resources");
+            SourceFilesFolder = Path.Combine(currentDirectory, @"Resources");
             Directory.CreateDirectory(SourceFilesFolder);
-            TargetFilesFolder = Path.Combine(currentDirectory, @"..\..\..\Result");
+            TargetFilesFolder = Path.Combine(currentDirectory, @"Result");
             Directory.CreateDirectory(TargetFilesFolder);
         }
 
         private String AskInputForMonth() {
-            Console.WriteLine("Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):");
+            Console.WriteLine(MONTH_TEXT);
             String month = Console.ReadLine();
             return month;
         }
 
         private bool RunExcelOperations() {
-            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(NoteCounterData, MonthToFilter);
             String[] files = FolderOperation.FindFilesInSourceDirectory(SourceFilesFolder);
             if (CheckIfSourceFilesPresent(files)) {
+                MonthToFilter = AskInputForMonth();
+                ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(NoteCounterData, MonthToFilter);
                 excelFilesProcessor.FilePaths = files;
 
                 List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
                 excelFilesProcessor.WriteCSVFile(TargetFilesFolder, csvResult);
                 return true;
             } else {
-                Console.WriteLine("Nem találhatók excel fájlok a forrás könyvtárban.");
+                Console.WriteLine(NO_FILE_TEXT);
+                Console.WriteLine(END_TEXT);
+                Console.ReadLine();
                 return false;
             }
         }

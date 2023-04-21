@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "vLTCuxyuAqPJepctDOSZiknL3+ImqNlSIvHq5Hekm+XH9GXAPDmr+CnfwK8bZNgr70ajYKfJAP/8vw9yA/qqPQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\TestApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gdomj\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.15\\microsoft.netcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
+    "C:\\Users\\gdomj\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.15.nupkg.sha512",
+    "C:\\Users\\gdomj\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x64.6.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}
