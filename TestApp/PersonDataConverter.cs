@@ -9,11 +9,11 @@ using System.Xml.Linq;
 
 namespace TestApp {
     public class PersonDataConverter {
-        public static readonly String SALARY_LEDGER_NUMBER = "541100";
-        public static readonly String TAX_LEDGER_NUMBER = "561000";
-        public static readonly String CREDIT_CODE = "40";
-        public static readonly String DEBIT_CODE = "50";
-        public static readonly int LINES_IN_ONE_NOTE = 80;
+        public const String SALARY_LEDGER_NUMBER = "541100";
+        public const String TAX_LEDGER_NUMBER = "561000";
+        public const String CREDIT_CODE = "40";
+        public const String DEBIT_CODE = "50";
+        public const int LINES_IN_ONE_NOTE = 80;
         public Dictionary<String, int> ColumnTitles { get; set; }
 
         public ExcelReadOperation ExcelReadOperation { get; set; }
