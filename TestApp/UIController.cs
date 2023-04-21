@@ -8,9 +8,9 @@ namespace TestApp {
 
         public String MonthToFilter { get; set; }
 
-        private const String GOODBYE_TEXT = "Nyomj Entert a végeredmény megtekintéséhez.";
+        private const String GOODBYE_TEXT = "Betöltés befejezve.\nNyomj Entert a végeredmény megtekintéséhez (Result könyvtár megnyitása).";
         private const String MONTH_TEXT = "Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):";
-        private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás könyvtárban.";
+        private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás (Resources) könyvtárban.\n";
         private const String END_TEXT = "Nyomj Entert a kilépéshez.";
 
         public UIController() {

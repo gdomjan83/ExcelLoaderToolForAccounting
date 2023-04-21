@@ -1,8 +1,8 @@
-D:\Coding\CSharp projects\Bérbetöltő\TestApp.exe
-D:\Coding\CSharp projects\Bérbetöltő\TestApp.dll
-D:\Coding\CSharp projects\Bérbetöltő\TestApp.deps.json
-D:\Coding\CSharp projects\Bérbetöltő\TestApp.runtimeconfig.json
-D:\Coding\CSharp projects\Bérbetöltő\TestApp.pdb
+D:\Coding\CSharp projects\Bérbetöltő\Berbetolto.exe
+D:\Coding\CSharp projects\Bérbetöltő\Berbetolto.dll
+D:\Coding\CSharp projects\Bérbetöltő\Berbetolto.deps.json
+D:\Coding\CSharp projects\Bérbetöltő\Berbetolto.runtimeconfig.json
+D:\Coding\CSharp projects\Bérbetöltő\Berbetolto.pdb
 D:\Coding\CSharp projects\Bérbetöltő\Microsoft.CSharp.dll
 D:\Coding\CSharp projects\Bérbetöltő\Microsoft.VisualBasic.Core.dll
 D:\Coding\CSharp projects\Bérbetöltő\Microsoft.VisualBasic.dll

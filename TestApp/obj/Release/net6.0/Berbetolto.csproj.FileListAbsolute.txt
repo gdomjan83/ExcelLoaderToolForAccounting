@@ -1,0 +1,17 @@
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\bin\Release\net6.0\Berbetolto.exe
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\bin\Release\net6.0\Berbetolto.deps.json
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\bin\Release\net6.0\Berbetolto.runtimeconfig.json
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\bin\Release\net6.0\Berbetolto.dll
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\bin\Release\net6.0\Berbetolto.pdb
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.csproj.AssemblyReference.cache
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.csproj.ResolveComReference.cache
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.AssemblyInfoInputs.cache
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.AssemblyInfo.cs
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.csproj.CoreCompileInputs.cache
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.dll
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\refint\Berbetolto.dll
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.pdb
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\Berbetolto.genruntimeconfig.cache
+C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Release\net6.0\ref\Berbetolto.dll

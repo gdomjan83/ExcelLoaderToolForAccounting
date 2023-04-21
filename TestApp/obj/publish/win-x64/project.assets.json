@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\TestApp.csproj",
-      "projectName": "TestApp",
-      "projectPath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\TestApp.csproj",
+      "projectUniqueName": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\Berbetolto.csproj",
+      "projectName": "Berbetolto",
+      "projectPath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\Berbetolto.csproj",
       "packagesPath": "C:\\Users\\gdomj\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\gdomj\\source\\repos\\ExcelLoaderToolForAccounting\\TestApp\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
