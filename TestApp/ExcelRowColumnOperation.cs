@@ -1,5 +1,4 @@
 ﻿using Microsoft.Office.Interop.Excel;
-using System.Collections;
 
 namespace TestApp {
     public static class ExcelRowColumnOperation {

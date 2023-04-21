@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TestApp {
     public class NoteCounterData {
         public int GmiSzakmaCounter { get; set; } = 1;
