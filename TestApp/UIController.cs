@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Berbetolto;
+using System.Diagnostics;
 
 namespace TestApp {
     public class UIController {
@@ -8,10 +9,12 @@ namespace TestApp {
 
         public String MonthToFilter { get; set; }
 
-        private const String GOODBYE_TEXT = "Betöltés befejezve.\nNyomj Entert a végeredmény megtekintéséhez (Result könyvtár megnyitása).";
+        private const String GOODBYE_TEXT = "Nyomj Entert a végeredmény megtekintéséhez (Result könyvtár megnyitása).";            
         private const String MONTH_TEXT = "Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):";
+        private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a CSV fájlban, SAP betöltés előtt kérem törölni!";
         private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás (Resources) könyvtárban.\n";
         private const String END_TEXT = "Nyomj Entert a kilépéshez.";
+        private const String WRONG_MONTH_TEXT = "Nem megfelelő a megadott dátum formátum. Kérlek próbáld újra:";
 
         public UIController() {
             NoteCounterData = new NoteCounterData();
@@ -25,6 +28,7 @@ namespace TestApp {
         }
 
         private void FinishTask() {
+            Console.WriteLine(WARNING_TEXT);
             Console.WriteLine(GOODBYE_TEXT);
             Console.ReadLine();
             Process.Start("explorer.exe", TargetFilesFolder);
@@ -41,12 +45,20 @@ namespace TestApp {
         private String AskInputForMonth() {
             Console.WriteLine(MONTH_TEXT);
             String month = Console.ReadLine();
+            return ValidateInput(month);
+        }
+
+        private String ValidateInput(String month) {
+            while (!Validator.CheckIfMounthInCorrectForm(month)) {
+                Console.WriteLine(WRONG_MONTH_TEXT);
+                month = Console.ReadLine();
+            }
             return month;
         }
 
         private bool RunExcelOperations() {
             String[] files = FolderOperation.FindFilesInSourceDirectory(SourceFilesFolder);
-            if (CheckIfSourceFilesPresent(files)) {
+            if (Validator.CheckIfFilesPresentInDirectory(files)) {
                 MonthToFilter = AskInputForMonth();
                 ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(NoteCounterData, MonthToFilter);
                 excelFilesProcessor.FilePaths = files;
@@ -54,19 +66,13 @@ namespace TestApp {
                 List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
                 excelFilesProcessor.WriteCSVFile(TargetFilesFolder, csvResult);
                 return true;
+
             } else {
                 Console.WriteLine(NO_FILE_TEXT);
                 Console.WriteLine(END_TEXT);
                 Console.ReadLine();
                 return false;
             }
-        }
-
-        private bool CheckIfSourceFilesPresent(String[] files) {
-            if (files.Length != 0) {
-                return true;
-            }
-            return false;
         }
     }
 }

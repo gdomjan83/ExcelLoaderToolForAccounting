@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using Berbetolto;
+using Microsoft.Office.Interop.Excel;
 
 namespace TestApp {
     public class PersonDataConverter {
@@ -72,11 +73,11 @@ namespace TestApp {
         }
 
         private void AddNewPersonCSVData(List<PersonCSVData> resultList, PersonData inputPersonData) {
-            if (!CheckIfAmountIsZero(inputPersonData.Salary)) {
+            if (!Validator.CheckIfAmountIsZero(inputPersonData.Salary)) {
                 resultList.Add(TransformCreditSalary(inputPersonData));
                 resultList.Add(TransformDebitSalary(inputPersonData));
             }
-            if (!CheckIfAmountIsZero(inputPersonData.Tax)) {
+            if (!Validator.CheckIfAmountIsZero(inputPersonData.Tax)) {
                 resultList.Add(TransformCreditTax(inputPersonData));
                 resultList.Add(TransformDebitTax(inputPersonData));
             }
@@ -105,13 +106,6 @@ namespace TestApp {
             }
         }
 
-        private bool CheckIfAmountIsZero(String amount) {
-            if (String.IsNullOrEmpty(amount) || Int32.Parse(amount) == 0) {
-                return true;
-            }
-            return false;
-        }
-
         private bool CheckIfCostCenterIsSzakma(String costCenter) {
             if (String.Compare(costCenter, "L") < 0) {
                 return true;
@@ -124,7 +118,7 @@ namespace TestApp {
             try {
                 person = CreateNewPerson(rowNumber, id, month, fileName);
             } catch (Exception e) {
-                Console.WriteLine("Error during Save Person.");
+                Console.WriteLine("Error during SavePerson method.");
             }
             return person;            
         }
@@ -137,6 +131,9 @@ namespace TestApp {
             String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             String note = "0";
+            if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
+                Console.WriteLine($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
+            }
             return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName);
         }
 
