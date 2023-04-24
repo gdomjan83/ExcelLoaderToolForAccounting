@@ -5,7 +5,7 @@ using System.Text;
 namespace TestApp {
     public class ExcelInputOutputOperations {
         public String FilePath { get; set; }
-        public Application Application { get; set; }
+        public Microsoft.Office.Interop.Excel.Application Application { get; set; }
         public Workbook WorkbookUsed { get; set; }
         public Worksheet WorkSheetUsed { get; set; }
         public Process[] AlreadyOpenedExcelProcesses { get; set; }
@@ -16,7 +16,7 @@ namespace TestApp {
         public ExcelInputOutputOperations(String filePath, String worksheet) {
             try {
                 AlreadyOpenedExcelProcesses = FindCurrentExcelProcesses();
-                Application = new Application();
+                Application = new Microsoft.Office.Interop.Excel.Application();
                 OurProcessId = FindThisExcelProcess();
                 WorkbookUsed = Application.Workbooks.Open(filePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
