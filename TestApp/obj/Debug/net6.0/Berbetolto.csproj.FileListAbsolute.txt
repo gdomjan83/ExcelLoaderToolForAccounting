@@ -1,0 +1,17 @@
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Debug\net6.0\Berbetolto.exe
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Debug\net6.0\Berbetolto.deps.json
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Debug\net6.0\Berbetolto.runtimeconfig.json
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Debug\net6.0\Berbetolto.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Debug\net6.0\Berbetolto.pdb
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.csproj.AssemblyReference.cache
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.csproj.ResolveComReference.cache
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.AssemblyInfoInputs.cache
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.AssemblyInfo.cs
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.csproj.CoreCompileInputs.cache
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\refint\Berbetolto.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.pdb
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\Berbetolto.genruntimeconfig.cache
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0\ref\Berbetolto.dll

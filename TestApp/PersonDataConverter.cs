@@ -34,25 +34,22 @@ namespace TestApp {
                 }
             } finally {
                 ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
-            }            
+            }
             return ProcessedPeople;
         }
 
         public List<PersonCSVData> ConvertPersonDataToCSVData(List<PersonData> inputData, NoteCounterData noteCounterData) {
             List<PersonCSVData> result = new List<PersonCSVData>();
             List<PersonData> updatedPersonData = ChangeNoteNumbers(inputData, noteCounterData);
-            foreach(PersonData actual in updatedPersonData) {
-                result.Add(TransformCreditSalary(actual));
-                result.Add(TransformCreditTax(actual));
-                result.Add(TransformDebitSalary(actual));
-                result.Add(TransformDebitTax(actual));
+            foreach (PersonData actual in updatedPersonData) {
+                AddNewPersonCSVData(result, actual);
             }
             return result;
         }
 
         private PersonCSVData TransformCreditSalary(PersonData person) {
             String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, CREDIT_CODE, SALARY_LEDGER_NUMBER, person.Salary, 
+            return new PersonCSVData(person.Note, CREDIT_CODE, SALARY_LEDGER_NUMBER, person.Salary,
                 comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3), person.ProjectName);
         }
 
@@ -64,7 +61,7 @@ namespace TestApp {
 
         private PersonCSVData TransformDebitSalary(PersonData person) {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, DEBIT_CODE, SALARY_LEDGER_NUMBER, person.Salary, 
+            return new PersonCSVData(person.Note, DEBIT_CODE, SALARY_LEDGER_NUMBER, person.Salary,
                 comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
         }
 
@@ -72,6 +69,17 @@ namespace TestApp {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
             return new PersonCSVData(person.Note, DEBIT_CODE, TAX_LEDGER_NUMBER, person.Tax,
                 comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
+        }
+
+        private void AddNewPersonCSVData(List<PersonCSVData> resultList, PersonData inputPersonData) {
+            if (!CheckIfAmountIsZero(inputPersonData.Salary)) {
+                resultList.Add(TransformCreditSalary(inputPersonData));
+                resultList.Add(TransformDebitSalary(inputPersonData));
+            }
+            if (!CheckIfAmountIsZero(inputPersonData.Tax)) {
+                resultList.Add(TransformCreditTax(inputPersonData));
+                resultList.Add(TransformDebitTax(inputPersonData));
+            }
         }
 
         private List<PersonData> ChangeNoteNumbers(List<PersonData> inputData, NoteCounterData noteCounterData) {
@@ -95,6 +103,13 @@ namespace TestApp {
             if (counterData.GmiFpiCounter % LINES_IN_ONE_NOTE == 0) {
                 counterData.GmiFpiNote++;
             }
+        }
+
+        private bool CheckIfAmountIsZero(String amount) {
+            if (String.IsNullOrEmpty(amount) || Int32.Parse(amount) == 0) {
+                return true;
+            }
+            return false;
         }
 
         private bool CheckIfCostCenterIsSzakma(String costCenter) {
