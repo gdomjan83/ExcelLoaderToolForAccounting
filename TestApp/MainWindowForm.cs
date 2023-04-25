@@ -19,7 +19,8 @@ namespace TestApp {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            MessageBox.Show("test");
+            UIController uiController = new UIController(UIController.UIVersion.Windows);
+            uiController.RunApplication();
         }
     }
 }
