@@ -19,9 +19,26 @@ namespace TestApp {
             return currentFileName;
         }
 
-        public static void CopyFile(String sourceFile, String destination) {
+        public static List<String> CopySeveralFiles(List<String> sourceFiles, String destinationFolder) {
+            List<String> copiedFiles = new List<String>();
+            foreach(String actual in sourceFiles) {
+                String targetFile = CopyFile(actual, destinationFolder);
+                copiedFiles.Add(targetFile);
+            }
+            return copiedFiles;
+        }
+
+        public static void DeleteFiles(String folder) {
+            String[] files = Directory.GetFiles(folder);
+            foreach(String actual in files) {
+                File.Delete(actual);
+            }
+        }
+
+        private static String CopyFile(String sourceFile, String destination) {
             String targetFile = Path.Combine(destination, GetFileNameFromPath(sourceFile));
             File.Copy(sourceFile, targetFile, true);
+            return targetFile;
         }
         public static String GetFileNameFromPath(String path) {
             int lastIndexOfBackslash = path.LastIndexOf("\\");
@@ -29,9 +46,15 @@ namespace TestApp {
         }
 
         private static String AppendTimeToFilepath(String filePath) {
-            DateTime now = DateTime.Now;
-            String time = now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
+            String time = GetCurrentDatetime();
             return filePath + "\\TET_" + time + ".csv";
+        }
+
+        private static String GetCurrentDatetime() {
+            DateTime now = DateTime.Now;
+            String time = now.Year.ToString() + now.Month.ToString() + now.Day.ToString() +
+                now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
+            return time;
         }
     }
 }

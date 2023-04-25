@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             button1 = new Button();
             button2 = new Button();
+            richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
             // button1
@@ -49,11 +50,21 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(71, 55);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(644, 156);
+            richTextBox1.TabIndex = 2;
+            richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(richTextBox1);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "MainWindowForm";
@@ -67,5 +78,6 @@
 
         private Button button1;
         private Button button2;
+        private RichTextBox richTextBox1;
     }
 }

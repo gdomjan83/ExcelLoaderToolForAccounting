@@ -7,30 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TestApp {
     public partial class MainWindowForm : Form {
+        
+        public UIController UIController { get; set; }
 
         public MainWindowForm() {
             InitializeComponent();
+            UIController uiController = new UIController(this);
         }
 
         private void Form_Load(object sender, EventArgs e) {
-
+            this.richTextBox1.Text = "Betöltött költségkövető fájlok:\n";
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            UIController uiController = new UIController();
-            uiController.RunApplication();
+        private void button1_Click(object sender, EventArgs e) {            
+            UIController.RunApplication();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void button2_Click(object sender, EventArgs e) {           
             OpenFileDialog openFileDialog = new OpenFileDialog();
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) {
                 String file = openFileDialog.FileName;
                 if (!CheckIfFileIsInList(file, ExcelInputOutputOperations.CostExcelFiles)) {
                     ExcelInputOutputOperations.CostExcelFiles.Add(file);
+                    richTextBox1.AppendText("\n" + file);
                 }
             }
         }
@@ -50,6 +54,10 @@ namespace TestApp {
                 }
             }
             return alreadyInList;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e) {
+
         }
     }
 }
