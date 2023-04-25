@@ -19,7 +19,7 @@ namespace TestApp {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            UIController uiController = new UIController(UIController.UIVersion.Windows);
+            UIController uiController = new UIController();
             uiController.RunApplication();
         }
     }
