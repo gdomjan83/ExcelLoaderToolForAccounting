@@ -22,7 +22,10 @@ namespace TestApp {
                 String cellValue = excelReadOperation.ReadExcelCell(1, i);
                 columnTitles = FillDictionary(cellValue, i, columnTitles);
             }
-            return columnTitles;
+            if (CheckIfAllLabelsFound(columnTitles)) {
+                return columnTitles;
+            }
+            throw new ArgumentException("A column label is missing from the excel file.");
         }
 
         private static Dictionary<String, int> FillDictionary(String cellValue, int columnNumber, Dictionary<String, int> columnTitles) {
@@ -31,7 +34,15 @@ namespace TestApp {
                     columnTitles.Add(actual, columnNumber);
                 }
             }
-            return columnTitles;
+            return columnTitles;             
+        }
+
+        private static bool CheckIfAllLabelsFound(Dictionary<String, int> columnTitles) {
+            List<String> keys = new List<String>(columnTitles.Keys);
+            if (keys.Count == 6) {
+                return true;
+            }
+            return false;
         }
     }
 }

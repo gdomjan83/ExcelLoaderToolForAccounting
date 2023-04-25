@@ -9,8 +9,6 @@ namespace TestApp {
 
         public String MonthToFilter { get; set; }
 
-        private const String GOODBYE_TEXT = "Nyomj Entert a végeredmény megtekintéséhez (Result könyvtár megnyitása).";            
-        private const String MONTH_TEXT = "Melyik hónapot szeretnéd könyvelni (formátum -> 2023.03):";
         private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a CSV fájlban, SAP betöltés előtt kérem törölni!";
         private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás (Resources) könyvtárban.\n";
         private const String END_TEXT = "Nyomj Entert a kilépéshez.";
