@@ -10,7 +10,7 @@ namespace TestApp {
         public Worksheet WorkSheetUsed { get; set; }
         public Process[] AlreadyOpenedExcelProcesses { get; set; }
         public int OurProcessId { get; set; }
-        public String[] FilesInDirectory { get; set; }
+        public static List<String> CostExcelFiles { get; set; } = new List<String>();
 
         public ExcelInputOutputOperations(String filePath, String worksheet) {
             try {

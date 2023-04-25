@@ -19,6 +19,15 @@ namespace TestApp {
             return currentFileName;
         }
 
+        public static void CopyFile(String sourceFile, String destination) {
+            String targetFile = Path.Combine(destination, GetFileNameFromPath(sourceFile));
+            File.Copy(sourceFile, targetFile, true);
+        }
+        public static String GetFileNameFromPath(String path) {
+            int lastIndexOfBackslash = path.LastIndexOf("\\");
+            return path.Substring(lastIndexOfBackslash + 1);
+        }
+
         private static String AppendTimeToFilepath(String filePath) {
             DateTime now = DateTime.Now;
             String time = now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
