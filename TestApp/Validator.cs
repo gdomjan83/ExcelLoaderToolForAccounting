@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Berbetolto {
+namespace TestApp {
     public static class Validator {
 
         public static bool CheckIfAmountIsZero(String amount) {
@@ -49,5 +49,15 @@ namespace Berbetolto {
             }
             return false;
         }
+
+        public static bool CheckIfAccountingDateInCorrectForm(String date) {
+            String regex = "^\\d{4}\\.\\d{2}\\.\\d{2}$";
+            Match matcher = Regex.Match(date, regex);
+            if (matcher.Success) {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

@@ -7,10 +7,12 @@ namespace TestApp {
         public String TargetFilesFolder { get; set; }
         public MainWindowForm MainWindowForm { get; set; }
 
-        private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a CSV fájlban, SAP betöltés előtt kérem törölni!";
-        private const String NO_FILE_TEXT = "\nKérlek add meg, hogy melyik fájlokból töltsem be a költségeket!";
+        private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a TET CSV fájlban, SAP betöltés előtt kérem törölni!";
+        private const String NO_FILE_TEXT = "\nKérem adja meg, hogy melyik fájlokból töltsem be a költségeket!";
         private const String WRONG_MONTH_TEXT = "\nNem megfelelő a megadott dátum formátum.";
-        private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a megadott fájl név formátum.";
+        private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
+        private const String TET_FILE_NAME = "TET.CSV";
+        private const String FEJ_FILE_NAME = "FEJ.CSV";
 
         public UIController(MainWindowForm mainWindowForm) {
             MainWindowForm = mainWindowForm;
@@ -44,17 +46,30 @@ namespace TestApp {
 
         private bool ProcessFiles(String[] files) {
             String month = MainWindowForm.GetMonth();
-            String fileName = MainWindowForm.GetFileName();
-            if (ValidateFilesAndTextInput(month, fileName, files)) {
-                ExcelFilesProcessor excelFilesProcessor = AddFilesToExcelFileProcessor(files, month);
-                WriteCSVDataToFile(excelFilesProcessor, fileName + ".csv");
+            String date = MainWindowForm.GetAccountingDate();
+            if (ValidateFilesAndTextInput(month, date, files)) {
+                String correctDate = CreateDateFromString(date);
+                ExcelFilesProcessor excelFilesProcessor = AddFilesToExcelFileProcessor(files, month, correctDate);
+                List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList(excelFilesProcessor);
+                WriteTETCSVDataToFile(excelFilesProcessor, TET_FILE_NAME, updatedDataWithCorrectNotes);
+                WriteFEJCSVDataToFile(excelFilesProcessor, FEJ_FILE_NAME, updatedDataWithCorrectNotes);
                 return true;
             } else {
                 return false;
             }
         }
 
-        private bool ValidateFilesAndTextInput(String month, String fileName, String[] files) {
+        private List<PersonData> GeneratePersonDataList(ExcelFilesProcessor excelFilesProcessor) {
+            List<PersonData> data = excelFilesProcessor.CreateCompleteListFromPersonDataInAllFiles();
+            return excelFilesProcessor.PersonDataConverter.ChangeNoteNumbers(data);
+        }
+        
+        private String CreateDateFromString(String date) {
+            String removed = date.Remove(4, 1);
+            return removed.Remove(6, 1);
+        }
+
+        private bool ValidateFilesAndTextInput(String month, String date, String[] files) {
             bool result = true;
             if (!Validator.CheckIfFilesPresentInDirectory(files)) {
                 WindowOperations.mainWindowForm.AddTextToTextBox(NO_FILE_TEXT);
@@ -64,7 +79,7 @@ namespace TestApp {
                 WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_MONTH_TEXT);
                 result = false;
             }
-            if (!Validator.CheckCSVFileName(fileName)) {
+            if (!Validator.CheckIfAccountingDateInCorrectForm(date)) {
                 WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_FILENAME_TEXT);
                 result = false;
             }
@@ -76,16 +91,22 @@ namespace TestApp {
             FolderOperation.DeleteFiles(TargetFilesFolder);
         }
 
-        private ExcelFilesProcessor AddFilesToExcelFileProcessor(String[] files, string month) {
-            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(month);
+        private ExcelFilesProcessor AddFilesToExcelFileProcessor(String[] files, string month, String accountingDate) {
+            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(month, accountingDate);
             excelFilesProcessor.FilePaths = files;
             return excelFilesProcessor;
         }
 
-        private void WriteCSVDataToFile(ExcelFilesProcessor excelFilesProcessor, String targetFileName) {
-            List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
+        private void WriteTETCSVDataToFile(ExcelFilesProcessor excelFilesProcessor, String targetFileName, List<PersonData> personData) {
+            List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToTETCSVList(personData);
             String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
             excelFilesProcessor.WriteCSVFile(targetFile, csvResult);
+        }
+
+        private void WriteFEJCSVDataToFile(ExcelFilesProcessor excelFilesProcessor, String targetFileName, List<PersonData> personData) {
+            List<FejCSVData> fejData = excelFilesProcessor.TransformCompletePersonDataListToFEJCSVList(personData);
+            String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
+            excelFilesProcessor.WriteCSVFile(targetFile, fejData);
         }
     }
 }

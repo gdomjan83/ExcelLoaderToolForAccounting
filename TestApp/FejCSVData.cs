@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Berbetolto {
+namespace TestApp {
     public class FejCSVData {
         public String Note { get; set; }
         public String Source { get; set; }
@@ -26,7 +26,12 @@ namespace Berbetolto {
             Currency = "HUF";
         }
 
-        public  String CSFFormatting() {
+        public override bool Equals(object? obj) {
+            return obj is FejCSVData data &&
+                   Note == data.Note;
+        }
+
+        public  String CSVFormatting() {
             return $"{Note};{Source};{AccountingType};{AccountingDate};{AccountingDate};{Period};;;{Type};{SerialNumber};{Currency}";
         }
 
@@ -35,6 +40,10 @@ namespace Berbetolto {
                 return date.Substring(4, 2);
             }
             return date[5].ToString();
+        }
+
+        public override int GetHashCode() {
+            return HashCode.Combine(Note);
         }
     }
 }

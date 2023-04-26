@@ -1,4 +1,6 @@
 ﻿
+using Berbetolto;
+
 namespace TestApp {
     public class ExcelFilesProcessor {
         public String[] FilePaths { get; set; }
@@ -7,9 +9,11 @@ namespace TestApp {
         public PersonDataConverter PersonDataConverter { get; set; }
         public String MonthToFilter { get; set; }
         public String WorkSheetName { get; set; } = "Bérköltség";
+        public String AccountingDate { get; set; }
 
-        public ExcelFilesProcessor(String monthToFilter) {
+        public ExcelFilesProcessor(String monthToFilter, String accountingDate) {
             MonthToFilter = monthToFilter;
+            AccountingDate = accountingDate;
         }
 
         public List<PersonData> CreateCompleteListFromPersonDataInAllFiles() {
@@ -22,20 +26,29 @@ namespace TestApp {
             return result;
         }
 
-        public List<PersonCSVData> TransformCompletePersonDataListToCSVList() {
-            List<PersonData> inputList = CreateCompleteListFromPersonDataInAllFiles();
-            List<PersonCSVData> result = PersonDataConverter.ConvertPersonDataToCSVData(inputList);
-            return result;
+        public List<PersonCSVData> TransformCompletePersonDataListToTETCSVList(List<PersonData> personInputList) {
+            return PersonDataConverter.ConvertPersonDataToTETCSVData(personInputList);
+        }
+
+        public  List<FejCSVData> TransformCompletePersonDataListToFEJCSVList(List<PersonData> personInputList) {
+            return PersonDataConverter.ConvertPersonDataToFejCSVData(personInputList);
         }
 
         public void WriteCSVFile(String targetPath, List<PersonCSVData> personData) {
-            ExcelInputOutputOperations.WriteListToCSVFile(targetPath, personData);
+            var t = from tet in personData select tet.CSVFormating();
+            ExcelInputOutputOperations.WriteListToCSVFile(targetPath, t.ToList<String>());
+        }
+
+        public void WriteCSVFile(String targetPath, List<FejCSVData> fejData) {
+            var f = from fej in fejData select fej.CSVFormatting();
+            ExcelInputOutputOperations.WriteListToCSVFile(targetPath, f.ToList<String>());
         }
 
         private PersonDataConverter CreateExcelObjectsForFileReading(String filepath, String monthToFilter, String workSheetName, String fileName) {
             ExcelInputOutputOperations = new ExcelInputOutputOperations(filepath, workSheetName);
             ExcelReadOperation = new ExcelReadOperation(ExcelInputOutputOperations);
-            return new PersonDataConverter(ExcelReadOperation, monthToFilter, fileName);
+            return new PersonDataConverter(ExcelReadOperation, monthToFilter, fileName, AccountingDate);
         }
+
     }
 }

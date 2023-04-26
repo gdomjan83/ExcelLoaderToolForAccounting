@@ -72,7 +72,7 @@
             label1.Name = "label1";
             label1.Size = new Size(297, 15);
             label1.TabIndex = 3;
-            label1.Text = "Melyik hónapot szeretnéd könyvelni? (Például: 2023.03)";
+            label1.Text = "Melyik hónapot szeretnéd könyvelni? (például: 2023.03)";
             label1.Click += label1_Click;
             // 
             // textBox1
@@ -89,9 +89,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(68, 94);
             label2.Name = "label2";
-            label2.Size = new Size(362, 15);
+            label2.Size = new Size(196, 15);
             label2.TabIndex = 5;
-            label2.Text = "Könyveléshez használt CSV fájl neve. (Például: TET20230414021000F)";
+            label2.Text = "Könyvelési nap (például: 2023.04.26)";
             label2.Click += label2_Click;
             // 
             // textBox2
@@ -99,7 +99,7 @@
             textBox2.Location = new Point(68, 122);
             textBox2.MaxLength = 18;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(297, 23);
+            textBox2.Size = new Size(202, 23);
             textBox2.TabIndex = 6;
             // 
             // button5

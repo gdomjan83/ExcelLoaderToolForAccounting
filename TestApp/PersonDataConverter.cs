@@ -11,19 +11,18 @@ namespace TestApp {
         public const String BER_KOZPONTI = "BérProjektGMIFPI";
         public const int LINES_IN_ONE_NOTE = 80;
         public Dictionary<String, int> ColumnTitles { get; set; }
-
+        public String AccountingDate { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
-
         public List<PersonData> ProcessedPeople { get; set; } = new List<PersonData>();
-
         public String MonthToFilter { get; set; }
         public String FileName { get; set; }
 
-        public PersonDataConverter(ExcelReadOperation excelReadOperation, String monthToFilter, String fileName) {
+        public PersonDataConverter(ExcelReadOperation excelReadOperation, String monthToFilter, String fileName, String accountingDate) {
             ExcelReadOperation = excelReadOperation;
             ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(excelReadOperation);
             MonthToFilter = monthToFilter;
             FileName = fileName;
+            AccountingDate = accountingDate;
         }
 
         public List<PersonData> SavePersonDataToList() {
@@ -41,11 +40,18 @@ namespace TestApp {
             return ProcessedPeople;
         }
 
-        public List<PersonCSVData> ConvertPersonDataToCSVData(List<PersonData> inputData) {
+        public List<PersonCSVData> ConvertPersonDataToTETCSVData(List<PersonData> inputData) {
             List<PersonCSVData> result = new List<PersonCSVData>();
-            List<PersonData> updatedPersonData = ChangeNoteNumbers(inputData);
-            foreach (PersonData actual in updatedPersonData) {
-                AddNewPersonCSVData(result, actual);
+            for (int i = 0; i < inputData.Count; i++) {
+                AddNewPersonCSVData(result, inputData[i]);
+            }
+            return result;
+        }
+
+        public List<FejCSVData> ConvertPersonDataToFejCSVData(List<PersonData> inputData) {
+            List<FejCSVData> result = new List<FejCSVData>();
+            foreach (PersonData actual in inputData) {
+                AddFejDataToList(actual, result);
             }
             return result;
         }
@@ -85,26 +91,53 @@ namespace TestApp {
             }
         }
 
-        private List<PersonData> ChangeNoteNumbers(List<PersonData> inputData) {
-            for (int i = 0; i < inputData.Count; i++) {
-                UpdateNoteDataForPerson(inputData[i]);
+        public List<PersonData> ChangeNoteNumbers(List<PersonData> personDataCollection) {
+            List<PersonData> result = new List<PersonData>(personDataCollection);
+            int listSize = result.Count;
+            for (int i = 0; i < listSize; i++) {
+                UpdateNoteDataForPerson(result[i]);
+                if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
+                    NoteCounterData.GmiFpiCounter = 1;
+                    NoteCounterData.GmiSzakmaCounter = 1;
+                    NoteCounterData.GmiFpiNote++;
+                    NoteCounterData.GmiSzakmaNote++;
+                }
             }
-            return inputData;
+            return result;
+        }        
+
+        private void AddFejDataToList(PersonData personData, List<FejCSVData> fejDataResult) {
+            FejCSVData newFejData = new FejCSVData(personData.Note, AccountingDate, personData.WorkerType, "V bér");
+            if (!fejDataResult.Contains(newFejData)) {
+                fejDataResult.Add(newFejData);
+            }            
         }
 
         private void UpdateNoteDataForPerson(PersonData person) {
             if (CheckIfCostCenterIsSzakma(person.DebitCostCenter)) {
                 person.Note = NoteCounterData.GmiSzakmaNote.ToString();
-                NoteCounterData.GmiSzakmaCounter++;
+                ManageSzakmaCounter();
             } else {
                 person.Note = NoteCounterData.GmiFpiNote.ToString();
-                NoteCounterData.GmiFpiCounter++;
+                ManageFPICounter();
             }
-            if (NoteCounterData.GmiSzakmaCounter % LINES_IN_ONE_NOTE == 0) {
+        }
+
+        private void ManageSzakmaCounter() {
+            if (NoteCounterData.GmiSzakmaCounter == LINES_IN_ONE_NOTE) {
                 NoteCounterData.GmiSzakmaNote++;
+                NoteCounterData.GmiSzakmaCounter = 1;
+            } else {
+                NoteCounterData.GmiSzakmaCounter++;
             }
-            if (NoteCounterData.GmiFpiCounter % LINES_IN_ONE_NOTE == 0) {
+        }
+
+        private void ManageFPICounter() {
+            if (NoteCounterData.GmiFpiCounter == LINES_IN_ONE_NOTE) {
                 NoteCounterData.GmiFpiNote++;
+                NoteCounterData.GmiFpiCounter = 1;
+            } else {
+                NoteCounterData.GmiFpiCounter++;
             }
         }
 

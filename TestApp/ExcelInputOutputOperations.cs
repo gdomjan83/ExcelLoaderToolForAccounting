@@ -31,11 +31,11 @@ namespace TestApp {
             KillProcessById(OurProcessId);            
         }
 
-        public void WriteListToCSVFile(String filePath, List<PersonCSVData> personCSVDatas) {
+        public void WriteListToCSVFile(String filePath, List<String> personCSVDatas) {
             String currentFileName = FolderOperation.CreateNewFile(filePath);
             using (StreamWriter sw = new StreamWriter(new FileStream(currentFileName, FileMode.Open, FileAccess.ReadWrite), Encoding.UTF8)) {
-                foreach (PersonCSVData actual in personCSVDatas) {
-                    sw.WriteLine(actual.CSVFormating());
+                foreach (String actual in personCSVDatas) {
+                    sw.WriteLine(actual);
                 }
                 sw.Close();
             }

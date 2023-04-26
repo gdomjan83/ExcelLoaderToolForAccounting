@@ -27,7 +27,7 @@ namespace TestApp {
             return textBox1.Text;
         }
 
-        public String GetFileName() {
+        public String GetAccountingDate() {
             return textBox2.Text;
         }
 
@@ -50,7 +50,7 @@ namespace TestApp {
             if (CheckIfOnlyOneWindowIsOpen()) {
                 HelpWindow = new HelpWindow();
                 HelpWindow.Show();
-            }            
+            }
         }
 
         private bool CheckIfOnlyOneWindowIsOpen() {

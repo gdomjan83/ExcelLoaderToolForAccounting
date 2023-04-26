@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestApp;
 
-namespace Berbetolto {
+namespace TestApp {
     public static class WindowOperations {
         public static MainWindowForm mainWindowForm;
     }
