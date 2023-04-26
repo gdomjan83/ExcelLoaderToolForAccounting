@@ -37,3 +37,4 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0-windows\Ber
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0-windows\Berbetolto.genruntimeconfig.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0-windows\ref\Berbetolto.dll
 C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\obj\Debug\net6.0-windows\TestApp.StartApplication.resources
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Debug\net6.0-windows\TestApp.StartApplication.resources

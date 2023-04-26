@@ -10,9 +10,9 @@ namespace TestApp {
         public MainWindowForm MainWindowForm { get; set; }
 
         private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a CSV fájlban, SAP betöltés előtt kérem törölni!";
-        private const String NO_FILE_TEXT = "Nem találhatók excel fájlok a forrás (Resources) könyvtárban.\n";
-        private const String END_TEXT = "Nyomj Entert a kilépéshez.";
-        private const String WRONG_MONTH_TEXT = "Nem megfelelő a megadott dátum formátum. Kérlek próbáld újra:";
+        private const String NO_FILE_TEXT = "\nKérlek add meg, hogy melyik fájlokból töltsem be a költségeket!";
+        private const String WRONG_MONTH_TEXT = "\nNem megfelelő a megadott dátum formátum.";
+        private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a megadott fájl név formátum.";
 
         public UIController(MainWindowForm mainWindowForm) {
             NoteCounterData = new NoteCounterData();
@@ -39,14 +39,6 @@ namespace TestApp {
             Directory.CreateDirectory(TargetFilesFolder);
         }
 
-        private String ValidateInput(String month) {
-            while (!Validator.CheckIfMounthInCorrectForm(month)) {
-                Console.WriteLine(WRONG_MONTH_TEXT);
-                month = Console.ReadLine();
-            }
-            return month;
-        }
-
         private bool RunExcelOperations() {
             EmptyFolders();
             String[] files = FolderOperation.CopySeveralFiles(ExcelInputOutputOperations.CostExcelFiles, SourceFilesFolder).ToArray();
@@ -54,30 +46,42 @@ namespace TestApp {
         }
 
         private bool ProcessFiles(String[] files) {
-            if (Validator.CheckIfFilesPresentInDirectory(files)) {
-                MonthToFilter = GetMonthToFilterForWindowVersion();
+            String month = MainWindowForm.GetMonth();
+            String fileName = MainWindowForm.GetFileName();
+            if (ValidateFilesAndTextInput(month, fileName, files)) {
+                MonthToFilter = month;
                 ExcelFilesProcessor excelFilesProcessor = AddFilesToExcelFileProcessor(files);
-                WriteCSVDataToFile(excelFilesProcessor);
+                WriteCSVDataToFile(excelFilesProcessor, fileName + ".csv");
                 return true;
             } else {
-                WriteApplicationEndText();
                 return false;
             }
+        }
+
+        private void AddTextToTextBox(String text) {
+            MainWindowForm.GetTextBox().AppendText(text);
+        }
+
+        private bool ValidateFilesAndTextInput(String month, String fileName, String[] files) {
+            bool result = true;
+            if (!Validator.CheckIfFilesPresentInDirectory(files)) {
+                AddTextToTextBox(NO_FILE_TEXT);
+                result = false;
+            }
+            if (!Validator.CheckIfMonthInCorrectForm(month)) {
+                AddTextToTextBox(WRONG_MONTH_TEXT);
+                result = false;
+            }
+            if (!Validator.CheckCSVFileName(fileName)) {
+                AddTextToTextBox(WRONG_FILENAME_TEXT);
+                result = false;
+            }
+            return result;
         }
 
         private void EmptyFolders() {
             FolderOperation.DeleteFiles(SourceFilesFolder);
             FolderOperation.DeleteFiles(TargetFilesFolder);
-        }
-
-        private String GetMonthToFilterForWindowVersion() {
-            return "2023.03";
-        }
-
-        private void WriteApplicationEndText() {
-            Console.WriteLine(NO_FILE_TEXT);
-            Console.WriteLine(END_TEXT);
-            Console.ReadLine();
         }
 
         private ExcelFilesProcessor AddFilesToExcelFileProcessor(String[] files) {
@@ -86,9 +90,10 @@ namespace TestApp {
             return excelFilesProcessor;
         }
 
-        private void WriteCSVDataToFile(ExcelFilesProcessor excelFilesProcessor) {
+        private void WriteCSVDataToFile(ExcelFilesProcessor excelFilesProcessor, String targetFileName) {
             List<PersonCSVData> csvResult = excelFilesProcessor.TransformCompletePersonDataListToCSVList();
-            excelFilesProcessor.WriteCSVFile(TargetFilesFolder, csvResult);
+            String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
+            excelFilesProcessor.WriteCSVFile(targetFile, csvResult);
         }
     }
 }

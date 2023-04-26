@@ -12,11 +12,10 @@ namespace TestApp {
         }
 
         public static String CreateNewFile(String filePath) {
-            String currentFileName = AppendTimeToFilepath(filePath);
-            using (FileStream fs = File.Create(currentFileName)) {
+            using (FileStream fs = File.Create(filePath)) {
                 fs.Close();
             }
-            return currentFileName;
+            return filePath;
         }
 
         public static List<String> CopySeveralFiles(List<String> sourceFiles, String destinationFolder) {
@@ -43,18 +42,6 @@ namespace TestApp {
         public static String GetFileNameFromPath(String path) {
             int lastIndexOfBackslash = path.LastIndexOf("\\");
             return path.Substring(lastIndexOfBackslash + 1);
-        }
-
-        private static String AppendTimeToFilepath(String filePath) {
-            String time = GetCurrentDatetime();
-            return filePath + "\\TET_" + time + ".csv";
-        }
-
-        private static String GetCurrentDatetime() {
-            DateTime now = DateTime.Now;
-            String time = now.Year.ToString() + now.Month.ToString() + now.Day.ToString() +
-                now.Hour.ToString() + now.Minute.ToString() + now.Second.ToString();
-            return time;
         }
     }
 }

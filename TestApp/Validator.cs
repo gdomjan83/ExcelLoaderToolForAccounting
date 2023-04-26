@@ -16,7 +16,7 @@ namespace Berbetolto {
             return false;
         }
 
-        public static bool CheckIfMounthInCorrectForm(String month) {
+        public static bool CheckIfMonthInCorrectForm(String month) {
             String regex = "^\\d{4}\\.\\d{2}$";
             Match matcher = Regex.Match(month, regex);
             if (matcher.Success) {
@@ -35,6 +35,15 @@ namespace Berbetolto {
         public static bool CheckCostCenterFormat(String costCenter) {
             String regex = "^[A-Z]\\d{9}$";
             Match matcher = Regex.Match(costCenter, regex);
+            if (matcher.Success) {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CheckCSVFileName(String fileName) {
+            String regex = "^TET\\d{14}F$";
+            Match matcher = Regex.Match(fileName, regex);
             if (matcher.Success) {
                 return true;
             }

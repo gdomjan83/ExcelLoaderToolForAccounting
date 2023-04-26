@@ -11,23 +11,35 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TestApp {
     public partial class MainWindowForm : Form {
-        
+
         public UIController UIController { get; set; }
 
         public MainWindowForm() {
             InitializeComponent();
-            UIController uiController = new UIController(this);
+            UIController = new UIController(this);
+        }
+
+        public String GetMonth() {
+            return textBox1.Text;
+        }
+
+        public String GetFileName() {
+            return textBox2.Text;
+        }
+
+        public RichTextBox GetTextBox() {
+            return richTextBox1;
         }
 
         private void Form_Load(object sender, EventArgs e) {
             this.richTextBox1.Text = "Betöltött költségkövető fájlok:\n";
         }
 
-        private void button1_Click(object sender, EventArgs e) {            
+        private void button1_Click(object sender, EventArgs e) {
             UIController.RunApplication();
         }
 
-        private void button2_Click(object sender, EventArgs e) {           
+        private void button2_Click(object sender, EventArgs e) {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) {
@@ -57,6 +69,18 @@ namespace TestApp {
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e) {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e) {
 
         }
     }

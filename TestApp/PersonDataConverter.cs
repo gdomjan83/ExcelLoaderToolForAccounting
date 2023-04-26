@@ -118,7 +118,7 @@ namespace TestApp {
             try {
                 person = CreateNewPerson(rowNumber, id, month, fileName);
             } catch (Exception e) {
-                Console.WriteLine("Error during SavePerson method.");
+                MessageBox.Show("Error during SavePerson method.");
             }
             return person;            
         }
@@ -132,7 +132,7 @@ namespace TestApp {
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             String note = "0";
             if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
-                Console.WriteLine($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
+                MessageBox.Show($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
             }
             return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName);
         }

@@ -20,7 +20,7 @@ namespace TestApp {
                 WorkbookUsed = Application.Workbooks.Open(filePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
             } catch (Exception e) {
-                Console.WriteLine("Excel file can not be opened.");
+                MessageBox.Show("Excel file can not be opened.");
                 CloseApplication();
             }
         }

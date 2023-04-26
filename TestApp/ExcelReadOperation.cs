@@ -13,7 +13,7 @@ namespace TestApp {
             try {
                 result = ParseRangeAndReturnValues(rangeLabels, result);
             } catch (Exception e) {
-                Console.WriteLine("Cell value error.");
+                MessageBox.Show("Cell value error.");
                 ExcelInputOutputOperations.CloseApplication();
             } 
             return result;
@@ -24,7 +24,7 @@ namespace TestApp {
             try {
                 result = ParseCellAndReturnValue(rowNumber, columnNumber);
             } catch (Exception e) {
-                Console.WriteLine("Cell value error.");
+                MessageBox.Show("Cell value error.");
                 ExcelInputOutputOperations.CloseApplication();
             } 
             return result;
