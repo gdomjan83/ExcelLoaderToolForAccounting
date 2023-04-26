@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using Berbetolto;
+using Microsoft.Office.Interop.Excel;
 
 namespace TestApp {
     public static class ExcelRowColumnOperation {
@@ -25,7 +26,10 @@ namespace TestApp {
             if (CheckIfAllLabelsFound(columnTitles)) {
                 return columnTitles;
             }
-            throw new ArgumentException("A column label is missing from the excel file.");
+            MessageBox.Show($"Egy vagy több fejléc cimke (Név, Hónap stb.) hiányzik. " +
+                $"Fájl: {excelReadOperation.ExcelInputOutputOperations.FilePath}");
+            excelReadOperation.ExcelInputOutputOperations.CloseApplication();
+            throw new ArgumentException();
         }
 
         private static Dictionary<String, int> FillDictionary(String cellValue, int columnNumber, Dictionary<String, int> columnTitles) {

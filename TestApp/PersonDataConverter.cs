@@ -118,7 +118,8 @@ namespace TestApp {
             try {
                 person = CreateNewPerson(rowNumber, id, month, fileName);
             } catch (Exception e) {
-                MessageBox.Show("Error during SavePerson method.");
+                MessageBox.Show($"Hiba a személyek feldolgozásánál. Fájl: {fileName} ");
+                ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
             }
             return person;            
         }
@@ -133,6 +134,7 @@ namespace TestApp {
             String note = "0";
             if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
                 MessageBox.Show($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
+                throw new ArgumentException();
             }
             return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName);
         }

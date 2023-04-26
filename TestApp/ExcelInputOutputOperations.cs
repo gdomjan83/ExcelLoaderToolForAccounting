@@ -17,10 +17,11 @@ namespace TestApp {
                 AlreadyOpenedExcelProcesses = FindCurrentExcelProcesses();
                 Application = new Microsoft.Office.Interop.Excel.Application();
                 OurProcessId = FindThisExcelProcess();
-                WorkbookUsed = Application.Workbooks.Open(filePath);
+                FilePath = filePath;
+                WorkbookUsed = Application.Workbooks.Open(FilePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
             } catch (Exception e) {
-                MessageBox.Show("Excel file can not be opened.");
+                MessageBox.Show("Nem sikerült az Excel file megnyitása.");
                 CloseApplication();
             }
         }

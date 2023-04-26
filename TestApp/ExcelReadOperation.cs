@@ -13,7 +13,8 @@ namespace TestApp {
             try {
                 result = ParseRangeAndReturnValues(rangeLabels, result);
             } catch (Exception e) {
-                MessageBox.Show("Cell value error.");
+                MessageBox.Show($"Nem sikerült a cella értékének kiolvasása." +
+                    $" Fájl: {ExcelInputOutputOperations.FilePath} Cellák: {rangeLabels}");
                 ExcelInputOutputOperations.CloseApplication();
             } 
             return result;
@@ -24,7 +25,8 @@ namespace TestApp {
             try {
                 result = ParseCellAndReturnValue(rowNumber, columnNumber);
             } catch (Exception e) {
-                MessageBox.Show("Cell value error.");
+                MessageBox.Show($"Nem sikerült a cella értékének kiolvasása." +
+                    $" Fájl: {ExcelInputOutputOperations.FilePath} Sor: {rowNumber}, Oszlop: {columnNumber}");
                 ExcelInputOutputOperations.CloseApplication();
             } 
             return result;

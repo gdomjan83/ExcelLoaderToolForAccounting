@@ -54,22 +54,18 @@ namespace TestApp {
             }
         }
 
-        private void AddTextToTextBox(String text) {
-            MainWindowForm.GetTextBox().AppendText(text);
-        }
-
         private bool ValidateFilesAndTextInput(String month, String fileName, String[] files) {
             bool result = true;
             if (!Validator.CheckIfFilesPresentInDirectory(files)) {
-                AddTextToTextBox(NO_FILE_TEXT);
+                WindowOperations.mainWindowForm.AddTextToTextBox(NO_FILE_TEXT);
                 result = false;
             }
             if (!Validator.CheckIfMonthInCorrectForm(month)) {
-                AddTextToTextBox(WRONG_MONTH_TEXT);
+                WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_MONTH_TEXT);
                 result = false;
             }
             if (!Validator.CheckCSVFileName(fileName)) {
-                AddTextToTextBox(WRONG_FILENAME_TEXT);
+                WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_FILENAME_TEXT);
                 result = false;
             }
             return result;

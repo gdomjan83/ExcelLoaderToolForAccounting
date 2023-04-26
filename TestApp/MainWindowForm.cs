@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Berbetolto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace TestApp {
         public MainWindowForm() {
             InitializeComponent();
             UIController = new UIController(this);
+            WindowOperations.mainWindowForm = this;
         }
 
         public String GetMonth() {
@@ -29,6 +31,10 @@ namespace TestApp {
 
         public RichTextBox GetTextBox() {
             return richTextBox1;
+        }
+
+        public void AddTextToTextBox(String text) {
+            richTextBox1.AppendText(text);
         }
 
         private void Form_Load(object sender, EventArgs e) {
