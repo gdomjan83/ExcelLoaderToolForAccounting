@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>C:\Users\gdomj\source\repos\ExcelLoaderToolForAccounting\TestApp\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="MainWindowForm.cs">
       <SubType>Form</SubType>
     </Compile>

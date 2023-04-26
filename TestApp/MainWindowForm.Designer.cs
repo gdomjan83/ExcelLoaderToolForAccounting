@@ -30,6 +30,7 @@
             textBox1 = new TextBox();
             label2 = new Label();
             textBox2 = new TextBox();
+            button5 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -101,11 +102,22 @@
             textBox2.Size = new Size(297, 23);
             textBox2.TabIndex = 6;
             // 
+            // button5
+            // 
+            button5.Location = new Point(533, 25);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 7;
+            button5.Text = "Súgó";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 455);
+            Controls.Add(button5);
             Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(textBox1);
@@ -130,5 +142,6 @@
         private TextBox textBox1;
         private Label label2;
         private TextBox textBox2;
+        private Button button5;
     }
 }

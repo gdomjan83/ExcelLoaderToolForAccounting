@@ -14,11 +14,13 @@ namespace TestApp {
     public partial class MainWindowForm : Form {
 
         public UIController UIController { get; set; }
+        public HelpWindow HelpWindow { get; set; }
 
         public MainWindowForm() {
             InitializeComponent();
             UIController = new UIController(this);
             WindowOperations.mainWindowForm = this;
+            HelpWindow = null;
         }
 
         public String GetMonth() {
@@ -43,6 +45,17 @@ namespace TestApp {
 
         private void button1_Click(object sender, EventArgs e) {
             UIController.RunApplication();
+        }
+        private void button5_Click(object sender, EventArgs e) {
+            if (CheckIfOnlyOneWindowIsOpen()) {
+                HelpWindow = new HelpWindow();
+                HelpWindow.Show();
+            }            
+        }
+
+        private bool CheckIfOnlyOneWindowIsOpen() {
+            int formCount = System.Windows.Forms.Application.OpenForms.Count;
+            return formCount == 1;
         }
 
         private void button2_Click(object sender, EventArgs e) {

@@ -29,7 +29,7 @@ namespace TestApp {
             MessageBox.Show($"Egy vagy több fejléc cimke (Név, Hónap stb.) hiányzik. " +
                 $"Fájl: {excelReadOperation.ExcelInputOutputOperations.FilePath}");
             excelReadOperation.ExcelInputOutputOperations.CloseApplication();
-            throw new ArgumentException();
+            throw new ArgumentException("Hiba: hiányzó fejlécek.");
         }
 
         private static Dictionary<String, int> FillDictionary(String cellValue, int columnNumber, Dictionary<String, int> columnTitles) {
