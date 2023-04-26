@@ -8,7 +8,6 @@ namespace TestApp {
         public String Comment { get; set; }
         public String CostCenter { get; set;}
         public String FunctionCode { get; set; }
-
         public String ProjectName { get; set; }
 
         public PersonCSVData(String note, String creditDebitCode, String ledgerNumber, String amount, String comment, String costCenter, String functionCode, String projectName) {

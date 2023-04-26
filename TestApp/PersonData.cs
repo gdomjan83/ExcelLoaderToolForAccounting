@@ -9,10 +9,10 @@ namespace TestApp {
         public String Salary { get; set; }
         public String Tax { get; set; }
         public String Note { get; set; }
-
         public String ProjectName { get; set; }
+        public String WorkerType { get; set; }
 
-        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note , String projectName) {
+        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note , String projectName, String workerType) {
             Id = id;
             Name = name;
             Month = month;
@@ -22,6 +22,7 @@ namespace TestApp {
             Tax = tax;
             Note = note;
             ProjectName = projectName;
+            WorkerType = workerType;
         }
 
         public override string ToString() {

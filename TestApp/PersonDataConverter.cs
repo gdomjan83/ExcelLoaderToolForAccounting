@@ -7,6 +7,8 @@ namespace TestApp {
         public const String TAX_LEDGER_NUMBER = "561000";
         public const String CREDIT_CODE = "40";
         public const String DEBIT_CODE = "50";
+        public const String BER_SZAKMA = "BérProjektSzakma";
+        public const String BER_KOZPONTI = "BérProjektGMIFPI";
         public const int LINES_IN_ONE_NOTE = 80;
         public Dictionary<String, int> ColumnTitles { get; set; }
 
@@ -132,11 +134,12 @@ namespace TestApp {
             String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             String note = "0";
+            String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
             if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
                 MessageBox.Show($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
                 throw new ArgumentException();
             }
-            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName);
+            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName, type);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {

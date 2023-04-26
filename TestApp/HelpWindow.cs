@@ -14,6 +14,7 @@ namespace Berbetolto {
             InitializeComponent();
             richTextBox1.AppendText("" +
                 "Az excelből történő béradat betöltéséhez szükséges feltételek:\n" +
+                "- a költségkövető excel fájloknak különbözniük kell egymástól a nevükben.\n" +
                 "- az excel fájlban a bérköltségeknek a következő elnevezésű munkalapon kell lennie: Bérköltség\n" +
                 "- a Bérköltség munkalap legelső sorában az egyes oszlopokhoz a következő elnevezéseket kell megadni: " +
                 "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék\n" +
