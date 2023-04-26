@@ -1,9 +1,9 @@
 ﻿
 namespace TestApp {
-    public class NoteCounterData {
-        public int GmiSzakmaCounter { get; set; } = 1;
-        public int GmiFpiCounter { get; set; } = 1;
-        public int GmiSzakmaNote { get; set; } = 100;
-        public int GmiFpiNote { get; set; } = 200;
+    public static class NoteCounterData {
+        public static int GmiSzakmaCounter { get; set; } = 1;
+        public static int GmiFpiCounter { get; set; } = 1;
+        public static int GmiSzakmaNote { get; set; } = 100;
+        public static int GmiFpiNote { get; set; } = 200;
     }
 }

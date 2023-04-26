@@ -1,17 +1,14 @@
 ﻿
-
 namespace TestApp {
     public class ExcelFilesProcessor {
         public String[] FilePaths { get; set; }
         public ExcelInputOutputOperations ExcelInputOutputOperations { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
         public PersonDataConverter PersonDataConverter { get; set; }
-        public NoteCounterData NoteCounterData { get; set; }
         public String MonthToFilter { get; set; }
         public String WorkSheetName { get; set; } = "Bérköltség";
 
-        public ExcelFilesProcessor(NoteCounterData noteCounterData, String monthToFilter) {
-            NoteCounterData = noteCounterData;
+        public ExcelFilesProcessor(String monthToFilter) {
             MonthToFilter = monthToFilter;
         }
 
@@ -27,7 +24,7 @@ namespace TestApp {
 
         public List<PersonCSVData> TransformCompletePersonDataListToCSVList() {
             List<PersonData> inputList = CreateCompleteListFromPersonDataInAllFiles();
-            List<PersonCSVData> result = PersonDataConverter.ConvertPersonDataToCSVData(inputList, NoteCounterData);
+            List<PersonCSVData> result = PersonDataConverter.ConvertPersonDataToCSVData(inputList);
             return result;
         }
 

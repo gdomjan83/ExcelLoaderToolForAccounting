@@ -39,9 +39,9 @@ namespace TestApp {
             return ProcessedPeople;
         }
 
-        public List<PersonCSVData> ConvertPersonDataToCSVData(List<PersonData> inputData, NoteCounterData noteCounterData) {
+        public List<PersonCSVData> ConvertPersonDataToCSVData(List<PersonData> inputData) {
             List<PersonCSVData> result = new List<PersonCSVData>();
-            List<PersonData> updatedPersonData = ChangeNoteNumbers(inputData, noteCounterData);
+            List<PersonData> updatedPersonData = ChangeNoteNumbers(inputData);
             foreach (PersonData actual in updatedPersonData) {
                 AddNewPersonCSVData(result, actual);
             }
@@ -83,26 +83,26 @@ namespace TestApp {
             }
         }
 
-        private List<PersonData> ChangeNoteNumbers(List<PersonData> inputData, NoteCounterData noteCounterData) {
+        private List<PersonData> ChangeNoteNumbers(List<PersonData> inputData) {
             for (int i = 0; i < inputData.Count; i++) {
-                UpdateNoteDataForPerson(inputData[i], noteCounterData);
+                UpdateNoteDataForPerson(inputData[i]);
             }
             return inputData;
         }
 
-        private void UpdateNoteDataForPerson(PersonData person, NoteCounterData counterData) {
+        private void UpdateNoteDataForPerson(PersonData person) {
             if (CheckIfCostCenterIsSzakma(person.DebitCostCenter)) {
-                person.Note = counterData.GmiSzakmaNote.ToString();
-                counterData.GmiSzakmaCounter++;
+                person.Note = NoteCounterData.GmiSzakmaNote.ToString();
+                NoteCounterData.GmiSzakmaCounter++;
             } else {
-                person.Note = counterData.GmiFpiNote.ToString();
-                counterData.GmiFpiCounter++;
+                person.Note = NoteCounterData.GmiFpiNote.ToString();
+                NoteCounterData.GmiFpiCounter++;
             }
-            if (counterData.GmiSzakmaCounter % LINES_IN_ONE_NOTE == 0) {
-                counterData.GmiSzakmaNote++;
+            if (NoteCounterData.GmiSzakmaCounter % LINES_IN_ONE_NOTE == 0) {
+                NoteCounterData.GmiSzakmaNote++;
             }
-            if (counterData.GmiFpiCounter % LINES_IN_ONE_NOTE == 0) {
-                counterData.GmiFpiNote++;
+            if (NoteCounterData.GmiFpiCounter % LINES_IN_ONE_NOTE == 0) {
+                NoteCounterData.GmiFpiNote++;
             }
         }
 

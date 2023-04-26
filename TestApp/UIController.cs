@@ -5,8 +5,6 @@ namespace TestApp {
     public class UIController {
         public String SourceFilesFolder { get; set; }
         public String TargetFilesFolder { get; set; }
-        public NoteCounterData NoteCounterData { get; set; }
-        public String MonthToFilter { get; set; }
         public MainWindowForm MainWindowForm { get; set; }
 
         private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a CSV fájlban, SAP betöltés előtt kérem törölni!";
@@ -15,7 +13,6 @@ namespace TestApp {
         private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a megadott fájl név formátum.";
 
         public UIController(MainWindowForm mainWindowForm) {
-            NoteCounterData = new NoteCounterData();
             MainWindowForm = mainWindowForm;
             SetupFolders();
         }        
@@ -33,9 +30,9 @@ namespace TestApp {
 
         private void SetupFolders() {
             String currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            SourceFilesFolder = Path.Combine(currentDirectory, @"Resources");
+            SourceFilesFolder = Path.Combine(currentDirectory, "Resources");
             Directory.CreateDirectory(SourceFilesFolder);
-            TargetFilesFolder = Path.Combine(currentDirectory, @"Result");
+            TargetFilesFolder = Path.Combine(currentDirectory, "Result");
             Directory.CreateDirectory(TargetFilesFolder);
         }
 
@@ -49,8 +46,7 @@ namespace TestApp {
             String month = MainWindowForm.GetMonth();
             String fileName = MainWindowForm.GetFileName();
             if (ValidateFilesAndTextInput(month, fileName, files)) {
-                MonthToFilter = month;
-                ExcelFilesProcessor excelFilesProcessor = AddFilesToExcelFileProcessor(files);
+                ExcelFilesProcessor excelFilesProcessor = AddFilesToExcelFileProcessor(files, month);
                 WriteCSVDataToFile(excelFilesProcessor, fileName + ".csv");
                 return true;
             } else {
@@ -84,8 +80,8 @@ namespace TestApp {
             FolderOperation.DeleteFiles(TargetFilesFolder);
         }
 
-        private ExcelFilesProcessor AddFilesToExcelFileProcessor(String[] files) {
-            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(NoteCounterData, MonthToFilter);
+        private ExcelFilesProcessor AddFilesToExcelFileProcessor(String[] files, string month) {
+            ExcelFilesProcessor excelFilesProcessor = new ExcelFilesProcessor(month);
             excelFilesProcessor.FilePaths = files;
             return excelFilesProcessor;
         }
