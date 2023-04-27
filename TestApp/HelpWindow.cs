@@ -11,6 +11,7 @@ namespace Berbetolto {
                 "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék,\n" +
                 "- a hónapok oszlopban a hónapokat úgy kell feltűntetni, hogy az első hét karakter ilyen formában legyen: 2023.03\n" +
                 "Az nem probléma, ha utána mást is írunk. Például lehet így vezetni a tört hónapokat: 2023.03.15-2023.03.30.\n" +
+                "- a betöltés során nem legyenek nyitva a költségkövető excel fájlok.\n" +
                 "\nA betöltés menete:\n" +
                 "- az első mezőbe beírjuk a könyvelni kívánt hónapot a következő formátumban: 2023.03\n" +
                 "- a könyvelési dátum mezőbe beírjuk azt a dátumot, amelyik napra könyvelni szeretnénk a tételt. Formátum: 2023.04.26\n" +

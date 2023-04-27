@@ -21,8 +21,7 @@ namespace TestApp {
                 WorkbookUsed = Application.Workbooks.Open(FilePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
             } catch (Exception e) {
-                MessageBox.Show("Nem sikerült az Excel file megnyitása.");
-                CloseApplication();
+                throw new ArgumentException($"Nem sikerült az Excel file megnyitása: {FolderOperation.GetFileNameFromPath(FilePath)}");
             }
         }
 

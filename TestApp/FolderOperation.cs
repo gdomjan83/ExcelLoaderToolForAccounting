@@ -24,8 +24,10 @@ namespace TestApp {
 
         public static void DeleteFiles(String folder) {
             String[] files = Directory.GetFiles(folder);
-            foreach(String actual in files) {
-                File.Delete(actual);
+            foreach (String actual in files) {
+                if (File.Exists(actual)) {
+                    File.Delete(actual);
+                }
             }
         }
         public static String GetFileNameFromPath(String path) {
@@ -35,7 +37,11 @@ namespace TestApp {
 
         public static String CopyFile(String sourceFile, String destination) {
             String targetFile = Path.Combine(destination, GetFileNameFromPath(sourceFile));
-            File.Copy(sourceFile, targetFile, true);
+            try {
+                File.Copy(sourceFile, targetFile, true);
+            } catch (IOException e) {
+                throw new ArgumentException($"A fájl nem található: {FolderOperation.GetFileNameFromPath(sourceFile)}");
+            }
             return targetFile;
         }
     }

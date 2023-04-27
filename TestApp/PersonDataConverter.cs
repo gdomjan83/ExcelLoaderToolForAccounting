@@ -17,8 +17,7 @@ namespace TestApp {
         public String FileName { get; set; }
 
         public PersonDataConverter(ExcelReadOperation excelReadOperation, String monthToFilter, String fileName, String accountingDate) {
-            ExcelReadOperation = excelReadOperation;
-            ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(excelReadOperation);
+            ExcelReadOperation = excelReadOperation;          
             MonthToFilter = monthToFilter;
             FileName = fileName;
             AccountingDate = accountingDate;
@@ -28,13 +27,14 @@ namespace TestApp {
             try {
                 Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
                 Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
+                ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(ExcelReadOperation);
                 int lastRow = ExcelRowColumnOperation.GetLastRow(wb, ws);
                 int idNumber = 1;
                 for (int i = 2; i <= lastRow; i++) {
                     idNumber = FilterMonthAndSavePersonToList(MonthToFilter, i, idNumber);
                 }
             } finally {
-                ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+                //ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
             }
             return ProcessedPeople;
         }
@@ -149,18 +149,19 @@ namespace TestApp {
             return false;
         }
 
-        private PersonData SavePerson(int rowNumber, int id, String month, String fileName) {
-            PersonData person = null;
-            try {
-                person = CreateNewPerson(rowNumber, id, month, fileName);
-            } catch (Exception e) {
-                MessageBox.Show($"Hiba a személyek feldolgozásánál. Fájl: {fileName} ");
-                ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
-            }
-            return person;            
+        private PersonData SavePerson(int rowNumber, int id, String month, String fileName) {            
+            return CreateNewPerson(rowNumber, id, month, fileName);
         }
 
         private PersonData CreateNewPerson(int rowNumber, int id, String month, String fileName) {
+            PersonData person = CreatePersonObject(rowNumber, id, month, fileName);
+            if (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName)) {
+                throw new ArgumentException($"Hibás pénzügyi központ formátum a következő fájlban: {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
+            }
+            return person;
+        }
+
+        private PersonData CreatePersonObject(int rowNumber, int id, String month, String fileName) {
             String idNumber = id.ToString();
             String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
             String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
@@ -169,10 +170,6 @@ namespace TestApp {
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             int note = 0;
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
-            if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
-                MessageBox.Show($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
-                throw new ArgumentException();
-            }
             return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName, type);
         }
 

@@ -17,10 +17,14 @@ namespace TestApp {
 
         public List<PersonData> CreateCompleteListFromPersonDataInAllFiles() {
             List<PersonData> result = new List<PersonData>();
-            foreach(String path in FilePaths) {
-                String fileName = Path.GetFileName(path);
-                PersonDataConverter = CreateExcelObjectsForFileReading(path, MonthToFilter, WorkSheetName, fileName);
-                result.AddRange(PersonDataConverter.SavePersonDataToList());
+            foreach (String path in FilePaths) {
+                try {
+                    String fileName = Path.GetFileName(path);
+                    PersonDataConverter = CreateExcelObjectsForFileReading(path, MonthToFilter, WorkSheetName, fileName);
+                    result.AddRange(PersonDataConverter.SavePersonDataToList());
+                } finally {
+                    ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+                }
             }
             return result;
         }

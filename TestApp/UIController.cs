@@ -23,10 +23,14 @@ namespace TestApp {
             FilesProcessor = new FilesProcessor();
 
         }        
-        public void RunApplication() {            
-            bool finished = RunExcelOperations();
-            if (finished) {
-                FinishTask();
+        public void RunApplication() {
+            try {
+                bool finished = RunExcelOperations();
+                if (finished) {
+                    FinishTask();
+                }
+            } catch (ArgumentException e) {
+                MainWindowForm.AddTextToTextBox("\nHIBA: " + e.Message);
             }
         }
 
@@ -57,7 +61,7 @@ namespace TestApp {
             if (ValidateFilesAndTextInput(month, date, files)) {
                 String correctDate = CreateDateFromString(date);
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
-                AddFilesToExcelFileProcessor(files);
+                AddFilePathsToExcelFileProcessor(files);
                 List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList();
                 WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes);
                 WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
@@ -108,7 +112,7 @@ namespace TestApp {
             FolderOperation.DeleteFiles(TargetFilesFolder);
         }
 
-        private void AddFilesToExcelFileProcessor(String[] files) {
+        private void AddFilePathsToExcelFileProcessor(String[] files) {
             FilesProcessor.FilePaths = files;           
         }
 
