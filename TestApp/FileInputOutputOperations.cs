@@ -53,7 +53,10 @@ namespace TestApp {
         }
 
         public String[] OpenTXTFile(String filePath) {
-            return File.ReadAllLines(filePath);            
+            if (File.Exists(filePath)) {
+                return File.ReadAllLines(filePath);
+            }
+            return new String[0];
         }
 
         private Process[] FindCurrentExcelProcesses() {

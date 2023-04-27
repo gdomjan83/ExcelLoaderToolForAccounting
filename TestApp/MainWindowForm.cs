@@ -12,6 +12,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TestApp {
     public partial class MainWindowForm : Form {
+        private const string FILE_NOT_FOUND_TEXT = "\nNem található a következő fájl: ";
+        private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
+        private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
+        private const string FILE_LOADED_TEXT = " fájl betöltve.";
 
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -49,12 +53,33 @@ namespace TestApp {
         private void loadFilesButton_Click(object sender, EventArgs e) {
             FileInputOutputOperations.CostExcelFiles.Clear();
             String[] result = UIController.FilesProcessor.FileInputOutputOperations.OpenTXTFile(UIController.SaveFileFolder);
-            FileInputOutputOperations.CostExcelFiles = result.ToList<String>();
-            richTextBox1.AppendText("\nBetöltött fájlok:");
-            foreach (String actual in FileInputOutputOperations.CostExcelFiles) {
+            List<String> existingFiles = new List<String>();
+            if (result.Length > 0) {
+                CheckForExistingPaths(result, existingFiles);                
+                richTextBox1.AppendText(LOADED_FILES_TEXT);
+                ListFileNames(FileInputOutputOperations.CostExcelFiles);
+            } else {
+                richTextBox1.AppendText(NO_COSTFILE_FOUND_TEXT);
+            }
+        }
+
+        private void CheckForExistingPaths(String[] paths, List<String> existingFiles) {
+            foreach (String actual in paths) {
+                if (File.Exists(actual)) {
+                    existingFiles.Add(actual);
+                } else {
+                    richTextBox1.AppendText(FILE_NOT_FOUND_TEXT + actual);
+                }
+            }
+            FileInputOutputOperations.CostExcelFiles = existingFiles;
+        }
+
+        private void ListFileNames(List<String> filesPaths) {
+            foreach (String actual in filesPaths) {
                 richTextBox1.AppendText("\n" + actual);
             }
         }
+        
         private void helpButton_Click(object sender, EventArgs e) {
             if (CheckIfOnlyOneWindowIsOpen()) {
                 HelpWindow = new HelpWindow();
@@ -74,7 +99,7 @@ namespace TestApp {
                 String file = openFileDialog.FileName;
                 if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
                     FileInputOutputOperations.CostExcelFiles.Add(file);
-                    richTextBox1.AppendText("\n" + file + " fájl betöltve.");
+                    richTextBox1.AppendText("\n" + file + FILE_LOADED_TEXT);
                 }
             }
         }
