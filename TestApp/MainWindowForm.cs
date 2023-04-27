@@ -16,7 +16,7 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.8";
+        private const string VERSION = "0.81";
 
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }

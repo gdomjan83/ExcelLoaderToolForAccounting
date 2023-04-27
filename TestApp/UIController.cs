@@ -8,7 +8,8 @@ namespace TestApp {
         public MainWindowForm MainWindowForm { get; set; }
         public FilesProcessor FilesProcessor { get; set; }
 
-        private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a TET.csv fájlban, SAP betöltés előtt kérem törölni!";
+        private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a TET.csv fájlban, SAP betöltés előtt kérem törölni!\n" +
+            "A FEJ.CSV-ben kérem ne felejtse el kitölteni a Vegyes sorszámokat tartalmazó oszlopot.";
         private const String NO_FILE_TEXT = "\nKérem adja meg, hogy melyik fájlokból töltsem be a költségeket!";
         private const String WRONG_MONTH_TEXT = "\nNem megfelelő a megadott dátum formátum.";
         private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
