@@ -95,6 +95,11 @@ namespace TestApp {
             }
             return alreadyInList;
         }
+        private void button4_Click(object sender, EventArgs e) {
+            String today = DateTime.Now.ToString();
+            String trimmed = today.Substring(0, 5) + today.Substring(6, 3) + today.Substring(10, 2);
+            textBox2.Text = trimmed;
+        }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
 
@@ -111,5 +116,6 @@ namespace TestApp {
         private void label1_Click(object sender, EventArgs e) {
 
         }
+
     }
 }

@@ -32,6 +32,7 @@
             textBox2 = new TextBox();
             button5 = new Button();
             button3 = new Button();
+            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -58,10 +59,10 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(68, 180);
+            richTextBox1.Location = new Point(51, 180);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(477, 156);
+            richTextBox1.Size = new Size(522, 172);
             richTextBox1.TabIndex = 2;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -69,16 +70,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(68, 25);
+            label1.Location = new Point(51, 29);
             label1.Name = "label1";
-            label1.Size = new Size(297, 15);
+            label1.Size = new Size(290, 15);
             label1.TabIndex = 3;
-            label1.Text = "Melyik hónapot szeretnéd könyvelni? (például: 2023.03)";
+            label1.Text = "Melyik hónapot szeretné könyvelni? (például: 2023.03)";
             label1.Click += label1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(68, 52);
+            textBox1.Location = new Point(51, 55);
             textBox1.MaxLength = 7;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(202, 23);
@@ -88,7 +89,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(68, 94);
+            label2.Location = new Point(51, 93);
             label2.Name = "label2";
             label2.Size = new Size(196, 15);
             label2.TabIndex = 5;
@@ -97,7 +98,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(68, 122);
+            textBox2.Location = new Point(51, 122);
             textBox2.MaxLength = 10;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(202, 23);
@@ -124,11 +125,22 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += loadFilesButton_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(259, 122);
+            button4.Name = "button4";
+            button4.Size = new Size(61, 23);
+            button4.TabIndex = 9;
+            button4.Text = "Mai nap";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 455);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button5);
             Controls.Add(textBox2);
@@ -157,5 +169,6 @@
         private TextBox textBox2;
         private Button button5;
         private Button button3;
+        private Button button4;
     }
 }
