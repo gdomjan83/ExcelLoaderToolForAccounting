@@ -8,11 +8,11 @@ namespace TestApp {
         public String DebitCostCenter { get; set; }
         public String Salary { get; set; }
         public String Tax { get; set; }
-        public String Note { get; set; }
+        public int Note { get; set; }
         public String ProjectName { get; set; }
         public String WorkerType { get; set; }
 
-        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, String note , String projectName, String workerType) {
+        public PersonData(String id, String name, String month, String credit, String debit, String salary, String tax, int note , String projectName, String workerType) {
             Id = id;
             Name = name;
             Month = month;

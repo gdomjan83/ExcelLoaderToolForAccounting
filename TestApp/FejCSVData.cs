@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestApp {
     public class FejCSVData {
-        public String Note { get; set; }
+        public int Note { get; set; }
         public String Source { get; set; }
         public String AccountingType { get; set; }
         public String AccountingDate { get; set; }
@@ -15,7 +15,7 @@ namespace TestApp {
         public String SerialNumber { get; set; }
         public String Currency { get; set; }
 
-        public FejCSVData(String note, String accountingDate, String type, String serialNumber) {
+        public FejCSVData(int note, String accountingDate, String type, String serialNumber) {
             Note = note;
             Source = "1000";
             AccountingType = "SU";

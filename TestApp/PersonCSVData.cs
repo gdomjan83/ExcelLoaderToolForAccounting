@@ -1,7 +1,9 @@
 ﻿
+using System.Collections;
+
 namespace TestApp {
     public class PersonCSVData {
-        public String Note { get; set; }
+        public int Note { get; set; }
         public String CreditDebitCode { get; set; }
         public String LedgerNumber { get; set; }
         public String Amount { get; set; }
@@ -10,7 +12,7 @@ namespace TestApp {
         public String FunctionCode { get; set; }
         public String ProjectName { get; set; }
 
-        public PersonCSVData(String note, String creditDebitCode, String ledgerNumber, String amount, String comment, String costCenter, String functionCode, String projectName) {
+        public PersonCSVData(int note, String creditDebitCode, String ledgerNumber, String amount, String comment, String costCenter, String functionCode, String projectName) {
             Note = note;
             CreditDebitCode = creditDebitCode;
             LedgerNumber = ledgerNumber;
@@ -28,5 +30,24 @@ namespace TestApp {
             return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}," +
                 $" Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}, Projekt név: {ProjectName}";
         }
+
+        //public static IComparer SortBasedOnNotes() {
+        //    return (IComparer)new SortBasedOnNotesHelper();
+        //}
+
+        //private class SortBasedOnNotesHelper : IComparer {
+        //    int IComparer.Compare(object a, object b) {
+        //        PersonCSVData obj = (PersonCSVData)a;
+        //        PersonCSVData otherObj = (PersonCSVData)b;
+
+        //        if (obj.Note > otherObj.Note) {
+        //            return 1;
+        //        }
+        //        if (obj.Note < otherObj.Note) {
+        //            return -1;
+        //        }
+        //        return 0;
+        //    }
+        //}
     }
 }

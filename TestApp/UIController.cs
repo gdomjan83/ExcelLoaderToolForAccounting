@@ -114,16 +114,17 @@ namespace TestApp {
 
         private void WriteTETCSVDataToFile(String targetFileName, List<PersonData> personData) {
             List<PersonCSVData> csvResult = FilesProcessor.TransformCompletePersonDataListToTETCSVList(personData);
+            List<PersonCSVData> orderedList = csvResult.OrderBy(p => p.Note).ToList<PersonCSVData>();
             String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
-            FilesProcessor.WriteCSVFile(targetFile, csvResult);
+            FilesProcessor.WriteCSVFile(targetFile, orderedList);
         }
 
         private void WriteFEJCSVDataToFile(String targetFileName, List<PersonData> personData) {
             List<FejCSVData> fejData = FilesProcessor.TransformCompletePersonDataListToFEJCSVList(personData);
+            List<FejCSVData> orderedList = fejData.OrderBy(f => f.Note).ToList<FejCSVData>();
             String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
-            FilesProcessor.WriteCSVFile(targetFile, fejData);
+            FilesProcessor.WriteCSVFile(targetFile, orderedList);
         }
-
 
         private void SaveUsedFiles() {
             FilesProcessor.WriteTXTFile(SaveFileFolder, FileInputOutputOperations.CostExcelFiles);

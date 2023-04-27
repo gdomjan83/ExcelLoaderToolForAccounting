@@ -117,10 +117,10 @@ namespace TestApp {
 
         private void UpdateNoteDataForPerson(PersonData person) {
             if (CheckIfCostCenterIsSzakma(person.DebitCostCenter)) {
-                person.Note = NoteCounterData.GmiSzakmaNote.ToString();
+                person.Note = NoteCounterData.GmiSzakmaNote;
                 ManageSzakmaCounter();
             } else {
-                person.Note = NoteCounterData.GmiFpiNote.ToString();
+                person.Note = NoteCounterData.GmiFpiNote;
                 ManageFPICounter();
             }
         }
@@ -168,7 +168,7 @@ namespace TestApp {
             String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Számfejtés"]);
             String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
-            String note = "0";
+            int note = 0;
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
             if (!Validator.CheckCostCenterFormat(credit) || !Validator.CheckCostCenterFormat(debit)) {
                 MessageBox.Show($"Hibás pénzügyi központ formátum a következő fájlban: {fileName} - {name}");
