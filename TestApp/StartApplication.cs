@@ -1,5 +1,4 @@
 ﻿
-
 namespace TestApp {
     public class StartApplication {
         [STAThreadAttribute]

@@ -1,6 +1,4 @@
 ﻿
-using System.Collections;
-
 namespace TestApp {
     public class PersonCSVData {
         public int Note { get; set; }
