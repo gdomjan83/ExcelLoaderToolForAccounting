@@ -4,7 +4,7 @@ namespace TestApp {
     public static class Validator {
 
         public static bool CheckIfAmountIsZero(String amount) {
-            if (String.IsNullOrEmpty(amount) || Int32.Parse(amount) == 0) {
+            if (String.IsNullOrEmpty(amount) || Double.Parse(amount) == 0d) {
                 return true;
             }
             return false;
