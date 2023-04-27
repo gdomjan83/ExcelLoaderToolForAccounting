@@ -33,6 +33,7 @@
             button5 = new Button();
             button3 = new Button();
             button4 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -135,11 +136,22 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(552, 431);
+            label3.Name = "label3";
+            label3.Size = new Size(44, 15);
+            label3.TabIndex = 10;
+            label3.Text = "Verzió: ";
+            label3.Click += label3_Click;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 455);
+            Controls.Add(label3);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button5);
@@ -170,5 +182,6 @@
         private Button button5;
         private Button button3;
         private Button button4;
+        private Label label3;
     }
 }

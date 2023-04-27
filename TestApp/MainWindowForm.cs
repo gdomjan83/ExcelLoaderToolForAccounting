@@ -16,6 +16,7 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
+        private const string VERSION = "0.8";
 
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -25,6 +26,7 @@ namespace TestApp {
             UIController = new UIController(this);
             WindowOperations.mainWindowForm = this;
             HelpWindow = null;
+            label3.Text += VERSION;
         }
 
         public String GetMonth() {
@@ -55,7 +57,7 @@ namespace TestApp {
             String[] result = UIController.FilesProcessor.FileInputOutputOperations.OpenTXTFile(UIController.SaveFileFolder);
             List<String> existingFiles = new List<String>();
             if (result.Length > 0) {
-                CheckForExistingPaths(result, existingFiles);                
+                CheckForExistingPaths(result, existingFiles);
                 richTextBox1.AppendText(LOADED_FILES_TEXT);
                 ListFileNames(FileInputOutputOperations.CostExcelFiles);
             } else {
@@ -79,7 +81,7 @@ namespace TestApp {
                 richTextBox1.AppendText("\n" + actual);
             }
         }
-        
+
         private void helpButton_Click(object sender, EventArgs e) {
             if (CheckIfOnlyOneWindowIsOpen()) {
                 HelpWindow = new HelpWindow();
@@ -142,5 +144,8 @@ namespace TestApp {
 
         }
 
+        private void label3_Click(object sender, EventArgs e) {
+
+        }
     }
 }
