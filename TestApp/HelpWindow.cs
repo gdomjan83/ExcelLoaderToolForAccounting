@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace Berbetolto {
     public partial class HelpWindow : Form {
         public HelpWindow() {
@@ -23,7 +14,7 @@ namespace Berbetolto {
                 "\nA betöltés menete:\n" +
                 "- az első mezőbe beírjuk a könyvelni kívánt hónapot a következő formátumban: 2023.03\n" +
                 "- a könyvelési dátum mezőbe beírjuk azt a dátumot, amelyik napra könyvelni szeretnénk a tételt. Formátum: 2023.04.26\n" +
-                "- a Mai nap gombra kattintva rögtön megadhatjuk a mai napot könyvelési dátumnak," +
+                "- a Mai nap gombra kattintva rögtön megadhatjuk a mai napot könyvelési dátumnak,\n" +
                 "- a tallózás gombra kattintva egyesével beállítjuk, hogy melyik költségkövető fájlokat kívánjuk használni. Egyszerre " +
                 "több fájl is könyvelhető,\n" +
                 "- a Végrehajtás gombra kattintva elvégezzük a generálást. A folyamat végén megnyílik az eredmény fájlokat tartalmazó mappa.");
