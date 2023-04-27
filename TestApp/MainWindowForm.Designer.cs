@@ -31,6 +31,7 @@
             label2 = new Label();
             textBox2 = new TextBox();
             button5 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -40,9 +41,9 @@
             button1.Name = "button1";
             button1.Size = new Size(135, 30);
             button1.TabIndex = 0;
-            button1.Text = "Fájl generálása";
+            button1.Text = "Végrehajtás";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += generateButton_Click;
             // 
             // button2
             // 
@@ -53,7 +54,7 @@
             button2.TabIndex = 1;
             button2.Text = "Tallózás";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            button2.Click += browseFileButton_Click;
             // 
             // richTextBox1
             // 
@@ -97,7 +98,7 @@
             // textBox2
             // 
             textBox2.Location = new Point(68, 122);
-            textBox2.MaxLength = 18;
+            textBox2.MaxLength = 10;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(202, 23);
             textBox2.TabIndex = 6;
@@ -110,13 +111,25 @@
             button5.TabIndex = 7;
             button5.Text = "Súgó";
             button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            button5.Click += helpButton_Click;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(169, 387);
+            button3.Name = "button3";
+            button3.Size = new Size(168, 30);
+            button3.TabIndex = 8;
+            button3.Text = "Legutóbbi fájlok használata";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += loadFilesButton_Click;
             // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 455);
+            Controls.Add(button3);
             Controls.Add(button5);
             Controls.Add(textBox2);
             Controls.Add(label2);
@@ -143,5 +156,6 @@
         private Label label2;
         private TextBox textBox2;
         private Button button5;
+        private Button button3;
     }
 }

@@ -2,18 +2,17 @@
 using Berbetolto;
 
 namespace TestApp {
-    public class ExcelFilesProcessor {
+    public class FilesProcessor {
         public String[] FilePaths { get; set; }
-        public ExcelInputOutputOperations ExcelInputOutputOperations { get; set; }
+        public FileInputOutputOperations FileInputOutputOperations { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
         public PersonDataConverter PersonDataConverter { get; set; }
         public String MonthToFilter { get; set; }
         public String WorkSheetName { get; set; } = "Bérköltség";
         public String AccountingDate { get; set; }
 
-        public ExcelFilesProcessor(String monthToFilter, String accountingDate) {
-            MonthToFilter = monthToFilter;
-            AccountingDate = accountingDate;
+        public FilesProcessor() {
+            FileInputOutputOperations = new FileInputOutputOperations();
         }
 
         public List<PersonData> CreateCompleteListFromPersonDataInAllFiles() {
@@ -36,17 +35,25 @@ namespace TestApp {
 
         public void WriteCSVFile(String targetPath, List<PersonCSVData> personData) {
             var t = from tet in personData select tet.CSVFormating();
-            ExcelInputOutputOperations.WriteListToCSVFile(targetPath, t.ToList<String>());
+            FileInputOutputOperations.WriteListToCSVFile(targetPath, t.ToList<String>());
         }
 
         public void WriteCSVFile(String targetPath, List<FejCSVData> fejData) {
             var f = from fej in fejData select fej.CSVFormatting();
-            ExcelInputOutputOperations.WriteListToCSVFile(targetPath, f.ToList<String>());
+            FileInputOutputOperations.WriteListToCSVFile(targetPath, f.ToList<String>());
         }
 
-        private PersonDataConverter CreateExcelObjectsForFileReading(String filepath, String monthToFilter, String workSheetName, String fileName) {
-            ExcelInputOutputOperations = new ExcelInputOutputOperations(filepath, workSheetName);
-            ExcelReadOperation = new ExcelReadOperation(ExcelInputOutputOperations);
+        public void WriteTXTFile(String targetPath, List<String> filePaths) {
+            FileInputOutputOperations.WriteTXTFile(targetPath, filePaths.ToArray());
+        }
+
+        public String[] ReadTXTFile(String targetPath) {
+            return FileInputOutputOperations.OpenTXTFile(targetPath);
+        }
+
+        private PersonDataConverter CreateExcelObjectsForFileReading(String filePath, String monthToFilter, String workSheetName, String fileName) {
+            FileInputOutputOperations.OpenExcelFileAndWorkBook(filePath, workSheetName);
+            ExcelReadOperation = new ExcelReadOperation(FileInputOutputOperations);
             return new PersonDataConverter(ExcelReadOperation, monthToFilter, fileName, AccountingDate);
         }
 

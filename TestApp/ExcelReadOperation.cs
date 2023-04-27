@@ -2,9 +2,9 @@
 
 namespace TestApp {
     public class ExcelReadOperation {
-        public ExcelInputOutputOperations ExcelInputOutputOperations { get; set; }
+        public FileInputOutputOperations ExcelInputOutputOperations { get; set; }
 
-        public ExcelReadOperation(ExcelInputOutputOperations excelInputOutputOperations) {
+        public ExcelReadOperation(FileInputOutputOperations excelInputOutputOperations) {
             ExcelInputOutputOperations = excelInputOutputOperations;
         }
            

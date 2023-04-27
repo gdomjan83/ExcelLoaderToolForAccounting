@@ -99,8 +99,10 @@ namespace TestApp {
                 if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
                     NoteCounterData.GmiFpiCounter = 1;
                     NoteCounterData.GmiSzakmaCounter = 1;
-                    NoteCounterData.GmiFpiNote++;
-                    NoteCounterData.GmiSzakmaNote++;
+                    NoteCounterData.GmiFpiNoteDefault += 20;
+                    NoteCounterData.GmiSzakmaNoteDefault += 20;
+                    NoteCounterData.GmiFpiNote = NoteCounterData.GmiFpiNoteDefault;
+                    NoteCounterData.GmiSzakmaNote = NoteCounterData.GmiSzakmaNoteDefault;
                 }
             }
             return result;

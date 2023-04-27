@@ -40,13 +40,22 @@ namespace TestApp {
         }
 
         private void Form_Load(object sender, EventArgs e) {
-            this.richTextBox1.Text = "Betöltött költségkövető fájlok:\n";
+
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void generateButton_Click(object sender, EventArgs e) {
             UIController.RunApplication();
         }
-        private void button5_Click(object sender, EventArgs e) {
+        private void loadFilesButton_Click(object sender, EventArgs e) {
+            FileInputOutputOperations.CostExcelFiles.Clear();
+            String[] result = UIController.FilesProcessor.FileInputOutputOperations.OpenTXTFile(UIController.SaveFileFolder);
+            FileInputOutputOperations.CostExcelFiles = result.ToList<String>();
+            richTextBox1.AppendText("\nBetöltött fájlok:");
+            foreach (String actual in FileInputOutputOperations.CostExcelFiles) {
+                richTextBox1.AppendText("\n" + actual);
+            }
+        }
+        private void helpButton_Click(object sender, EventArgs e) {
             if (CheckIfOnlyOneWindowIsOpen()) {
                 HelpWindow = new HelpWindow();
                 HelpWindow.Show();
@@ -58,14 +67,14 @@ namespace TestApp {
             return formCount == 1;
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void browseFileButton_Click(object sender, EventArgs e) {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) {
                 String file = openFileDialog.FileName;
-                if (!CheckIfFileIsInList(file, ExcelInputOutputOperations.CostExcelFiles)) {
-                    ExcelInputOutputOperations.CostExcelFiles.Add(file);
-                    richTextBox1.AppendText("\n" + file);
+                if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
+                    FileInputOutputOperations.CostExcelFiles.Add(file);
+                    richTextBox1.AppendText("\n" + file + " fájl betöltve.");
                 }
             }
         }

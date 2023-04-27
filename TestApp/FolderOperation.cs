@@ -33,15 +33,15 @@ namespace TestApp {
                 File.Delete(actual);
             }
         }
-
-        private static String CopyFile(String sourceFile, String destination) {
-            String targetFile = Path.Combine(destination, GetFileNameFromPath(sourceFile));
-            File.Copy(sourceFile, targetFile, true);
-            return targetFile;
-        }
         public static String GetFileNameFromPath(String path) {
             int lastIndexOfBackslash = path.LastIndexOf("\\");
             return path.Substring(lastIndexOfBackslash + 1);
+        }
+
+        public static String CopyFile(String sourceFile, String destination) {
+            String targetFile = Path.Combine(destination, GetFileNameFromPath(sourceFile));
+            File.Copy(sourceFile, targetFile, true);
+            return targetFile;
         }
     }
 }
