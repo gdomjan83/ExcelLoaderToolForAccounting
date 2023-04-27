@@ -17,6 +17,8 @@ namespace Berbetolto {
                 "- a Mai nap gombra kattintva rögtön megadhatjuk a mai napot könyvelési dátumnak,\n" +
                 "- a tallózás gombra kattintva egyesével beállítjuk, hogy melyik költségkövető fájlokat kívánjuk használni. Egyszerre " +
                 "több fájl is könyvelhető,\n" +
+                "- a könyvelés befejeztével a használt költségkövetők elmentődnek, így egy későbbi használatkor a Legutóbbi fájlok használata " +
+                "gombra kattintva gyorsan behívhatók, és nem kell újra betallózni őket,\n" +
                 "- a Végrehajtás gombra kattintva elvégezzük a generálást. A folyamat végén megnyílik az eredmény fájlokat tartalmazó mappa.");
         }
     }
