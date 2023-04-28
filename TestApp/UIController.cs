@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 
 namespace TestApp {
     public class UIController {
@@ -7,6 +8,7 @@ namespace TestApp {
         public String SaveFileFolder { get; set; }
         public MainWindowForm MainWindowForm { get; set; }
         public FilesProcessor FilesProcessor { get; set; }
+        public Dictionary<String, double> TotalAccountingPerProjects { get; set; } = new Dictionary<String, double>();
 
         private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a TET.csv fájlban, SAP betöltés előtt kérem törölni!\n" +
             "A FEJ.CSV-ben kérem ne felejtse el kitölteni a Vegyes sorszámokat tartalmazó oszlopot.";
@@ -16,6 +18,7 @@ namespace TestApp {
         private const String TET_FILE_NAME = "TET.csv";
         private const String FEJ_FILE_NAME = "FEJ.csv";
         private const String SAVE_FILE_NAME = "costfiles.txt";
+        private const String AMOUNTS_TEXT = "\nLekönyvelt összegek projektenként: \n";
 
         public UIController(MainWindowForm mainWindowForm) {
             MainWindowForm = mainWindowForm;
@@ -39,12 +42,27 @@ namespace TestApp {
         }
 
         private void FinishTask() {
-            if (CheckIfThereWereMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople)) {
-                MainWindowForm.AddTextToTextBox(FilesProcessor.PersonDataConverter.GetMissedPeopleText());
-            }
+            WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
+            WriteProjectTotals();
             MessageBox.Show(WARNING_TEXT);
             NoteCounterData.ResetProperties();
             Process.Start("explorer.exe", TargetFilesFolder);
+        }
+
+        private void WriteMissedPeople(List<PersonData> missedPeople) {
+            if (CheckIfThereWereMissedPeople(missedPeople)) {
+                MainWindowForm.AddTextToTextBox(FilesProcessor.PersonDataConverter.GetMissedPeopleText());
+            }
+        }
+
+        private void WriteProjectTotals() {
+            MainWindowForm.AddTextToTextBox(AMOUNTS_TEXT);
+            var formatter = new NumberFormatInfo { NumberGroupSeparator = " " };
+            foreach (KeyValuePair<String, double> actual in TotalAccountingPerProjects) {
+                double amount = actual.Value / 2;
+                String amountFormatted = amount.ToString("n", formatter);
+                MainWindowForm.AddTextToTextBox(actual.Key + ": " + amountFormatted + " Ft\n");
+            }
         }
 
         private void SetupFolders() {
@@ -70,7 +88,7 @@ namespace TestApp {
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
                 AddFilePathsToExcelFileProcessor(files);
                 List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList();
-                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes);
+                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes, TotalAccountingPerProjects);
                 WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
                 SaveUsedFiles();
                 return true;
@@ -123,11 +141,19 @@ namespace TestApp {
             FilesProcessor.FilePaths = files;           
         }
 
-        private void WriteTETCSVDataToFile(String targetFileName, List<PersonData> personData) {
+        private void WriteTETCSVDataToFile(String targetFileName, List<PersonData> personData, Dictionary<String, double> totalAccountingPerProjects) {
             List<PersonCSVData> csvResult = FilesProcessor.TransformCompletePersonDataListToTETCSVList(personData);
             List<PersonCSVData> orderedList = csvResult.OrderBy(p => p.Note).ToList<PersonCSVData>();
+            CountTotals(orderedList);
             String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
             FilesProcessor.WriteCSVFile(targetFile, orderedList);
+        }
+
+        private void CountTotals(List<PersonCSVData> personList) {            
+            foreach (PersonCSVData actual in personList) {
+                double amount = Double.Parse(actual.Amount) + (TotalAccountingPerProjects.ContainsKey(actual.ProjectName) ? TotalAccountingPerProjects[actual.ProjectName] : 0);
+                TotalAccountingPerProjects[actual.ProjectName] = amount;
+            }            
         }
 
         private void WriteFEJCSVDataToFile(String targetFileName, List<PersonData> personData) {

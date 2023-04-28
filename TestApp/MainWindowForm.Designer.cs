@@ -34,12 +34,13 @@
             button3 = new Button();
             button4 = new Button();
             label3 = new Label();
+            button6 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(473, 547);
+            button1.Location = new Point(473, 536);
             button1.Name = "button1";
             button1.Size = new Size(135, 30);
             button1.TabIndex = 0;
@@ -50,9 +51,9 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(16, 547);
+            button2.Location = new Point(16, 536);
             button2.Name = "button2";
-            button2.Size = new Size(135, 30);
+            button2.Size = new Size(168, 30);
             button2.TabIndex = 1;
             button2.Text = "Tallózás";
             button2.UseVisualStyleBackColor = true;
@@ -118,7 +119,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(169, 547);
+            button3.Location = new Point(16, 583);
             button3.Name = "button3";
             button3.Size = new Size(168, 30);
             button3.TabIndex = 8;
@@ -134,23 +135,35 @@
             button4.TabIndex = 9;
             button4.Text = "Mai nap";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            button4.Click += todayButton_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(552, 591);
+            label3.Location = new Point(533, 7);
             label3.Name = "label3";
             label3.Size = new Size(44, 15);
             label3.TabIndex = 10;
             label3.Text = "Verzió: ";
             label3.Click += label3_Click;
             // 
+            // button6
+            // 
+            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button6.Location = new Point(250, 536);
+            button6.Name = "button6";
+            button6.Size = new Size(152, 30);
+            button6.TabIndex = 11;
+            button6.Text = "Visszaállítás";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += resetButton_Click;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(624, 624);
+            ClientSize = new Size(624, 633);
+            Controls.Add(button6);
             Controls.Add(label3);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -183,5 +196,6 @@
         private Button button3;
         private Button button4;
         private Label label3;
+        private Button button6;
     }
 }

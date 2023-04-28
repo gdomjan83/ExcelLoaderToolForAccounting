@@ -16,7 +16,7 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.82";
+        private const string VERSION = "0.84";
 
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -122,10 +122,19 @@ namespace TestApp {
             }
             return alreadyInList;
         }
-        private void button4_Click(object sender, EventArgs e) {
+        private void todayButton_Click(object sender, EventArgs e) {
             String today = DateTime.Now.ToString();
             String trimmed = today.Substring(0, 5) + today.Substring(6, 3) + today.Substring(10, 2);
             textBox2.Text = trimmed;
+        }
+        private void resetButton_Click(object sender, EventArgs e) {
+            NoteCounterData.ResetProperties();
+            FileInputOutputOperations.CostExcelFiles.Clear();
+            UIController.TotalAccountingPerProjects.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+            richTextBox1.Clear();
+            richTextBox1.AppendText(LOADED_FILES_TEXT);
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
@@ -147,5 +156,6 @@ namespace TestApp {
         private void label3_Click(object sender, EventArgs e) {
 
         }
+
     }
 }
