@@ -2,6 +2,7 @@
 
 namespace TestApp {
     public static class Validator {
+        private const string MISSING_COST_CENTER_TEXT = "Nem található pénzügyi központ. Fájl: ";
 
         public static bool CheckIfAmountIsZero(String amount) {
             if (String.IsNullOrEmpty(amount) || Double.Parse(amount) == 0d) {
@@ -30,7 +31,7 @@ namespace TestApp {
             String regex = "^[A-Z]\\d{9}$";
             Match matcher = Regex.Match(costCenter, regex);
             if (String.IsNullOrEmpty(costCenter)) {
-                throw new ArgumentException($"Nem található pénzügyi központ. Fájl: {FolderOperation.GetFileNameFromPath(fileName)}");
+                throw new ArgumentException(MISSING_COST_CENTER_TEXT + FolderOperation.GetFileNameFromPath(fileName));
             }
             if (matcher.Success) {
                 return true;
@@ -58,11 +59,14 @@ namespace TestApp {
 
         public static bool CheckIfAllLabelsFound(Dictionary<String, int> columnTitles) {
             List<String> keys = new List<String>(columnTitles.Keys);
-            if (keys.Count == 6) {
+            if (keys.Count == 7) {
                 return true;
             }
             return false;
         }
 
+        public static bool CheckIfMissNotificationPresent(String cellValue) {
+            return !String.IsNullOrEmpty(cellValue);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using System.Text;
 
 namespace TestApp {
     public class PersonDataConverter {
@@ -13,6 +14,7 @@ namespace TestApp {
         public String AccountingDate { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
         public List<PersonData> ProcessedPeople { get; set; } = new List<PersonData>();
+        public List<PersonData> MissedPeople { get; set; } = new List<PersonData>();
         public String MonthToFilter { get; set; }
         public String FileName { get; set; }
 
@@ -24,17 +26,13 @@ namespace TestApp {
         }
 
         public List<PersonData> SavePersonDataToList() {
-            try {
-                Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
-                Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
-                ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(ExcelReadOperation);
-                int lastRow = ExcelRowColumnOperation.GetLastRow(wb, ws);
-                int idNumber = 1;
-                for (int i = 2; i <= lastRow; i++) {
-                    idNumber = FilterMonthAndSavePersonToList(MonthToFilter, i, idNumber);
-                }
-            } finally {
-                //ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+            Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
+            Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
+            ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(ExcelReadOperation);
+            int lastRow = ExcelRowColumnOperation.GetLastRow(wb, ws);
+            int idNumber = 1;
+            for (int i = 2; i <= lastRow; i++) {
+                idNumber = FilterMonthAndSavePersonToList(MonthToFilter, i, idNumber);
             }
             return ProcessedPeople;
         }
@@ -53,6 +51,34 @@ namespace TestApp {
                 AddFejDataToList(actual, result);
             }
             return result;
+        }
+        public List<PersonData> ChangeNoteNumbers(List<PersonData> personDataCollection) {
+            List<PersonData> result = new List<PersonData>(personDataCollection);
+            int listSize = result.Count;
+            for (int i = 0; i < listSize; i++) {
+                UpdateNoteDataForPerson(result[i]);
+                if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
+                    UpdateFpiSzakmaStaticVariables();
+                }
+            }
+            return result;
+        }        
+
+        public String GetMissedPeopleText() {
+            StringBuilder sb = new StringBuilder("\n\nKihagyásra jelölt, nem könyvelt személyek:\n");
+            foreach(PersonData actual in MissedPeople) {
+                sb.Append(actual.ToString() + "\n");
+            }
+            return sb.ToString();
+        }
+
+        private void UpdateFpiSzakmaStaticVariables() {
+            NoteCounterData.GmiFpiCounter = 1;
+            NoteCounterData.GmiSzakmaCounter = 1;
+            NoteCounterData.GmiFpiNoteDefault += 20;
+            NoteCounterData.GmiSzakmaNoteDefault += 20;
+            NoteCounterData.GmiFpiNote = NoteCounterData.GmiFpiNoteDefault;
+            NoteCounterData.GmiSzakmaNote = NoteCounterData.GmiSzakmaNoteDefault;
         }
 
         private PersonCSVData TransformCreditSalary(PersonData person) {
@@ -80,6 +106,14 @@ namespace TestApp {
         }
 
         private void AddNewPersonCSVData(List<PersonCSVData> resultList, PersonData inputPersonData) {
+            if (!Validator.CheckIfMissNotificationPresent(inputPersonData.Miss)) {
+                ValidateAndAddPersonData(resultList, inputPersonData);
+            } else {
+                MissedPeople.Add(inputPersonData);
+            }
+        }
+
+        private void ValidateAndAddPersonData(List<PersonCSVData> resultList, PersonData inputPersonData) {
             if (!Validator.CheckIfAmountIsZero(inputPersonData.Salary)) {
                 resultList.Add(TransformCreditSalary(inputPersonData));
                 resultList.Add(TransformDebitSalary(inputPersonData));
@@ -89,23 +123,6 @@ namespace TestApp {
                 resultList.Add(TransformDebitTax(inputPersonData));
             }
         }
-
-        public List<PersonData> ChangeNoteNumbers(List<PersonData> personDataCollection) {
-            List<PersonData> result = new List<PersonData>(personDataCollection);
-            int listSize = result.Count;
-            for (int i = 0; i < listSize; i++) {
-                UpdateNoteDataForPerson(result[i]);
-                if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
-                    NoteCounterData.GmiFpiCounter = 1;
-                    NoteCounterData.GmiSzakmaCounter = 1;
-                    NoteCounterData.GmiFpiNoteDefault += 20;
-                    NoteCounterData.GmiSzakmaNoteDefault += 20;
-                    NoteCounterData.GmiFpiNote = NoteCounterData.GmiFpiNoteDefault;
-                    NoteCounterData.GmiSzakmaNote = NoteCounterData.GmiSzakmaNoteDefault;
-                }
-            }
-            return result;
-        }        
 
         private void AddFejDataToList(PersonData personData, List<FejCSVData> fejDataResult) {
             FejCSVData newFejData = new FejCSVData(personData.Note, AccountingDate, personData.WorkerType, "V bér");
@@ -150,27 +167,27 @@ namespace TestApp {
         }
 
         private PersonData SavePerson(int rowNumber, int id, String month, String fileName) {            
-            return CreateNewPerson(rowNumber, id, month, fileName);
+            return CreateNewPerson(rowNumber, month, fileName);
         }
 
-        private PersonData CreateNewPerson(int rowNumber, int id, String month, String fileName) {
-            PersonData person = CreatePersonObject(rowNumber, id, month, fileName);
+        private PersonData CreateNewPerson(int rowNumber, String month, String fileName) {
+            PersonData person = CreatePersonObject(rowNumber, month, fileName);
             if (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName)) {
                 throw new ArgumentException($"Hibás pénzügyi központ formátum a következő fájlban: {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
             }
             return person;
         }
 
-        private PersonData CreatePersonObject(int rowNumber, int id, String month, String fileName) {
-            String idNumber = id.ToString();
+        private PersonData CreatePersonObject(int rowNumber, String month, String fileName) {
             String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
             String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
             String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Számfejtés"]);
             String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
             String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
             int note = 0;
+            String miss = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Kihagyás"]);
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
-            return new PersonData(idNumber, name, month, credit, debit, salary, tax, note, fileName, type);
+            return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, miss);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {

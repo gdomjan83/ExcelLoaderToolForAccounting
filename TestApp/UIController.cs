@@ -26,7 +26,7 @@ namespace TestApp {
         public void RunApplication() {
             try {
                 bool finished = RunExcelOperations();
-                if (finished) {
+                if (finished) {                    
                     FinishTask();
                 }
             } catch (ArgumentException e) {
@@ -34,7 +34,14 @@ namespace TestApp {
             }
         }
 
+        private bool CheckIfThereWereMissedPeople(List<PersonData> missedPeople) {
+            return missedPeople.Count > 0;
+        }
+
         private void FinishTask() {
+            if (CheckIfThereWereMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople)) {
+                MainWindowForm.AddTextToTextBox(FilesProcessor.PersonDataConverter.GetMissedPeopleText());
+            }
             MessageBox.Show(WARNING_TEXT);
             NoteCounterData.ResetProperties();
             Process.Start("explorer.exe", TargetFilesFolder);

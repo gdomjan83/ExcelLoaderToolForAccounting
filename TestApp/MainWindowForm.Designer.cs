@@ -39,7 +39,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(473, 387);
+            button1.Location = new Point(473, 547);
             button1.Name = "button1";
             button1.Size = new Size(135, 30);
             button1.TabIndex = 0;
@@ -50,7 +50,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(16, 387);
+            button2.Location = new Point(16, 547);
             button2.Name = "button2";
             button2.Size = new Size(135, 30);
             button2.TabIndex = 1;
@@ -63,7 +63,7 @@
             richTextBox1.Location = new Point(51, 180);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(522, 172);
+            richTextBox1.Size = new Size(522, 323);
             richTextBox1.TabIndex = 2;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -118,7 +118,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(169, 387);
+            button3.Location = new Point(169, 547);
             button3.Name = "button3";
             button3.Size = new Size(168, 30);
             button3.TabIndex = 8;
@@ -139,7 +139,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(552, 431);
+            label3.Location = new Point(552, 591);
             label3.Name = "label3";
             label3.Size = new Size(44, 15);
             label3.TabIndex = 10;
@@ -150,7 +150,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(624, 455);
+            ClientSize = new Size(624, 624);
             Controls.Add(label3);
             Controls.Add(button4);
             Controls.Add(button3);

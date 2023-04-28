@@ -3,7 +3,9 @@ using Microsoft.Office.Interop.Excel;
 
 namespace TestApp {
     public static class ExcelRowColumnOperation {
-        public static readonly String[] TITLES = { "Név", "Hónap", "Terhelés", "Számfejtés", "Bér", "Járulék" };
+        private const string LABEL_MISSING_TEXT = "Az első sorban csak a következő hét cimke szerepelhet: " +
+            "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék, Kihagyás. Fájl: ";
+        public static readonly String[] TITLES = { "Név", "Hónap", "Terhelés", "Számfejtés", "Bér", "Járulék", "Kihagyás" };
         public static int GetLastRow(Workbook workbook, Worksheet worksheet) {
             int result = worksheet.Cells.Find("*", SearchOrder: XlSearchOrder.xlByRows, SearchDirection: XlSearchDirection.xlPrevious).Row;
             return result;
@@ -22,9 +24,7 @@ namespace TestApp {
             if (Validator.CheckIfAllLabelsFound(columnTitles)) {
                 return columnTitles;
             }            
-            //fileReadOperation.ExcelInputOutputOperations.CloseApplication();
-            throw new ArgumentException($"Egy vagy több fejléc cimke (Név, Hónap stb.) hiányzik. " +
-                $"Fájl: {FolderOperation.GetFileNameFromPath(fileReadOperation.ExcelInputOutputOperations.FilePath)}");
+            throw new ArgumentException(LABEL_MISSING_TEXT + FolderOperation.GetFileNameFromPath(fileReadOperation.ExcelInputOutputOperations.FilePath));
         }
 
         private static Dictionary<String, int> IterateThroughFirstRowToFindLabels(ExcelReadOperation excelReadOperation, int lastColumnNumber) {

@@ -8,7 +8,8 @@ namespace Berbetolto {
                 "- a költségkövető excel fájloknak különbözniük kell egymástól a nevükben,\n" +
                 "- az excel fájlban a bérköltségeknek a következő elnevezésű munkalapon kell lennie: Bérköltség,\n" +
                 "- a Bérköltség munkalap legelső sorában az egyes oszlopokhoz a következő elnevezéseket kell megadni: " +
-                "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék,\n" +
+                "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék, Kihagyás\n" +
+                "- ha valamelyik sort nem szeretnénk könyvelni (például abban a sorban megbízási szerződés szerepel), akkor a Kihagyás oszlopba írjunk valami jelzést (a fontos, hogy ne legyen üres),\n" +
                 "- a hónapok oszlopban a hónapokat úgy kell feltűntetni, hogy az első hét karakter ilyen formában legyen: 2023.03\n" +
                 "Az nem probléma, ha utána mást is írunk. Például lehet így vezetni a tört hónapokat: 2023.03.15-2023.03.30.\n" +
                 "- a betöltés során nem legyenek nyitva a költségkövető excel fájlok.\n" +
