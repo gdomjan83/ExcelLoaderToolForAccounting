@@ -6,9 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TestApp {
     public partial class MainWindowForm : Form {
@@ -16,7 +13,7 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.86";
+        private const string VERSION = "0.861";
 
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -27,6 +24,7 @@ namespace TestApp {
             WindowOperations.mainWindowForm = this;
             HelpWindow = null;
             label3.Text += VERSION;
+            AddTextToTextBox("Kérem töltse be a használni kívánt excel fájlokat!");
         }
 
         public String GetMonth() {
