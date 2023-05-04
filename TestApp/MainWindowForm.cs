@@ -55,9 +55,10 @@ namespace TestApp {
         private void generateButton_Click(object sender, EventArgs e) {
             UIController.RunApplication();
         }
+
         private void loadFilesButton_Click(object sender, EventArgs e) {
             FileInputOutputOperations.CostExcelFiles.Clear();
-            String[] result = UIController.FilesProcessor.FileInputOutputOperations.OpenTXTFile(UIController.SaveFileFolder);
+            String[] result = UIController.LoadLastSave();
             List<String> existingFiles = new List<String>();
             if (result.Length > 0) {
                 CheckForExistingPaths(result, existingFiles);

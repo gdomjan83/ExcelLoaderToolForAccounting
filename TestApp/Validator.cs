@@ -3,6 +3,7 @@
 namespace TestApp {
     public static class Validator {
         private const string MISSING_COST_CENTER_TEXT = "Nem található pénzügyi központ. Fájl: ";
+        private const string MISSING_TAXID_TEXT = "Nem található megfelelő adóazonosító az egyik személynél. Fájl: ";
 
         public static bool CheckIfAmountIsZero(String amount) {
             if (String.IsNullOrEmpty(amount) || Double.Parse(amount) == 0d) {
@@ -67,6 +68,15 @@ namespace TestApp {
 
         public static bool CheckIfMissNotificationPresent(String cellValue) {
             return !String.IsNullOrEmpty(cellValue);
+        }
+
+        public static bool CheckIfTaxIDPresent(String taxId, String fileName) {
+            String regex = "^\\d{10}$";
+            Match matcher = Regex.Match(taxId, regex);
+            if (matcher.Success) {
+                return true;
+            }
+            throw new ArgumentException(MISSING_TAXID_TEXT + FolderOperation.GetFileNameFromPath(fileName));
         }
     }
 }

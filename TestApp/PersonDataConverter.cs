@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using Berbetolto;
+using Microsoft.Office.Interop.Excel;
 using System.Text;
 
 namespace TestApp {
@@ -70,6 +71,16 @@ namespace TestApp {
                 sb.Append(actual.ToString() + "\n");
             }
             return sb.ToString();
+        }
+
+        public List<TaxIdPerProject> GenerateTaxIdListFromPersonList(List<PersonData> people) {
+            List<TaxIdPerProject> result = new List<TaxIdPerProject>();
+            foreach(PersonData actual in people) {
+                Validator.CheckIfTaxIDPresent(actual.TaxId, actual.ProjectName);
+                TaxIdPerProject taxData = new TaxIdPerProject(actual.TaxId, actual.ProjectName);
+                result.Add(taxData);
+            }
+            return result;
         }
 
         private void UpdateFpiSzakmaStaticVariables() {
@@ -188,7 +199,7 @@ namespace TestApp {
             String miss = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Kihagyás"]);
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
             String taxId = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Adóazonosító"]);
-            return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, taxId, miss);
+            return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, miss, taxId);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {

@@ -42,6 +42,11 @@ namespace TestApp {
             FileInputOutputOperations.WriteListToCSVFile(targetPath, t.ToList<String>());
         }
 
+        public void WriteCSVFile(String targetPath, List<TaxIdPerProject> personData) {
+            var t = from tax in personData select tax.CSVFormating();
+            FileInputOutputOperations.WriteListToCSVFile(targetPath, t.ToList<String>());
+        }
+
         public void WriteCSVFile(String targetPath, List<FejCSVData> fejData) {
             var f = from fej in fejData select fej.CSVFormatting();
             FileInputOutputOperations.WriteListToCSVFile(targetPath, f.ToList<String>());

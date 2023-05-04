@@ -4,7 +4,10 @@ namespace Berbetolto {
         public HelpWindow() {
             InitializeComponent();
             richTextBox1.AppendText("" +
-                "Az excelből történő béradat betöltéséhez szükséges feltételek:\n" +
+                "Az alkalmazásból kétféle generálás végezhető:\n" +
+                "1. Elkészíthetjük a FEJ és TET fájlokat az SAP vegyes betöltéshez.\n" +
+                "2. Generálhatunk egy listát, ami azokat az adóazonosítókat tartalmazza, amikhez abban a hónapban bérkartonokat kell kérni.\n" +
+                "\nAz excelből történő betöltéséhez szükséges feltételek:\n" +
                 "- a költségkövető excel fájloknak különbözniük kell egymástól a nevükben.\n" +
                 "- az excel fájlban a bérköltségeknek a következő elnevezésű munkalapon kell lennie: Bérköltség.\n" +
                 "- a Bérköltség munkalap legelső sorában az egyes oszlopokhoz a következő elnevezéseket kell megadni: " +

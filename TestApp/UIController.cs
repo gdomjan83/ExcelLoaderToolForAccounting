@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Berbetolto;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace TestApp {
@@ -18,6 +19,7 @@ namespace TestApp {
         private const String TET_FILE_NAME = "TET.csv";
         private const String FEJ_FILE_NAME = "FEJ.csv";
         private const String SAVE_FILE_NAME = "costfiles.txt";
+        private const String TAX_FILE_NAME = "adoazonositok.csv";
         private const String AMOUNTS_TEXT = "\nLekönyvelt összegek projektenként: \n";
 
         public UIController(MainWindowForm mainWindowForm) {
@@ -37,15 +39,21 @@ namespace TestApp {
             }
         }
 
+        public String[] LoadLastSave() {
+            return FilesProcessor.FileInputOutputOperations.OpenTXTFile(SaveFileFolder);
+        }
+
         private bool CheckIfThereWereMissedPeople(List<PersonData> missedPeople) {
             return missedPeople.Count > 0;
         }
 
         private void FinishTask() {
-            WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
-            WriteProjectTotals();
-            MessageBox.Show(WARNING_TEXT);
-            NoteCounterData.ResetProperties();
+            if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
+                WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
+                WriteProjectTotals();
+                MessageBox.Show(WARNING_TEXT);
+                NoteCounterData.ResetProperties();
+            }
             Process.Start("explorer.exe", TargetFilesFolder);
         }
 
@@ -84,20 +92,33 @@ namespace TestApp {
             String month = MainWindowForm.GetMonth();
             String date = MainWindowForm.GetAccountingDate();
             if (ValidateFilesAndTextInput(month, date, files)) {
-                String correctDate = CreateDateFromString(date);
+                String correctDate = String.IsNullOrEmpty(date) ? "9999.12.31" : CreateDateFromString(date);
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
                 AddFilePathsToExcelFileProcessor(files);
-                List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList();
-                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes, TotalAccountingPerProjects);
-                WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
+                GenerateFiles(month, correctDate, files);
                 SaveUsedFiles();
                 return true;
             } else {
                 return false;
             }
         }
-        public String[] LoadLastSave(FilesProcessor filesProcessor) {
-            return filesProcessor.FileInputOutputOperations.OpenTXTFile(SaveFileFolder);
+
+        private void GenerateFiles(String month, String date, String[] files) {
+            if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
+                List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList();
+                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes, TotalAccountingPerProjects);
+                WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
+            } else if (MainWindowForm.RadioButtonState == GeneratorState.TaxId) {                 
+                List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles();
+                List<TaxIdPerProject> taxData = FilesProcessor.PersonDataConverter.GenerateTaxIdListFromPersonList(data);
+                WriteTaxCSVDataToFile(TAX_FILE_NAME, ConvertTaxListToSetAndBack(taxData));                    
+            }
+        }
+
+        private List<TaxIdPerProject> ConvertTaxListToSetAndBack(List<TaxIdPerProject> taxIdList) {
+            HashSet<TaxIdPerProject> setOfTaxObject = taxIdList.ToHashSet<TaxIdPerProject>();
+            List<TaxIdPerProject> taxObjectsNoDuplicates = setOfTaxObject.ToList<TaxIdPerProject>();
+            return taxObjectsNoDuplicates.OrderBy(p => p.ProjectName).ToList<TaxIdPerProject>();
         }
 
         private void UpdateFilesProcessorProperties(FilesProcessor filesProcessor, String month, String correctDate) {
@@ -125,7 +146,7 @@ namespace TestApp {
                 WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_MONTH_TEXT);
                 result = false;
             }
-            if (!Validator.CheckIfAccountingDateInCorrectForm(date)) {
+            if (MainWindowForm.RadioButtonState == GeneratorState.Salary && !Validator.CheckIfAccountingDateInCorrectForm(date)) {
                 WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_FILENAME_TEXT);
                 result = false;
             }
@@ -147,6 +168,11 @@ namespace TestApp {
             CountTotals(orderedList);
             String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
             FilesProcessor.WriteCSVFile(targetFile, orderedList);
+        }
+
+        private void WriteTaxCSVDataToFile(String targetFileName, List<TaxIdPerProject> personData) {
+            String targetFile = Path.Combine(TargetFilesFolder, targetFileName);
+            FilesProcessor.WriteCSVFile(targetFile, personData);
         }
 
         private void CountTotals(List<PersonCSVData> personList) {            
