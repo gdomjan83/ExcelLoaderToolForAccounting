@@ -8,13 +8,17 @@ using System.Linq;
 using System.Text;
 
 namespace TestApp {
+
+    public enum GeneratorState {
+        Salary, TaxId
+    }
     public partial class MainWindowForm : Form {
         private const string FILE_NOT_FOUND_TEXT = "\nNem található a következő fájl: ";
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.861";
-
+        private const string VERSION = "0.9";
+        public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
 
@@ -25,6 +29,7 @@ namespace TestApp {
             HelpWindow = null;
             label3.Text += VERSION;
             AddTextToTextBox("Kérem töltse be a használni kívánt excel fájlokat!");
+            RadioButtonState = GeneratorState.Salary;
         }
 
         public String GetMonth() {
@@ -88,7 +93,7 @@ namespace TestApp {
         }
 
         private bool CheckIfOnlyOneWindowIsOpen() {
-            int formCount = System.Windows.Forms.Application.OpenForms.Count;
+            int formCount = Application.OpenForms.Count;
             return formCount == 1;
         }
 
@@ -134,11 +139,21 @@ namespace TestApp {
             richTextBox1.Clear();
             richTextBox1.AppendText(LOADED_FILES_TEXT);
         }
-
+        private void salaryGeneratorButton_CheckedChanged(object sender, EventArgs e) {
+            RadioButtonState = GeneratorState.Salary;
+            textBox2.Clear();
+            textBox2.ReadOnly = false;
+            button4.Enabled = true;
+        }
+        private void taxGeneratorButton_CheckedChanged(object sender, EventArgs e) {
+            RadioButtonState = GeneratorState.TaxId;
+            textBox2.Clear();
+            textBox2.ReadOnly = true;
+            button4.Enabled = false;
+        }
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
 
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e) {
 
         }

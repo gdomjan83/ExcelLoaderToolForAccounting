@@ -3,9 +3,9 @@ using Microsoft.Office.Interop.Excel;
 
 namespace TestApp {
     public static class ExcelRowColumnOperation {
-        private const string LABEL_MISSING_TEXT = "Az első sorban csak a következő hét cimke szerepelhet: " +
-            "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék, Kihagyás. Fájl: ";
-        public static readonly String[] TITLES = { "Név", "Hónap", "Terhelés", "Számfejtés", "Bér", "Járulék", "Kihagyás" };
+        private const string LABEL_MISSING_TEXT = "Az első sorban csak a következő nyolc cimke szerepelhet: " +
+            "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék, Adóazonosító, Kihagyás. Fájl: ";
+        public static readonly String[] TITLES = { "Név", "Hónap", "Terhelés", "Számfejtés", "Bér", "Járulék", "Adóazonosító", "Kihagyás" };
         public static int GetLastRow(Workbook workbook, Worksheet worksheet) {
             int result = worksheet.Cells.Find("*", SearchOrder: XlSearchOrder.xlByRows, SearchDirection: XlSearchDirection.xlPrevious).Row;
             return result;
@@ -21,7 +21,7 @@ namespace TestApp {
             Worksheet ws = fileReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
             int columnNumber = ExcelRowColumnOperation.GetLastColumn(wb, ws);
             Dictionary<String, int> columnTitles = IterateThroughFirstRowToFindLabels(fileReadOperation, columnNumber);
-            if (Validator.CheckIfAllLabelsFound(columnTitles)) {
+            if (Validator.CheckIfAllLabelsFound(TITLES, columnTitles)) {
                 return columnTitles;
             }            
             throw new ArgumentException(LABEL_MISSING_TEXT + FolderOperation.GetFileNameFromPath(fileReadOperation.ExcelInputOutputOperations.FilePath));

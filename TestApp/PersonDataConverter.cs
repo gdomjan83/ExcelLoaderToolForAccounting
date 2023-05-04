@@ -187,7 +187,8 @@ namespace TestApp {
             int note = 0;
             String miss = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Kihagyás"]);
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
-            return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, miss);
+            String taxId = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Adóazonosító"]);
+            return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, taxId, miss);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {

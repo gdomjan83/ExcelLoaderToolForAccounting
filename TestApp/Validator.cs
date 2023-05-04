@@ -57,9 +57,9 @@ namespace TestApp {
             return false;
         }
 
-        public static bool CheckIfAllLabelsFound(Dictionary<String, int> columnTitles) {
+        public static bool CheckIfAllLabelsFound(String[] labels,  Dictionary<String, int> columnTitles) {
             List<String> keys = new List<String>(columnTitles.Keys);
-            if (keys.Count == 7) {
+            if (keys.Count == labels.Length) {
                 return true;
             }
             return false;

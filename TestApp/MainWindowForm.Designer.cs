@@ -35,23 +35,26 @@
             button4 = new Button();
             label3 = new Label();
             button6 = new Button();
+            radioButton1 = new RadioButton();
+            radioButton2 = new RadioButton();
+            label4 = new Label();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(473, 536);
+            button1.Location = new Point(596, 462);
             button1.Name = "button1";
-            button1.Size = new Size(135, 30);
+            button1.Size = new Size(167, 30);
             button1.TabIndex = 0;
-            button1.Text = "Végrehajtás";
+            button1.Text = "Létrehozás";
             button1.UseVisualStyleBackColor = true;
             button1.Click += generateButton_Click;
             // 
             // button2
             // 
             button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(16, 536);
+            button2.Location = new Point(596, 191);
             button2.Name = "button2";
             button2.Size = new Size(168, 30);
             button2.TabIndex = 1;
@@ -72,7 +75,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 29);
+            label1.Location = new Point(51, 93);
             label1.Name = "label1";
             label1.Size = new Size(290, 15);
             label1.TabIndex = 3;
@@ -81,17 +84,17 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(51, 55);
+            textBox1.Location = new Point(51, 122);
             textBox1.MaxLength = 7;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(202, 23);
+            textBox1.Size = new Size(229, 23);
             textBox1.TabIndex = 4;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(51, 93);
+            label2.Location = new Point(369, 93);
             label2.Name = "label2";
             label2.Size = new Size(196, 15);
             label2.TabIndex = 5;
@@ -100,7 +103,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(51, 122);
+            textBox2.Location = new Point(369, 122);
             textBox2.MaxLength = 10;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(202, 23);
@@ -108,7 +111,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(533, 25);
+            button5.Location = new Point(639, 50);
             button5.Name = "button5";
             button5.Size = new Size(75, 23);
             button5.TabIndex = 7;
@@ -119,7 +122,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(16, 583);
+            button3.Location = new Point(596, 250);
             button3.Name = "button3";
             button3.Size = new Size(168, 30);
             button3.TabIndex = 8;
@@ -129,7 +132,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(259, 122);
+            button4.Location = new Point(587, 122);
             button4.Name = "button4";
             button4.Size = new Size(61, 23);
             button4.TabIndex = 9;
@@ -140,7 +143,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(533, 7);
+            label3.Location = new Point(639, 26);
             label3.Name = "label3";
             label3.Size = new Size(44, 15);
             label3.TabIndex = 10;
@@ -150,19 +153,55 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button6.Location = new Point(250, 536);
+            button6.Location = new Point(597, 404);
             button6.Name = "button6";
-            button6.Size = new Size(152, 30);
+            button6.Size = new Size(166, 30);
             button6.TabIndex = 11;
             button6.Text = "Visszaállítás";
             button6.UseVisualStyleBackColor = true;
             button6.Click += resetButton_Click;
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Checked = true;
+            radioButton1.Location = new Point(51, 50);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(117, 19);
+            radioButton1.TabIndex = 12;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "FEJ-TET generálás";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += salaryGeneratorButton_CheckedChanged;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(204, 50);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(163, 19);
+            radioButton2.TabIndex = 13;
+            radioButton2.Text = "Adóazonosítók generálása";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += taxGeneratorButton_CheckedChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(51, 26);
+            label4.Name = "label4";
+            label4.Size = new Size(255, 15);
+            label4.TabIndex = 14;
+            label4.Text = "Milyen típusú generálást szeretne végrehajtani?";
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(624, 633);
+            ClientSize = new Size(800, 540);
+            Controls.Add(label4);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
             Controls.Add(button6);
             Controls.Add(label3);
             Controls.Add(button4);
@@ -197,5 +236,8 @@
         private Button button4;
         private Label label3;
         private Button button6;
+        private RadioButton radioButton1;
+        private RadioButton radioButton2;
+        private Label label4;
     }
 }
