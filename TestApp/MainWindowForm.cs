@@ -1,11 +1,4 @@
 ﻿using Berbetolto;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace TestApp {
 
@@ -17,7 +10,7 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.93";
+        private const string VERSION = "0.931";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -46,6 +39,7 @@ namespace TestApp {
 
         public void AddTextToTextBox(String text) {
             richTextBox1.AppendText(text);
+            richTextBox1.ScrollToCaret();
         }
 
         private void Form_Load(object sender, EventArgs e) {
@@ -62,10 +56,10 @@ namespace TestApp {
             List<String> existingFiles = new List<String>();
             if (result.Length > 0) {
                 CheckForExistingPaths(result, existingFiles);
-                richTextBox1.AppendText(LOADED_FILES_TEXT);
+                AddTextToTextBox(LOADED_FILES_TEXT);
                 ListFileNames(FileInputOutputOperations.CostExcelFiles);
             } else {
-                richTextBox1.AppendText(NO_COSTFILE_FOUND_TEXT);
+                AddTextToTextBox(NO_COSTFILE_FOUND_TEXT);
             }
         }
 
@@ -74,7 +68,7 @@ namespace TestApp {
                 if (File.Exists(actual)) {
                     existingFiles.Add(actual);
                 } else {
-                    richTextBox1.AppendText(FILE_NOT_FOUND_TEXT + actual);
+                    AddTextToTextBox(FILE_NOT_FOUND_TEXT + actual);
                 }
             }
             FileInputOutputOperations.CostExcelFiles = existingFiles;
@@ -82,7 +76,7 @@ namespace TestApp {
 
         private void ListFileNames(List<String> filesPaths) {
             foreach (String actual in filesPaths) {
-                richTextBox1.AppendText("\n" + actual);
+                AddTextToTextBox("\n" + actual);
             }
         }
 
@@ -105,7 +99,7 @@ namespace TestApp {
                 String file = openFileDialog.FileName;
                 if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
                     FileInputOutputOperations.CostExcelFiles.Add(file);
-                    richTextBox1.AppendText("\n" + file + FILE_LOADED_TEXT);
+                    AddTextToTextBox("\n" + file + FILE_LOADED_TEXT);
                 }
             }
         }
@@ -138,7 +132,7 @@ namespace TestApp {
             textBox1.Clear();
             textBox2.Clear();
             richTextBox1.Clear();
-            richTextBox1.AppendText(LOADED_FILES_TEXT);
+            AddTextToTextBox(LOADED_FILES_TEXT);
         }
         private void salaryGeneratorButton_CheckedChanged(object sender, EventArgs e) {
             RadioButtonState = GeneratorState.Salary;
