@@ -15,13 +15,13 @@ namespace TestApp {
             FileInputOutputOperations = new FileInputOutputOperations();
         }
 
-        public List<PersonData> CreateCompleteListFromPersonDataInAllFiles() {
+        public List<PersonData> CreateCompleteListFromPersonDataInAllFiles(bool validateCostCenter) {
             List<PersonData> result = new List<PersonData>();
             foreach (String path in FilePaths) {
                 try {
                     String fileName = Path.GetFileName(path);
                     PersonDataConverter = CreateExcelObjectsForFileReading(path, MonthToFilter, WorkSheetName, fileName);
-                    result.AddRange(PersonDataConverter.SavePersonDataToList());
+                    result.AddRange(PersonDataConverter.SavePersonDataToList(validateCostCenter));
                 } finally {
                     ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
                 }

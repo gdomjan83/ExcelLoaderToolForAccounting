@@ -26,14 +26,14 @@ namespace TestApp {
             AccountingDate = accountingDate;
         }
 
-        public List<PersonData> SavePersonDataToList() {
+        public List<PersonData> SavePersonDataToList(bool validateCostCenter) {
             Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
             Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
             ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(ExcelReadOperation);
             int lastRow = ExcelRowColumnOperation.GetLastRow(wb, ws);
             int idNumber = 1;
             for (int i = 2; i <= lastRow; i++) {
-                idNumber = FilterMonthAndSavePersonToList(MonthToFilter, i, idNumber);
+                idNumber = FilterMonthAndSavePersonToList(MonthToFilter, i, idNumber, validateCostCenter);
             }
             return ProcessedPeople;
         }
@@ -76,11 +76,17 @@ namespace TestApp {
         public List<TaxIdPerProject> GenerateTaxIdListFromPersonList(List<PersonData> people) {
             List<TaxIdPerProject> result = new List<TaxIdPerProject>();
             foreach(PersonData actual in people) {
-                Validator.CheckIfTaxIDPresent(actual.TaxId, actual.ProjectName);
-                TaxIdPerProject taxData = new TaxIdPerProject(actual.TaxId, actual.ProjectName);
-                result.Add(taxData);
+                FilterThoseWhoAreSetToMissSaveOthers(actual, result);
             }
             return result;
+        }
+
+        private void FilterThoseWhoAreSetToMissSaveOthers(PersonData person, List<TaxIdPerProject> result) {
+            if (!Validator.CheckIfMissNotificationPresent(person.Miss)) {
+                Validator.CheckIfTaxIDPresent(person.TaxId, person.ProjectName);
+                TaxIdPerProject taxData = new TaxIdPerProject(person.TaxId, person.ProjectName);
+                result.Add(taxData);
+            }
         }
 
         private void UpdateFpiSzakmaStaticVariables() {
@@ -177,13 +183,14 @@ namespace TestApp {
             return false;
         }
 
-        private PersonData SavePerson(int rowNumber, int id, String month, String fileName) {            
-            return CreateNewPerson(rowNumber, month, fileName);
+        private PersonData SavePerson(int rowNumber, int id, String month, String fileName, bool validateCostCenter) {            
+            return CreateNewPerson(rowNumber, month, fileName, validateCostCenter);
         }
 
-        private PersonData CreateNewPerson(int rowNumber, String month, String fileName) {
+        private PersonData CreateNewPerson(int rowNumber, String month, String fileName, bool validateCostCenter) {
             PersonData person = CreatePersonObject(rowNumber, month, fileName);
-            if (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName)) {
+            if (validateCostCenter && (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) 
+                || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName))) {
                 throw new ArgumentException($"Hibás pénzügyi központ formátum a következő fájlban: {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
             }
             return person;
@@ -202,14 +209,32 @@ namespace TestApp {
             return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, miss, taxId);
         }
 
-        private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId) {
+        private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId, bool validateCostCenter) {
             String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["Hónap"]);
-            String currentMonthCleaned = currentMonth.Length > 7 ? currentMonth.Substring(0, 7) : currentMonth;
+            String currentMonthCleaned = GetCleanedMonth(currentMonth);
             if (monthToFilter.Equals(currentMonthCleaned)) {
-                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned, FileName));
+                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned, FileName, validateCostCenter));
                 currentId++;
             }
             return currentId;
+        }
+
+        private String GetCleanedMonth(String monthInCell) {
+            if (monthInCell.Length > 7) {
+                StringBuilder sb = AppendCharactersToString(monthInCell);
+                return sb.ToString().Substring(0, 7);
+            }
+            return monthInCell;
+        }
+
+        private StringBuilder AppendCharactersToString(String monthInCell) {
+            StringBuilder sb = new StringBuilder();
+            foreach (Char actual in monthInCell.ToCharArray()) {
+                if (actual != ' ') {
+                    sb.Append(actual);
+                }
+            }
+            return sb;
         }
     }
 }

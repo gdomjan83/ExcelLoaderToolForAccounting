@@ -91,12 +91,12 @@ namespace TestApp {
         private bool ProcessFiles(String[] files) {
             String month = MainWindowForm.GetMonth();
             String date = MainWindowForm.GetAccountingDate();
+            SaveUsedFiles();
             if (ValidateFilesAndTextInput(month, date, files)) {
                 String correctDate = String.IsNullOrEmpty(date) ? "9999.12.31" : CreateDateFromString(date);
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
                 AddFilePathsToExcelFileProcessor(files);
-                GenerateFiles(month, correctDate, files);
-                SaveUsedFiles();
+                GenerateFiles(month, correctDate, files);                
                 return true;
             } else {
                 return false;
@@ -109,7 +109,7 @@ namespace TestApp {
                 WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes, TotalAccountingPerProjects);
                 WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
             } else if (MainWindowForm.RadioButtonState == GeneratorState.TaxId) {                 
-                List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles();
+                List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles(false);
                 List<TaxIdPerProject> taxData = FilesProcessor.PersonDataConverter.GenerateTaxIdListFromPersonList(data);
                 WriteTaxCSVDataToFile(TAX_FILE_NAME, ConvertTaxListToSetAndBack(taxData));                    
             }
@@ -127,7 +127,7 @@ namespace TestApp {
         }
 
         private List<PersonData> GeneratePersonDataList() {
-            List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles();
+            List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles(true);
             return FilesProcessor.PersonDataConverter.ChangeNoteNumbers(data);
         }
         

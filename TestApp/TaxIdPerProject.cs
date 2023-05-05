@@ -21,11 +21,12 @@ namespace Berbetolto {
 
         public override bool Equals(object? obj) {
             return obj is TaxIdPerProject project &&
-                   TaxId.Equals(project.TaxId);
+                   TaxId == project.TaxId &&
+                   ProjectName == project.ProjectName;
         }
 
         public override int GetHashCode() {
-            return HashCode.Combine(TaxId);
+            return HashCode.Combine(TaxId, ProjectName);
         }
     }
 }
