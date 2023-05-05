@@ -1,9 +1,14 @@
 ﻿using Berbetolto;
+using Berbetolto.Properties;
 
 namespace TestApp {
 
     public enum GeneratorState {
         Salary, TaxId
+    }
+
+    public enum ProgressState {
+        InProgress, Finished, Default, Error
     }
     public partial class MainWindowForm : Form {
         private const string FILE_NOT_FOUND_TEXT = "\nNem található a következő fájl: ";
@@ -23,6 +28,7 @@ namespace TestApp {
             label3.Text += VERSION;
             AddTextToTextBox("Kérem töltse be a használni kívánt excel fájlokat!");
             RadioButtonState = GeneratorState.Salary;
+            SetImage(ProgressState.Default);
         }
 
         public String GetMonth() {
@@ -40,6 +46,24 @@ namespace TestApp {
         public void AddTextToTextBox(String text) {
             richTextBox1.AppendText(text);
             richTextBox1.ScrollToCaret();
+        }
+
+        public void SetImage(ProgressState progressState) {
+            switch (progressState) {
+                default:
+                case ProgressState.InProgress:
+                    pictureBox1.BackgroundImage = Resources.task_progress_1;
+                    break;
+                case ProgressState.Finished:
+                    pictureBox1.BackgroundImage = Resources.finished_icon_0;
+                    break;
+                case ProgressState.Default:
+                    pictureBox1.BackgroundImage = null;
+                    break;
+                case ProgressState.Error:
+                    pictureBox1.BackgroundImage = Resources.error_icon;
+                    break;
+            }
         }
 
         private void Form_Load(object sender, EventArgs e) {
@@ -133,6 +157,7 @@ namespace TestApp {
             textBox2.Clear();
             richTextBox1.Clear();
             AddTextToTextBox(LOADED_FILES_TEXT);
+            SetImage(ProgressState.Default);
         }
         private void salaryGeneratorButton_CheckedChanged(object sender, EventArgs e) {
             RadioButtonState = GeneratorState.Salary;
@@ -165,5 +190,8 @@ namespace TestApp {
 
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e) {
+
+        }
     }
 }

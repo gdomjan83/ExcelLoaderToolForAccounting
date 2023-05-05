@@ -38,6 +38,8 @@
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
             label4 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -194,11 +196,22 @@
             label4.TabIndex = 14;
             label4.Text = "Milyen típusú generálást szeretne végrehajtani?";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(630, 290);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 100);
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 540);
+            Controls.Add(pictureBox1);
             Controls.Add(label4);
             Controls.Add(radioButton2);
             Controls.Add(radioButton1);
@@ -218,6 +231,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bérbetöltő";
             Load += Form_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -239,5 +253,6 @@
         private RadioButton radioButton1;
         private RadioButton radioButton2;
         private Label label4;
+        private PictureBox pictureBox1;
     }
 }

@@ -518,3 +518,4 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\w
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.pdb
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.genruntimeconfig.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\ref\Berbetolto.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.Properties.Resources.resources

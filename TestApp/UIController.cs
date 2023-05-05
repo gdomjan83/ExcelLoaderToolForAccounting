@@ -30,12 +30,16 @@ namespace TestApp {
         }        
         public void RunApplication() {
             try {
-                bool finished = RunExcelOperations();
+                bool finished = RunExcelOperations();                
                 if (finished) {                    
                     FinishTask();
                 }
-            } catch (ArgumentException e) {
-                MainWindowForm.AddTextToTextBox("\nHIBA: " + e.Message);
+            } catch (ArgumentException ae) {
+                MainWindowForm.SetImage(ProgressState.Error);
+                MainWindowForm.AddTextToTextBox("\nHIBA: " + ae.Message);
+            } catch (IOException ioe) {
+                MainWindowForm.SetImage(ProgressState.Error);
+                MainWindowForm.AddTextToTextBox("\nHIBA: " + ioe.Message);
             }
         }
 
@@ -51,6 +55,7 @@ namespace TestApp {
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
                 WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
                 WriteProjectTotals();
+                MainWindowForm.SetImage(ProgressState.Finished);
                 MessageBox.Show(WARNING_TEXT);
                 NoteCounterData.ResetProperties();
             }
@@ -83,7 +88,7 @@ namespace TestApp {
         }
 
         private bool RunExcelOperations() {
-            EmptyFolders();
+            EmptyFolders();            
             String[] files = FolderOperation.CopySeveralFiles(FileInputOutputOperations.CostExcelFiles, SourceFilesFolder).ToArray();
             return ProcessFiles(files);
         }
@@ -91,12 +96,13 @@ namespace TestApp {
         private bool ProcessFiles(String[] files) {
             String month = MainWindowForm.GetMonth();
             String date = MainWindowForm.GetAccountingDate();
-            SaveUsedFiles();
             if (ValidateFilesAndTextInput(month, date, files)) {
                 String correctDate = String.IsNullOrEmpty(date) ? "9999.12.31" : CreateDateFromString(date);
+                MainWindowForm.SetImage(ProgressState.InProgress);
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
                 AddFilePathsToExcelFileProcessor(files);
                 GenerateFiles(month, correctDate, files);                
+                SaveUsedFiles();
                 return true;
             } else {
                 return false;
@@ -149,6 +155,9 @@ namespace TestApp {
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary && !Validator.CheckIfAccountingDateInCorrectForm(date)) {
                 WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_FILENAME_TEXT);
                 result = false;
+            }
+            if (!result) {
+                MainWindowForm.SetImage(ProgressState.Error);
             }
             return result;
         }
