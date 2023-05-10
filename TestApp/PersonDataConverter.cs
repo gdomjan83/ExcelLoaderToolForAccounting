@@ -59,7 +59,7 @@ namespace TestApp {
             for (int i = 0; i < listSize; i++) {
                 UpdateNoteDataForPerson(result[i]);
                 if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
-                    UpdateFpiSzakmaStaticVariables();
+                    NoteCounterData.UpdateNoteForNewProject();
                 }
             }
             return result;
@@ -87,15 +87,6 @@ namespace TestApp {
                 TaxIdPerProject taxData = new TaxIdPerProject(person.TaxId, person.ProjectName);
                 result.Add(taxData);
             }
-        }
-
-        private void UpdateFpiSzakmaStaticVariables() {
-            NoteCounterData.GmiFpiCounter = 1;
-            NoteCounterData.GmiSzakmaCounter = 1;
-            NoteCounterData.GmiFpiNoteDefault += 20;
-            NoteCounterData.GmiSzakmaNoteDefault += 20;
-            NoteCounterData.GmiFpiNote = NoteCounterData.GmiFpiNoteDefault;
-            NoteCounterData.GmiSzakmaNote = NoteCounterData.GmiSzakmaNoteDefault;
         }
 
         private PersonCSVData TransformCreditSalary(PersonData person) {
@@ -150,7 +141,7 @@ namespace TestApp {
 
         private void UpdateNoteDataForPerson(PersonData person) {
             if (CheckIfCostCenterIsSzakma(person.DebitCostCenter)) {
-                person.Note = NoteCounterData.GmiSzakmaNote;
+                person.Note = NoteCounterData.SzakmaNote;
                 ManageSzakmaCounter();
             } else {
                 person.Note = NoteCounterData.GmiFpiNote;
@@ -159,18 +150,16 @@ namespace TestApp {
         }
 
         private void ManageSzakmaCounter() {
-            if (NoteCounterData.GmiSzakmaCounter == LINES_IN_ONE_NOTE) {
-                NoteCounterData.GmiSzakmaNote++;
-                NoteCounterData.GmiSzakmaCounter = 1;
+            if (NoteCounterData.SzakmaCounter == LINES_IN_ONE_NOTE) {
+                NoteCounterData.IncreaseSzakmaNoteByOne();
             } else {
-                NoteCounterData.GmiSzakmaCounter++;
+                NoteCounterData.SzakmaCounter++;
             }
         }
 
         private void ManageFPICounter() {
             if (NoteCounterData.GmiFpiCounter == LINES_IN_ONE_NOTE) {
-                NoteCounterData.GmiFpiNote++;
-                NoteCounterData.GmiFpiCounter = 1;
+                NoteCounterData.IncreaseGmiFpiNoteByOne();
             } else {
                 NoteCounterData.GmiFpiCounter++;
             }

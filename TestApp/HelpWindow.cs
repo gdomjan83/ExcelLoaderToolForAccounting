@@ -21,13 +21,13 @@ namespace Berbetolto {
                 "- kiválasztjuk, hogy milyen generáslást kívánunk végezni,\n" +
                 "- az első mezőbe beírjuk a könyvelni kívánt hónapot a következő formátumban: 2023.03\n" +
                 "- a könyvelési dátum mezőbe beírjuk azt a dátumot, amelyik napra könyvelni szeretnénk a tételt. Formátum: 2023.04.26 " +
-                "(Csak akkor szükséges megadni, ha FEJ-TET fájlokat akarunk generálni).\n" +
+                "(Csak akkor tudjuk megadni, ha FEJ-TET fájlokat akarunk generálni).\n" +
                 "- a Mai nap gombra kattintva rögtön megadhatjuk a mai napot könyvelési dátumnak. " +
                 "(Nem elérhető a gomb, ha adóazonosító listát generálunk).\n" +
-                "- a tallózás gombra kattintva egyesével beállítjuk, hogy melyik költségkövető fájlokat kívánjuk használni. Egyszerre " +
+                "- a Tallózás gombra kattintva egyesével beállítjuk, hogy melyik költségkövető fájlokat kívánjuk használni. Egyszerre " +
                 "több fájlból is tölthetünk be adatokat.\n" +
-                "- a Legutóbbi fájlok használata gombbal gyorsan betölthetjük azokat a táblázatokat, amiket legutóbb használtuk. " +
-                "gombra kattintva gyorsan behívhatók, és nem kell újra betallózni őket.\n" +
+                "- a Legutóbbi fájlok használata gombbal gyorsan betölthetjük azokat a táblázatokat, amelyekből legutóbb adatokat generáltunk. " +
+                "Így nem kell egyesével újra betallózni őket.\n" +
                 "- a Létrehozás gombra kattintva elvégezzük a generálást. A folyamat végén megnyílik az eredmény fájlokat tartalmazó mappa.\n" +
                 "- a Visszaállítás gombbal törölni lehet az aktuális munkamenet adatait és újrakezdeni a betöltést.");
         }

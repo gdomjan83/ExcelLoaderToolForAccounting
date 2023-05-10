@@ -15,7 +15,8 @@ namespace TestApp {
         private const string LOADED_FILES_TEXT = "\nBetöltött fájlok:";
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
-        private const string VERSION = "0.931";
+        private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
+        private const string VERSION = "0.940";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -26,7 +27,7 @@ namespace TestApp {
             WindowOperations.mainWindowForm = this;
             HelpWindow = null;
             label3.Text += VERSION;
-            AddTextToTextBox("Kérem töltse be a használni kívánt excel fájlokat!");
+            AddTextToTextBox(DEFAULT_TEXT);
             RadioButtonState = GeneratorState.Salary;
             SetImage(ProgressState.Default);
         }
@@ -156,7 +157,7 @@ namespace TestApp {
             textBox1.Clear();
             textBox2.Clear();
             richTextBox1.Clear();
-            AddTextToTextBox(LOADED_FILES_TEXT);
+            AddTextToTextBox(DEFAULT_TEXT);
             SetImage(ProgressState.Default);
         }
         private void salaryGeneratorButton_CheckedChanged(object sender, EventArgs e) {
