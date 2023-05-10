@@ -39,7 +39,10 @@ namespace TestApp {
                 MainWindowForm.AddTextToTextBox("\nHIBA: " + ae.Message);
             } catch (IOException ioe) {
                 MainWindowForm.SetImage(ProgressState.Error);
-                MainWindowForm.AddTextToTextBox("\nHIBA: " + ioe.Message);
+                MainWindowForm.AddTextToTextBox("\nFÁJLKEZELÉSI HIBA: " + ioe.Message);
+            } catch (Exception e) {
+                MainWindowForm.SetImage(ProgressState.Error);
+                MainWindowForm.AddTextToTextBox("\nKRITIKUS HIBA: " + e.Message);
             }
         }
 

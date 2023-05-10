@@ -10,7 +10,7 @@ namespace TestApp {
         public const String DEBIT_CODE = "50";
         public const String BER_SZAKMA = "BérProjektSzakma";
         public const String BER_KOZPONTI = "BérProjektGMIFPI";
-        public const int LINES_IN_ONE_NOTE = 80;
+        public const int LINES_IN_ONE_NOTE = 3;
         public Dictionary<String, int> ColumnTitles { get; set; }
         public String AccountingDate { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
