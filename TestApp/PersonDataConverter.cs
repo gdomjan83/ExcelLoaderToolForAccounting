@@ -54,16 +54,15 @@ namespace TestApp {
             return result;
         }
         public List<PersonData> ChangeNoteNumbers(List<PersonData> personDataCollection) {
-            List<PersonData> result = new List<PersonData>(personDataCollection);
-            int listSize = result.Count;
+            List<PersonData> result = new List<PersonData>();
+            List<PersonData> tempList = new List<PersonData>();
+            int listSize = personDataCollection.Count;
             for (int i = 0; i < listSize; i++) {
-                UpdateNoteDataForPerson(result[i]);
-                if ((i < listSize - 1) && (result[i].ProjectName != result[i + 1].ProjectName)) {
-                    NoteCounterData.UpdateNoteForNewProject();
-                }
+                UpdateNoteDataForEveryPerson(personDataCollection, tempList, result, i);
             }
             return result;
-        }        
+        }       
+        
 
         public String GetMissedPeopleText() {
             StringBuilder sb = new StringBuilder("\n\nKihagyásra jelölt, nem könyvelt személyek:\n");
@@ -79,6 +78,35 @@ namespace TestApp {
                 FilterThoseWhoAreSetToMissSaveOthers(actual, result);
             }
             return result;
+        }
+
+        private void UpdateNoteDataForEveryPerson(List<PersonData> allPersonDataFromEveryProject, List<PersonData> temporaryList, List<PersonData> resultList, int currentPerson) {
+            int listSize = allPersonDataFromEveryProject.Count;
+            UpdateNoteDataForPerson(allPersonDataFromEveryProject[currentPerson], BER_SZAKMA);
+            temporaryList.Add(allPersonDataFromEveryProject[currentPerson]);
+            if ((currentPerson < listSize - 1) && (allPersonDataFromEveryProject[currentPerson].ProjectName != allPersonDataFromEveryProject[currentPerson + 1].ProjectName)) {
+                SecondIterationForCentralWorkerNoteUpdates(temporaryList, resultList);
+                UpdateNoteForNewProject();
+            }
+            if (currentPerson == listSize - 1) {
+                SecondIterationForCentralWorkerNoteUpdates(temporaryList, resultList);
+            }
+        }
+
+        private void SecondIterationForCentralWorkerNoteUpdates(List<PersonData> temporaryPersonList, List<PersonData> resultList) {
+            UpdateNoteForNewProject();
+            for (int j = 0; j < temporaryPersonList.Count; j++) {
+                UpdateNoteDataForPerson(temporaryPersonList[j], BER_KOZPONTI);
+            }
+            resultList.AddRange(temporaryPersonList);
+            temporaryPersonList.Clear();
+        }
+
+        private void UpdateNoteForNewProject() {
+            if (NoteCounterData.Counter != 1) {
+                NoteCounterData.CurrentNote++;
+                NoteCounterData.Counter = 1;
+            }
         }
 
         private void FilterThoseWhoAreSetToMissSaveOthers(PersonData person, List<TaxIdPerProject> result) {
@@ -139,29 +167,19 @@ namespace TestApp {
             }            
         }
 
-        private void UpdateNoteDataForPerson(PersonData person) {
-            if (CheckIfCostCenterIsSzakma(person.DebitCostCenter)) {
-                person.Note = NoteCounterData.SzakmaNote;
-                ManageSzakmaCounter();
-            } else {
-                person.Note = NoteCounterData.GmiFpiNote;
-                ManageFPICounter();
+        private void UpdateNoteDataForPerson(PersonData person, String debitType) {
+            if (debitType.Equals(person.WorkerType)) {
+                person.Note = NoteCounterData.CurrentNote;
+                ManageCounter();
             }
         }
 
-        private void ManageSzakmaCounter() {
-            if (NoteCounterData.SzakmaCounter == LINES_IN_ONE_NOTE) {
-                NoteCounterData.IncreaseSzakmaNoteByOne();
+        private void ManageCounter() {
+            if (NoteCounterData.Counter == LINES_IN_ONE_NOTE) {
+                NoteCounterData.CurrentNote++;
+                NoteCounterData.Counter = 1;
             } else {
-                NoteCounterData.SzakmaCounter++;
-            }
-        }
-
-        private void ManageFPICounter() {
-            if (NoteCounterData.GmiFpiCounter == LINES_IN_ONE_NOTE) {
-                NoteCounterData.IncreaseGmiFpiNoteByOne();
-            } else {
-                NoteCounterData.GmiFpiCounter++;
+                NoteCounterData.Counter++;
             }
         }
 

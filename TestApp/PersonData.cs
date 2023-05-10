@@ -29,7 +29,7 @@ namespace TestApp {
 
         public override string ToString() {
             return $"Név: {Name}, Hónap: {Month}, Terhelés: {CreditCostCenter}," +
-                $" Számfejtés: {DebitCostCenter}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}, Projekt név: {ProjectName}, Adóazonosító: {TaxId}, Kihagyás: {Miss}";
+                $" Számfejtés: {DebitCostCenter}, Bér: {Salary}, Járulék: {Tax}, Okmány: {Note}, Típus: {WorkerType}, Projekt név: {ProjectName}, Adóazonosító: {TaxId}, Kihagyás: {Miss}";
         }
     }
 }
