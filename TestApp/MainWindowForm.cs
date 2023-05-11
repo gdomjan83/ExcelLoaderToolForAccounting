@@ -16,7 +16,7 @@ namespace TestApp {
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
         private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
-        private const string VERSION = "0.940";
+        private const string VERSION = "0.941";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -101,7 +101,7 @@ namespace TestApp {
 
         private void ListFileNames(List<String> filesPaths) {
             foreach (String actual in filesPaths) {
-                AddTextToTextBox("\n" + actual);
+                AddTextToTextBox("\n - " + actual);
             }
         }
 
@@ -124,7 +124,7 @@ namespace TestApp {
                 String file = openFileDialog.FileName;
                 if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
                     FileInputOutputOperations.CostExcelFiles.Add(file);
-                    AddTextToTextBox("\n" + file + FILE_LOADED_TEXT);
+                    AddTextToTextBox("\n - " + file + FILE_LOADED_TEXT);
                 }
             }
         }

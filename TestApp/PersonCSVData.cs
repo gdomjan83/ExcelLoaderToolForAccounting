@@ -28,24 +28,5 @@ namespace TestApp {
             return $"Okmány: {Note}, T_K Kód: {CreditDebitCode}, Főkönyvi szám: {LedgerNumber}, Összeg: {Amount}," +
                 $" Szöveg: {Comment}, Pü központ: {CostCenter}, Funkc. terület: {FunctionCode}, Projekt név: {ProjectName}";
         }
-
-        //public static IComparer SortBasedOnNotes() {
-        //    return (IComparer)new SortBasedOnNotesHelper();
-        //}
-
-        //private class SortBasedOnNotesHelper : IComparer {
-        //    int IComparer.Compare(object a, object b) {
-        //        PersonCSVData obj = (PersonCSVData)a;
-        //        PersonCSVData otherObj = (PersonCSVData)b;
-
-        //        if (obj.Note > otherObj.Note) {
-        //            return 1;
-        //        }
-        //        if (obj.Note < otherObj.Note) {
-        //            return -1;
-        //        }
-        //        return 0;
-        //    }
-        //}
     }
 }

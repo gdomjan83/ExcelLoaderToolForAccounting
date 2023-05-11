@@ -10,7 +10,7 @@ namespace TestApp {
         public const String DEBIT_CODE = "50";
         public const String BER_SZAKMA = "BérProjektSzakma";
         public const String BER_KOZPONTI = "BérProjektGMIFPI";
-        public const int LINES_IN_ONE_NOTE = 3;
+        public const int LINES_IN_ONE_NOTE = 80;
         public Dictionary<String, int> ColumnTitles { get; set; }
         public String AccountingDate { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
@@ -67,7 +67,7 @@ namespace TestApp {
         public String GetMissedPeopleText() {
             StringBuilder sb = new StringBuilder("\n\nKihagyásra jelölt, nem könyvelt személyek:\n");
             foreach(PersonData actual in MissedPeople) {
-                sb.Append(actual.ToString() + "\n");
+                sb.Append(" - " + actual.ToString() + "\n");
             }
             return sb.ToString();
         }
