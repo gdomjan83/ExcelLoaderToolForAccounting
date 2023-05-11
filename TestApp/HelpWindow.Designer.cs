@@ -32,7 +32,7 @@
             richTextBox1.Location = new Point(12, 12);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(671, 431);
+            richTextBox1.Size = new Size(765, 533);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             // 
@@ -40,7 +40,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(695, 455);
+            ClientSize = new Size(789, 557);
             Controls.Add(richTextBox1);
             Name = "HelpWindow";
             StartPosition = FormStartPosition.CenterScreen;

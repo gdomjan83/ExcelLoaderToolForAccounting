@@ -13,7 +13,7 @@ namespace TestApp {
 
         private const String WARNING_TEXT = "Betöltés befejezve.\nFigyelem, az M oszlop csak tájékoztatásul szerepel a TET.csv fájlban, SAP betöltés előtt kérem törölni!\n" +
             "A FEJ.CSV-ben kérem ne felejtse el kitölteni a Vegyes sorszámokat tartalmazó oszlopot.";
-        private const String NO_FILE_TEXT = "\nKérem adja meg, hogy melyik fájlokból töltsem be a költségeket!";
+        private const String NO_FILE_TEXT = "\nKérem adja meg, hogy melyik fájlokból kerüljenek betöltésre a költségek!";
         private const String WRONG_MONTH_TEXT = "\nNem megfelelő a szűréshez megadott dátum formátum.";
         private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
         private const String TET_FILE_NAME = "TET.csv";
@@ -21,6 +21,7 @@ namespace TestApp {
         private const String SAVE_FILE_NAME = "costfiles.txt";
         private const String TAX_FILE_NAME = "adoazonositok.csv";
         private const String AMOUNTS_TEXT = "\nLekönyvelt összegek projektenként: \n";
+        private const String DECIMAL_WARNING_TEXT = "Figyelem, nem egész szám!";
 
         public UIController(MainWindowForm mainWindowForm) {
             MainWindowForm = mainWindowForm;
@@ -77,7 +78,8 @@ namespace TestApp {
             foreach (KeyValuePair<String, double> actual in TotalAccountingPerProjects) {
                 double amount = actual.Value / 2;
                 String amountFormatted = amount.ToString("n", formatter);
-                MainWindowForm.AddTextToTextBox(actual.Key + ": " + amountFormatted + " Ft\n");
+                String warning = amount != (int)amount ? DECIMAL_WARNING_TEXT : "";
+                MainWindowForm.AddTextToTextBox($"{actual.Key}: {amountFormatted} Ft {warning}\n");
             }
         }
 
@@ -91,12 +93,16 @@ namespace TestApp {
         }
 
         private bool RunExcelOperations() {
-            EmptyFolders();            
+            EmptyFolders();
+            TotalAccountingPerProjects.Clear();
             String[] files = FolderOperation.CopySeveralFiles(FileInputOutputOperations.CostExcelFiles, SourceFilesFolder).ToArray();
             return ProcessFiles(files);
         }
 
         private bool ProcessFiles(String[] files) {
+            if (files.Length > 0) {
+                SaveUsedFilePaths();
+            }
             String month = MainWindowForm.GetMonth();
             String date = MainWindowForm.GetAccountingDate();
             if (ValidateFilesAndTextInput(month, date, files)) {
@@ -105,7 +111,6 @@ namespace TestApp {
                 UpdateFilesProcessorProperties(FilesProcessor, month, correctDate);
                 AddFilePathsToExcelFileProcessor(files);
                 GenerateFiles(month, correctDate, files);                
-                SaveUsedFiles();
                 return true;
             } else {
                 return false;
@@ -201,7 +206,7 @@ namespace TestApp {
             FilesProcessor.WriteCSVFile(targetFile, orderedList);
         }
 
-        private void SaveUsedFiles() {
+        private void SaveUsedFilePaths() {
             FilesProcessor.WriteTXTFile(SaveFileFolder, FileInputOutputOperations.CostExcelFiles);
         }
     }

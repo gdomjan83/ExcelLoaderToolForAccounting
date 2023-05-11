@@ -16,7 +16,8 @@ namespace TestApp {
         private const string NO_COSTFILE_FOUND_TEXT = "\nNincsenek korábbi használatból elmentett fájlok.";
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
         private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
-        private const string VERSION = "0.941";
+        private const string FILE_ALREADY_LOADED_TEXT = "\nIlyen nevű fájl már betöltésre került. Válasszon másik fájlt!";
+        private const string VERSION = "0.950";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -108,7 +109,7 @@ namespace TestApp {
         private void helpButton_Click(object sender, EventArgs e) {
             if (CheckIfOnlyOneWindowIsOpen()) {
                 HelpWindow = new HelpWindow();
-                HelpWindow.Show();
+                HelpWindow.Show();                
             }
         }
 
@@ -125,6 +126,8 @@ namespace TestApp {
                 if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
                     FileInputOutputOperations.CostExcelFiles.Add(file);
                     AddTextToTextBox("\n - " + file + FILE_LOADED_TEXT);
+                } else {
+                    AddTextToTextBox(FILE_ALREADY_LOADED_TEXT);
                 }
             }
         }

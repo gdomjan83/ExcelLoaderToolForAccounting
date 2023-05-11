@@ -4,6 +4,8 @@ namespace TestApp {
     public static class Validator {
         private const string MISSING_COST_CENTER_TEXT = "Nem található pénzügyi központ. Fájl: ";
         private const string MISSING_TAXID_TEXT = "Nem található megfelelő adóazonosító az egyik személynél. Fájl: ";
+        private static String[] months = {"január", "február", "március", "április", "május", "június", "július", "augusztus",
+        "szeptember", "október", "november", "december"};
 
         public static bool CheckIfAmountIsZero(String amount) {
             if (String.IsNullOrEmpty(amount) || Double.Parse(amount) == 0d) {
@@ -40,15 +42,6 @@ namespace TestApp {
             return false;
         }
 
-        public static bool CheckCSVFileName(String fileName) {
-            String regex = "^TET\\d{14}F$";
-            Match matcher = Regex.Match(fileName, regex);
-            if (matcher.Success) {
-                return true;
-            }
-            return false;
-        }
-
         public static bool CheckIfAccountingDateInCorrectForm(String date) {
             String regex = "^\\d{4}\\.\\d{2}\\.\\d{2}$";
             Match matcher = Regex.Match(date, regex);
@@ -77,6 +70,15 @@ namespace TestApp {
                 return true;
             }
             throw new ArgumentException(MISSING_TAXID_TEXT + FolderOperation.GetFileNameFromPath(fileName));
+        }
+
+        public static String CheckIfWrittenMonthIsPresent(String input) {
+            foreach(String actual in months) {
+                if (input.ToLower().Contains(actual)) {
+                    return actual;
+                }
+            }
+            return String.Empty;
         }
     }
 }

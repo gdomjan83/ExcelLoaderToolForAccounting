@@ -11,6 +11,7 @@ namespace TestApp {
         public const String BER_SZAKMA = "BérProjektSzakma";
         public const String BER_KOZPONTI = "BérProjektGMIFPI";
         public const int LINES_IN_ONE_NOTE = 80;
+
         public Dictionary<String, int> ColumnTitles { get; set; }
         public String AccountingDate { get; set; }
         public ExcelReadOperation ExcelReadOperation { get; set; }
@@ -226,12 +227,43 @@ namespace TestApp {
             return currentId;
         }
 
+
         private String GetCleanedMonth(String monthInCell) {
+            String result = String.Empty;
+            String month = Validator.CheckIfWrittenMonthIsPresent(monthInCell);
+            if (!String.IsNullOrEmpty(month)) {
+                result = monthInCell.Substring(0, 5) + ConvertStringMonth(month);
+            } else {
+                result = ConvertNumericMonth(monthInCell);
+            }
+            return result; ;
+        }
+
+        private String ConvertNumericMonth(String monthInCell) {
             if (monthInCell.Length > 7) {
                 StringBuilder sb = AppendCharactersToString(monthInCell);
                 return sb.ToString().Substring(0, 7);
+            } else {
+                return monthInCell;
             }
-            return monthInCell;
+        }
+
+        private String ConvertStringMonth(String input) {
+            switch (input) {
+                default:
+                case ("január"): return "01";
+                case ("február"): return "02";
+                case ("március"): return "03";
+                case ("április"): return "04";
+                case ("május"): return "05";
+                case ("június"): return "06";
+                case ("július"): return "07";
+                case ("augusztus"): return "08";
+                case ("szeptember"): return "09";
+                case ("október"): return "10";
+                case ("november"): return "11";
+                case ("december"): return "12";
+            }
         }
 
         private StringBuilder AppendCharactersToString(String monthInCell) {
