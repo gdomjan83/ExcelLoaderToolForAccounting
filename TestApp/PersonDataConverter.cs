@@ -191,12 +191,11 @@ namespace TestApp {
             return false;
         }
 
-        private PersonData SavePerson(int rowNumber, int id, String month, String fileName, bool validateCostCenter) {            
-            return CreateNewPerson(rowNumber, month, fileName, validateCostCenter);
+        private PersonData SavePerson(PersonData person, String fileName, bool validateCostCenter) {            
+            return ValidateCostCenter(person, fileName, validateCostCenter);
         }
 
-        private PersonData CreateNewPerson(int rowNumber, String month, String fileName, bool validateCostCenter) {
-            PersonData person = CreatePersonObject(rowNumber, month, fileName);
+        private PersonData ValidateCostCenter(PersonData person, String fileName, bool validateCostCenter) {
             if (validateCostCenter && (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) 
                 || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName))) {
                 throw new ArgumentException($"Hibás pénzügyi központ formátum a következő fájlban: {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
@@ -221,12 +220,20 @@ namespace TestApp {
             String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["Hónap"]);
             String currentMonthCleaned = GetCleanedMonth(currentMonth);
             if (monthToFilter.Equals(currentMonthCleaned)) {
-                ProcessedPeople.Add(SavePerson(currentRow, currentId, currentMonthCleaned, FileName, validateCostCenter));
+                PersonData person = CreatePersonObject(currentRow, currentMonthCleaned, FileName);
+                ValidateIfMissAndAddToProperList(person, validateCostCenter);
                 currentId++;
             }
             return currentId;
         }
 
+        private void ValidateIfMissAndAddToProperList(PersonData person, bool validateCostCenter) {
+            if (Validator.CheckIfMissNotificationPresent(person.Miss)) {
+                MissedPeople.Add(person);
+            } else {
+                ProcessedPeople.Add(SavePerson(person, FileName, validateCostCenter));
+            }
+        }
 
         private String GetCleanedMonth(String monthInCell) {
             String result = String.Empty;

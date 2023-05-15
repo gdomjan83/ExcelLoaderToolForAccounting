@@ -120,7 +120,7 @@ namespace TestApp {
         private void GenerateFiles(String month, String date, String[] files) {
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
                 List<PersonData> updatedDataWithCorrectNotes = GeneratePersonDataList();
-                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes, TotalAccountingPerProjects);
+                WriteTETCSVDataToFile(TET_FILE_NAME, updatedDataWithCorrectNotes);
                 WriteFEJCSVDataToFile(FEJ_FILE_NAME, updatedDataWithCorrectNotes);
             } else if (MainWindowForm.RadioButtonState == GeneratorState.TaxId) {                 
                 List<PersonData> data = FilesProcessor.CreateCompleteListFromPersonDataInAllFiles(false);
@@ -179,7 +179,7 @@ namespace TestApp {
             FilesProcessor.FilePaths = files;           
         }
 
-        private void WriteTETCSVDataToFile(String targetFileName, List<PersonData> personData, Dictionary<String, double> totalAccountingPerProjects) {
+        private void WriteTETCSVDataToFile(String targetFileName, List<PersonData> personData) {
             List<PersonCSVData> csvResult = FilesProcessor.TransformCompletePersonDataListToTETCSVList(personData);
             List<PersonCSVData> orderedList = csvResult.OrderBy(p => p.Note).ToList<PersonCSVData>();
             CountTotals(orderedList);

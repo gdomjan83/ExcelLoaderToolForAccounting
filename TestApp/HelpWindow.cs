@@ -17,7 +17,6 @@ namespace Berbetolto {
                 "- a hónapok oszlopban a hónapokat kétféle formátumban lehet megadni: a) 2023.03 vagy b) 2023. március\n" +
                 "Az nem probléma, ha az előzőek után még további karakterek is szerepelnek." +
                 " Például lehet így vezetni a töredék hónapokat: 2023.03.15-2023.03.30, vagy 2023. március 15-30.\n" +
-                "- a betöltés során ne legyenek nyitva a költségkövető excel fájlok.\n" +
                 "\nA betöltés menete:\n" +
                 "- kiválasztjuk, hogy milyen generáslást kívánunk végezni,\n" +
                 "- az első mezőbe beírjuk a könyvelni kívánt hónapot a következő formátumban: 2023.03\n" +

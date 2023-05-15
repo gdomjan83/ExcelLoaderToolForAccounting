@@ -5,21 +5,27 @@ namespace TestApp {
     public static class ExcelRowColumnOperation {
         private const string LABEL_MISSING_TEXT = "Az első sorban csak a következő nyolc cimke szerepelhet: " +
             "Név, Hónap, Terhelés, Számfejtés, Bér, Járulék, Adóazonosító, Kihagyás. Fájl: ";
+        private const int LAST_SEARCHED_COLUMN = 100;
         public static readonly String[] TITLES = { "Név", "Hónap", "Terhelés", "Számfejtés", "Bér", "Járulék", "Adóazonosító", "Kihagyás" };
         public static int GetLastRow(Workbook workbook, Worksheet worksheet) {
             int result = worksheet.Cells.Find("*", SearchOrder: XlSearchOrder.xlByRows, SearchDirection: XlSearchDirection.xlPrevious).Row;
             return result;
         }
 
-        public static int GetLastColumn(Workbook workbook, Worksheet workSheet) {
-            int result = workSheet.Cells.Find("*", SearchOrder: XlSearchOrder.xlByColumns, SearchDirection: XlSearchDirection.xlPrevious).Column;
-            return result;
+        public static int GetLastColumn(Workbook workbook, Worksheet workSheet, ExcelReadOperation fileReadOperation) {
+            for (int i = LAST_SEARCHED_COLUMN; i > 0; i--) {
+                String cellValue = fileReadOperation.ReadExcelCell(1, i);
+                if (!String.IsNullOrEmpty(cellValue)) {
+                    return i;
+                }
+            }
+            throw new ArgumentException(LABEL_MISSING_TEXT + FolderOperation.GetFileNameFromPath(fileReadOperation.ExcelInputOutputOperations.FilePath));
         }
 
         public static Dictionary<String, int> FindColumnTitles(ExcelReadOperation fileReadOperation) {            
             Workbook wb = fileReadOperation.ExcelInputOutputOperations.WorkbookUsed;
             Worksheet ws = fileReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
-            int columnNumber = ExcelRowColumnOperation.GetLastColumn(wb, ws);
+            int columnNumber = ExcelRowColumnOperation.GetLastColumn(wb, ws, fileReadOperation);
             Dictionary<String, int> columnTitles = IterateThroughFirstRowToFindLabels(fileReadOperation, columnNumber);
             if (Validator.CheckIfAllLabelsFound(TITLES, columnTitles)) {
                 return columnTitles;
