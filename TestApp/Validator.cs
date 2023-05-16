@@ -3,6 +3,7 @@
 namespace TestApp {
     public static class Validator {
         private const string MISSING_COST_CENTER_TEXT = "Nem található pénzügyi központ. Fájl: ";
+        private const string MISSING_NAME_TEXT = "Nem található név az egyik sorban. Fájl: ";
         private const string MISSING_TAXID_TEXT = "Nem található megfelelő adóazonosító az egyik személynél. Fájl: ";
         private static String[] months = {"január", "február", "március", "április", "május", "június", "július", "augusztus",
         "szeptember", "október", "november", "december"};
@@ -30,11 +31,11 @@ namespace TestApp {
             return false;
         }
 
-        public static bool CheckCostCenterFormat(String costCenter, String fileName) {
+        public static bool CheckCostCenterFormat(String costCenter, String fileName, PersonData person) {
             String regex = "^[A-Z]\\d{9}$";
             Match matcher = Regex.Match(costCenter, regex);
             if (String.IsNullOrEmpty(costCenter)) {
-                throw new ArgumentException(MISSING_COST_CENTER_TEXT + FolderOperation.GetFileNameFromPath(fileName));
+                throw new ArgumentException($"{MISSING_COST_CENTER_TEXT} {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
             }
             if (matcher.Success) {
                 return true;
@@ -63,13 +64,13 @@ namespace TestApp {
             return !String.IsNullOrEmpty(cellValue);
         }
 
-        public static bool CheckIfTaxIDPresent(String taxId, String fileName) {
+        public static bool CheckIfTaxIDPresent(PersonData person) {
             String regex = "^\\d{10}$";
-            Match matcher = Regex.Match(taxId, regex);
+            Match matcher = Regex.Match(person.TaxId, regex);
             if (matcher.Success) {
                 return true;
             }
-            throw new ArgumentException(MISSING_TAXID_TEXT + FolderOperation.GetFileNameFromPath(fileName));
+            throw new ArgumentException($"{MISSING_TAXID_TEXT} {person.ProjectName} - {person.Name}");
         }
 
         public static String CheckIfWrittenMonthIsPresent(String input) {
@@ -79,6 +80,13 @@ namespace TestApp {
                 }
             }
             return String.Empty;
+        }
+
+        public static bool CheckIfNameIsPresent(String cellValue, String fileName) {
+            if (String.IsNullOrEmpty(cellValue)) {
+                throw new ArgumentException(MISSING_NAME_TEXT + FolderOperation.GetFileNameFromPath(fileName));
+            }
+            return true;
         }
     }
 }

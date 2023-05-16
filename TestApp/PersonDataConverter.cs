@@ -112,7 +112,7 @@ namespace TestApp {
 
         private void FilterThoseWhoAreSetToMissSaveOthers(PersonData person, List<TaxIdPerProject> result) {
             if (!Validator.CheckIfMissNotificationPresent(person.Miss)) {
-                Validator.CheckIfTaxIDPresent(person.TaxId, person.ProjectName);
+                Validator.CheckIfTaxIDPresent(person);
                 TaxIdPerProject taxData = new TaxIdPerProject(person.TaxId, person.ProjectName);
                 result.Add(taxData);
             }
@@ -196,8 +196,8 @@ namespace TestApp {
         }
 
         private PersonData ValidateCostCenter(PersonData person, String fileName, bool validateCostCenter) {
-            if (validateCostCenter && (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName) 
-                || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName))) {
+            if (validateCostCenter && (!Validator.CheckCostCenterFormat(person.CreditCostCenter, fileName, person) 
+                || !Validator.CheckCostCenterFormat(person.DebitCostCenter, fileName, person))) {
                 throw new ArgumentException($"Hibás pénzügyi központ formátum a következő fájlban: {FolderOperation.GetFileNameFromPath(fileName)} - {person.Name}");
             }
             return person;
@@ -221,6 +221,7 @@ namespace TestApp {
             String currentMonthCleaned = GetCleanedMonth(currentMonth);
             if (monthToFilter.Equals(currentMonthCleaned)) {
                 PersonData person = CreatePersonObject(currentRow, currentMonthCleaned, FileName);
+                Validator.CheckIfNameIsPresent(person.Name, FileName);
                 ValidateIfMissAndAddToProperList(person, validateCostCenter);
                 currentId++;
             }

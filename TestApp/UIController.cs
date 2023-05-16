@@ -15,7 +15,7 @@ namespace TestApp {
             "A FEJ.CSV-ben kérem ne felejtse el kitölteni a Vegyes sorszámokat tartalmazó oszlopot.";
         private const String NO_FILE_TEXT = "\nKérem adja meg, hogy melyik fájlokból kerüljenek betöltésre a költségek!";
         private const String WRONG_MONTH_TEXT = "\nNem megfelelő a szűréshez megadott dátum formátum.";
-        private const String WRONG_FILENAME_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
+        private const String WRONG_ACCOUNTING_DATE_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
         private const String TET_FILE_NAME = "TET.csv";
         private const String FEJ_FILE_NAME = "FEJ.csv";
         private const String SAVE_FILE_NAME = "costfiles.txt";
@@ -56,13 +56,14 @@ namespace TestApp {
         }
 
         private void FinishTask() {
+            MainWindowForm.SetImage(ProgressState.Finished);
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
                 WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
                 WriteProjectTotals();
-                MainWindowForm.SetImage(ProgressState.Finished);
                 MessageBox.Show(WARNING_TEXT);
                 NoteCounterData.ResetProperties();
             }
+            MainWindowForm.AddTextToTextBox("\nGenerálás befejezve.");
             Process.Start("explorer.exe", TargetFilesFolder);
         }
 
@@ -161,7 +162,7 @@ namespace TestApp {
                 result = false;
             }
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary && !Validator.CheckIfAccountingDateInCorrectForm(date)) {
-                WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_FILENAME_TEXT);
+                WindowOperations.mainWindowForm.AddTextToTextBox(WRONG_ACCOUNTING_DATE_TEXT);
                 result = false;
             }
             if (!result) {
