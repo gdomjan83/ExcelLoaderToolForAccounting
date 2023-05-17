@@ -60,6 +60,17 @@ namespace TestApp {
             return false;
         }
 
+        public static List<String> CheckWhichLabelsAreMissing(String[] labels, Dictionary<String, int> columnTitles) {
+            List<String> missingLabels = new List<String>();
+            List<String> keys = new List<String>(columnTitles.Keys);
+            foreach(String actual in labels) {
+                if (!keys.Contains(actual)) {
+                    missingLabels.Add(actual);
+                }
+            }
+            return missingLabels;
+        }
+
         public static bool CheckIfMissNotificationPresent(String cellValue) {
             return !String.IsNullOrEmpty(cellValue);
         }

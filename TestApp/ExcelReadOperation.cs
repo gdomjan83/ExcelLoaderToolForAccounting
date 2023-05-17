@@ -2,10 +2,10 @@
 
 namespace TestApp {
     public class ExcelReadOperation {
-        public FileInputOutputOperations ExcelInputOutputOperations { get; set; }
+        public FileInputOutputOperations FileInputOutputOperations { get; set; }
 
         public ExcelReadOperation(FileInputOutputOperations excelInputOutputOperations) {
-            ExcelInputOutputOperations = excelInputOutputOperations;
+            FileInputOutputOperations = excelInputOutputOperations;
         }
            
         public List<String> ReadExcelRange(String rangeLabels) { //rangeLabels - pl. "A1:A2"
@@ -14,7 +14,7 @@ namespace TestApp {
                 result = ParseRangeAndReturnValues(rangeLabels, result);
             } catch (Exception e) {
                 throw new ArgumentException($"Nem sikerült a cella értékének kiolvasása." +
-                    $" Fájl: {FolderOperation.GetFileNameFromPath(ExcelInputOutputOperations.FilePath)} Cellák: {rangeLabels}");                
+                    $" Fájl: {FolderOperation.GetFileNameFromPath(FileInputOutputOperations.FilePath)} Cellák: {rangeLabels}");                
             } 
             return result;
         }
@@ -25,13 +25,13 @@ namespace TestApp {
                 result = ParseCellAndReturnValue(rowNumber, columnNumber);
             } catch (Exception e) {
                 throw new ArgumentException($"Nem sikerült a cella értékének kiolvasása." +
-                    $" Fájl: {FolderOperation.GetFileNameFromPath(ExcelInputOutputOperations.FilePath)} Sor: {rowNumber}, Oszlop: {columnNumber}");
+                    $" Fájl: {FolderOperation.GetFileNameFromPath(FileInputOutputOperations.FilePath)} Sor: {rowNumber}, Oszlop: {columnNumber}");
             } 
             return result;
         }
 
         private List<String> ParseRangeAndReturnValues(String rangeLabels, List<String> resultList) {            
-            Worksheet ws = ExcelInputOutputOperations.WorkSheetUsed;
+            Worksheet ws = FileInputOutputOperations.WorkSheetUsed;
             Microsoft.Office.Interop.Excel.Range cell = ws.Range[rangeLabels];
             foreach (String actual in cell.Value) {
                 resultList.Add(actual);
@@ -41,7 +41,7 @@ namespace TestApp {
 
         private String ParseCellAndReturnValue(int rowNumber, int columnNumber) {
             String result = String.Empty;
-            Worksheet ws = ExcelInputOutputOperations.WorkSheetUsed;
+            Worksheet ws = FileInputOutputOperations.WorkSheetUsed;
             Microsoft.Office.Interop.Excel.Range cell = ws.Cells[rowNumber, columnNumber];
             if (cell.Value != null) {
                 result = cell.Value.ToString();

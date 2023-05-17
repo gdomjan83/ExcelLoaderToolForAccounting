@@ -23,7 +23,7 @@ namespace TestApp {
                     PersonDataConverter = CreateExcelObjectsForFileReading(path, MonthToFilter, WorkSheetName, fileName);
                     result.AddRange(PersonDataConverter.SavePersonDataToList(validateCostCenter));
                 } finally {
-                    ExcelReadOperation.ExcelInputOutputOperations.CloseApplication();
+                    FileInputOutputOperations.CloseApplication();
                 }
             }
             return result;

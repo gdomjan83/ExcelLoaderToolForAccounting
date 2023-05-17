@@ -21,7 +21,8 @@ namespace TestApp {
                 WorkbookUsed = Application.Workbooks.Open(FilePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
             } catch (Exception e) {
-                throw new ArgumentException($"Nem sikerült az Excel file megnyitása: {FolderOperation.GetFileNameFromPath(FilePath)}");
+                throw new IOException($"Nem sikerült az Excel file megnyitása: {FolderOperation.GetFileNameFromPath(FilePath)}.\n" +
+                    $"A hiba lehetséges oka: nem található Bérköltség elnevezésű munkalap.");
             }
         }
 

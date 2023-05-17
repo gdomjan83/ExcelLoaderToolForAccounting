@@ -18,7 +18,7 @@ namespace Berbetolto {
                 "Az nem probléma, ha az előzőek után még további karakterek is szerepelnek." +
                 " Például lehet így vezetni a töredék hónapokat: 2023.03.15-2023.03.30, vagy 2023. március 15-30.\n" +
                 "\nA betöltés menete:\n" +
-                "- kiválasztjuk, hogy milyen generáslást kívánunk végezni,\n" +
+                "- kiválasztjuk, hogy milyen generálást kívánunk végezni,\n" +
                 "- az első mezőbe beírjuk a könyvelni kívánt hónapot a következő formátumban: 2023.03\n" +
                 "- a könyvelési dátum mezőbe beírjuk azt a dátumot, amelyik napra könyvelni szeretnénk a tételt. Formátum: 2023.04.26 " +
                 "(Csak akkor tudjuk megadni, ha FEJ-TET fájlokat akarunk generálni).\n" +

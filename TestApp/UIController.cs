@@ -88,7 +88,7 @@ namespace TestApp {
             String currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             SourceFilesFolder = Path.Combine(currentDirectory, "Resources");
             Directory.CreateDirectory(SourceFilesFolder);
-            TargetFilesFolder = Path.Combine(currentDirectory, "Result");
+            TargetFilesFolder = Path.Combine(currentDirectory, "Eredmeny");
             Directory.CreateDirectory(TargetFilesFolder);
             SaveFileFolder = Path.Combine(currentDirectory, SAVE_FILE_NAME); ;
         }

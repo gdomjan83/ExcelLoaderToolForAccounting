@@ -28,8 +28,8 @@ namespace TestApp {
         }
 
         public List<PersonData> SavePersonDataToList(bool validateCostCenter) {
-            Workbook wb = ExcelReadOperation.ExcelInputOutputOperations.WorkbookUsed;
-            Worksheet ws = ExcelReadOperation.ExcelInputOutputOperations.WorkSheetUsed;
+            Workbook wb = ExcelReadOperation.FileInputOutputOperations.WorkbookUsed;
+            Worksheet ws = ExcelReadOperation.FileInputOutputOperations.WorkSheetUsed;
             ColumnTitles = ExcelRowColumnOperation.FindColumnTitles(ExcelReadOperation);
             int lastRow = ExcelRowColumnOperation.GetLastRow(wb, ws);
             int idNumber = 1;
@@ -204,20 +204,20 @@ namespace TestApp {
         }
 
         private PersonData CreatePersonObject(int rowNumber, String month, String fileName) {
-            String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Név"]);
-            String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Terhelés"]);
-            String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Számfejtés"]);
-            String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Bér"]);
-            String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Járulék"]);
+            String name = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["név"]);
+            String credit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["terhelés"]);
+            String debit = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["számfejtés"]);
+            String salary = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["bér"]);
+            String tax = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["járulék"]);
             int note = 0;
-            String miss = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Kihagyás"]);
+            String miss = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["kihagyás"]);
             String type = CheckIfCostCenterIsSzakma(debit) ? BER_SZAKMA : BER_KOZPONTI;
-            String taxId = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["Adóazonosító"]);
+            String taxId = ExcelReadOperation.ReadExcelCell(rowNumber, ColumnTitles["adóazonosító"]);
             return new PersonData(name, month, credit, debit, salary, tax, note, fileName, type, miss, taxId);
         }
 
         private int FilterMonthAndSavePersonToList(String monthToFilter, int currentRow, int currentId, bool validateCostCenter) {
-            String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["Hónap"]);
+            String currentMonth = ExcelReadOperation.ReadExcelCell(currentRow, ColumnTitles["hónap"]);
             String currentMonthCleaned = GetCleanedMonth(currentMonth);
             if (monthToFilter.Equals(currentMonthCleaned)) {
                 PersonData person = CreatePersonObject(currentRow, currentMonthCleaned, FileName);
