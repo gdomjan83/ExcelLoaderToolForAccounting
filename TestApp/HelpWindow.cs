@@ -26,9 +26,11 @@ namespace Berbetolto {
                 "(Nem elérhető a gomb, ha adóazonosító listát generálunk).\n" +
                 "- a Tallózás gombra kattintva egyesével beállítjuk, hogy melyik költségkövető fájlokat kívánjuk használni. Egyszerre " +
                 "több fájlból is tölthetünk be adatokat.\n" +
+                "- a Tallózás gomb használata helyett megtehetjük azt is, hogy az egyes fájlokat behúzzuk az ablakba.\n" +
                 "- a Legutóbbi fájlok használata gombbal gyorsan betölthetjük azokat a táblázatokat, amelyeket legutóbb használtunk. " +
                 "Így nem kell egyesével újra betallózni őket.\n" +
-                "- a Létrehozás gombra kattintva elvégezzük a generálást. A folyamat végén megnyílik az eredmény fájlokat tartalmazó mappa.\n" +
+                "- a Létrehozás gombra kattintva elvégezzük a generálást.\n" +
+                "- az eredményül kapott fájlok megtalálhatók az alkalmazás mappájában, az Eredmény nevű almappában.\n" +
                 "- a Visszaállítás gombbal törölni lehet az aktuális munkamenet adatait és újrakezdeni a betöltést.\n" +
                 "\nAz alkalmazás a következő ellenőrzéseket végzi a futtatáskor:\n" +
                 "- Megfelelően adtuk-e meg a leszűrni kívánt hónapot (helyes formátum: 2023.03).\n" +

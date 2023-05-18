@@ -1,5 +1,6 @@
 ﻿using Berbetolto;
 using Berbetolto.Properties;
+using System.Text;
 
 namespace TestApp {
 
@@ -17,7 +18,7 @@ namespace TestApp {
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
         private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
         private const string FILE_ALREADY_LOADED_TEXT = "\nIlyen nevű fájl már betöltésre került. Válasszon másik fájlt!";
-        private const string VERSION = "0.957";
+        private const string VERSION = "0.958";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -31,6 +32,9 @@ namespace TestApp {
             AddTextToTextBox(DEFAULT_TEXT);
             RadioButtonState = GeneratorState.Salary;
             SetImage(ProgressState.Default);
+            this.AllowDrop = true;
+            this.DragDrop += new DragEventHandler(this.Form_DragDrop);
+            this.DragEnter += new DragEventHandler(this.Form_DragEnter);
         }
 
         public String GetMonth() {
@@ -70,6 +74,22 @@ namespace TestApp {
 
         private void Form_Load(object sender, EventArgs e) {
 
+        }
+
+        private void Form_DragDrop(object sender, DragEventArgs e) {
+            String[] files = (String[])e.Data.GetData(DataFormats.FileDrop);
+            foreach(String actual in files) {
+                CheckIfFileNotLoadedAlreadyIfNotThenLoad(actual);
+            }
+        }
+
+        private void Form_DragEnter(object sender, DragEventArgs e) {
+            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
+               e.Data.GetDataPresent(DataFormats.FileDrop)) {
+                e.Effect = DragDropEffects.Copy;
+            } else {
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         private void generateButton_Click(object sender, EventArgs e) {
@@ -123,12 +143,16 @@ namespace TestApp {
             DialogResult result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK) {
                 String file = openFileDialog.FileName;
-                if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
-                    FileInputOutputOperations.CostExcelFiles.Add(file);
-                    AddTextToTextBox("\n - " + file + FILE_LOADED_TEXT);
-                } else {
-                    AddTextToTextBox(FILE_ALREADY_LOADED_TEXT);
-                }
+                CheckIfFileNotLoadedAlreadyIfNotThenLoad(file);
+            }
+        }
+
+        private void CheckIfFileNotLoadedAlreadyIfNotThenLoad(String file) {
+            if (!CheckIfFileIsInList(file, FileInputOutputOperations.CostExcelFiles)) {
+                FileInputOutputOperations.CostExcelFiles.Add(file);
+                AddTextToTextBox("\n - " + file + FILE_LOADED_TEXT);
+            } else {
+                AddTextToTextBox(FILE_ALREADY_LOADED_TEXT);
             }
         }
 
