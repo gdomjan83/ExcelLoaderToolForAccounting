@@ -18,7 +18,7 @@ namespace TestApp {
         private const String WRONG_ACCOUNTING_DATE_TEXT = "\nNem megfelelő a könyvelési dátum formátuma.";
         private const String TET_FILE_NAME = "TET.csv";
         private const String FEJ_FILE_NAME = "FEJ.csv";
-        private const String SAVE_FILE_NAME = "costfiles.txt";
+        private const String SAVE_FILE_NAME = "utvonalak.txt";
         private const String TAX_FILE_NAME = "adoazonositok.csv";
         private const String AMOUNTS_TEXT = "\nLekönyvelt összegek projektenként: \n";
         private const String DECIMAL_WARNING_TEXT = "Figyelem, nem egész szám!";

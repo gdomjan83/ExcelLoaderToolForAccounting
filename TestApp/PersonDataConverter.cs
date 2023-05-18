@@ -11,6 +11,7 @@ namespace TestApp {
         public const String BER_SZAKMA = "BérProjektSzakma";
         public const String BER_KOZPONTI = "BérProjektGMIFPI";
         public const int LINES_IN_ONE_NOTE = 80;
+        private const string ZERO_AMOUNT_TEXT = "Nulla bér és járulék";
 
         public Dictionary<String, int> ColumnTitles { get; set; }
         public String AccountingDate { get; set; }
@@ -222,16 +223,19 @@ namespace TestApp {
             if (monthToFilter.Equals(currentMonthCleaned)) {
                 PersonData person = CreatePersonObject(currentRow, currentMonthCleaned, FileName);
                 Validator.CheckIfNameIsPresent(person.Name, FileName);
-                ValidateIfMissAndAddToProperList(person, validateCostCenter);
+                ValidateIfMissOrHasNoSalaryAndTaxValueAndAddToProperList(person, validateCostCenter);
                 currentId++;
             }
             return currentId;
         }
 
-        private void ValidateIfMissAndAddToProperList(PersonData person, bool validateCostCenter) {
+        private void ValidateIfMissOrHasNoSalaryAndTaxValueAndAddToProperList(PersonData person, bool validateCostCenter) {
+            if (!Validator.CheckIfSalaryAndTaxHasValue(person)) {
+                person.Miss = ZERO_AMOUNT_TEXT;
+            }
             if (Validator.CheckIfMissNotificationPresent(person.Miss)) {
                 MissedPeople.Add(person);
-            } else {
+            } else  {
                 ProcessedPeople.Add(SavePerson(person, FileName, validateCostCenter));
             }
         }

@@ -71,6 +71,22 @@ namespace TestApp {
             return missingLabels;
         }
 
+        public static bool CheckIfSalaryAndTaxHasValue(PersonData person) {
+            String salary = person.Salary;
+            String tax = person.Tax;
+            if (CheckIfValueIsEmptyOrZero(salary) && CheckIfValueIsEmptyOrZero(tax)) {
+                return false;
+            }
+            return true;
+        }
+
+        private static bool CheckIfValueIsEmptyOrZero(String value) {            
+            if (String.IsNullOrEmpty(value) || Double.Parse(value) == 0d) {
+                return true;
+            }
+            return false;
+        }
+
         public static bool CheckIfMissNotificationPresent(String cellValue) {
             return !String.IsNullOrEmpty(cellValue);
         }
