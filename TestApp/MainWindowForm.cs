@@ -18,7 +18,7 @@ namespace TestApp {
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
         private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
         private const string FILE_ALREADY_LOADED_TEXT = "\nIlyen nevű fájl már betöltésre került. Válasszon másik fájlt!";
-        private const string VERSION = "0.958";
+        private const string VERSION = "0.960";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -78,7 +78,7 @@ namespace TestApp {
 
         private void Form_DragDrop(object sender, DragEventArgs e) {
             String[] files = (String[])e.Data.GetData(DataFormats.FileDrop);
-            foreach(String actual in files) {
+            foreach (String actual in files) {
                 CheckIfFileNotLoadedAlreadyIfNotThenLoad(actual);
             }
         }

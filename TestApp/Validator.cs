@@ -1,10 +1,12 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace TestApp {
     public static class Validator {
         private const string MISSING_COST_CENTER_TEXT = "Nem található pénzügyi központ. Fájl: ";
         private const string MISSING_NAME_TEXT = "Nem található név az egyik sorban. Fájl: ";
         private const string MISSING_TAXID_TEXT = "Nem található megfelelő adóazonosító az egyik személynél. Fájl: ";
+        private const string NOT_A_NUMBER_TEXT = "A bér/járulék cellában szám szerepel. Fájl: ";
         private static String[] months = {"január", "február", "március", "április", "május", "június", "július", "augusztus",
         "szeptember", "október", "november", "december"};
 
@@ -72,8 +74,9 @@ namespace TestApp {
         }
 
         public static bool CheckIfSalaryAndTaxHasValue(PersonData person) {
+            CheckIfStringHasLetters(person);
             String salary = person.Salary;
-            String tax = person.Tax;
+            String tax = person.Tax;            
             if (CheckIfValueIsEmptyOrZero(salary) && CheckIfValueIsEmptyOrZero(tax)) {
                 return false;
             }
@@ -98,6 +101,16 @@ namespace TestApp {
                 return true;
             }
             throw new ArgumentException($"{MISSING_TAXID_TEXT} {person.ProjectName} - {person.Name}");
+        }
+
+        private static bool CheckIfStringHasLetters(PersonData person) {
+            String regex = "[a-zA-z]+";
+            Match matcherSalary = Regex.Match(person.Salary, regex);
+            Match matcherTax = Regex.Match(person.Tax, regex);
+            if (matcherSalary.Success || matcherTax.Success) {
+                throw new ArgumentException($"{NOT_A_NUMBER_TEXT} {person.ProjectName} - {person.Name}");
+            }
+            return false;
         }
 
         public static String CheckIfWrittenMonthIsPresent(String input) {

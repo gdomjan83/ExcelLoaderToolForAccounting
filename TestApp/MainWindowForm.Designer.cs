@@ -45,7 +45,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(596, 462);
+            button1.Location = new Point(596, 554);
             button1.Name = "button1";
             button1.Size = new Size(167, 30);
             button1.TabIndex = 0;
@@ -69,7 +69,7 @@
             richTextBox1.Location = new Point(51, 180);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(522, 323);
+            richTextBox1.Size = new Size(522, 427);
             richTextBox1.TabIndex = 2;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -155,7 +155,7 @@
             // button6
             // 
             button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button6.Location = new Point(597, 404);
+            button6.Location = new Point(597, 496);
             button6.Name = "button6";
             button6.Size = new Size(166, 30);
             button6.TabIndex = 11;
@@ -199,7 +199,7 @@
             // pictureBox1
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(630, 290);
+            pictureBox1.Location = new Point(630, 337);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 100);
             pictureBox1.TabIndex = 15;
@@ -210,7 +210,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 540);
+            ClientSize = new Size(800, 643);
             Controls.Add(pictureBox1);
             Controls.Add(label4);
             Controls.Add(radioButton2);

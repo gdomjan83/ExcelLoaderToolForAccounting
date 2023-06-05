@@ -67,10 +67,11 @@ namespace TestApp {
         
 
         public String GetMissedPeopleText() {
-            StringBuilder sb = new StringBuilder("\n\nKihagyásra jelölt, nem könyvelt személyek:\n");
+            StringBuilder sb = new StringBuilder("\n\nKihagyásra jelölt, nem könyvelt személyek:");
             foreach(PersonData actual in MissedPeople) {
-                sb.Append(" - " + actual.ToString() + "\n");
+                sb.Append("\n - " + actual.ToString());
             }
+            sb.Append("\n");
             return sb.ToString();
         }
 

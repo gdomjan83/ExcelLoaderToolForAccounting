@@ -39,6 +39,7 @@ namespace Berbetolto {
                 "- Az egyes táblázatokban az első sorban kizárólag az a nyolc elnevezés szerepel, amelyekkel beazonosíthatók a használt oszlopok.\n" +
                 "- Minden sorban megtalálható a terhelés és a számfejtés pénzügyi központja a megfelelő formátumban (helyes formátum: M217000062).\n" +
                 "- Minden sorban szerepel-e az adott dolgozó adóazonosító jele.\n" +
+                "- A bér és járulék cellákban nem szerepel-e szöveg.\n" +
                 "- Összeadja az egyes projektekben könyvelt összegeket. Jelzi, ha ez nem egész szám. Ez arra utal, hogy valamelyik cellában tizedesjegyek " +
                 "szerepelnek. Az SAP betöltés előtt ezt javítani szükséges.");
             richTextBox1.SelectionStart = 0;
