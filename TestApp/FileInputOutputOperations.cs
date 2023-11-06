@@ -20,6 +20,7 @@ namespace TestApp {
                 FilePath = filePath;
                 WorkbookUsed = Application.Workbooks.Open(FilePath);
                 WorkSheetUsed = WorkbookUsed.Worksheets[worksheet];
+                Thread.Sleep(1000);
             } catch (Exception e) {
                 throw new IOException($"Nem sikerült az Excel file megnyitása: {FolderOperation.GetFileNameFromPath(FilePath)}.\n" +
                     $"A hiba lehetséges oka: nem található Bérköltség elnevezésű munkalap.");

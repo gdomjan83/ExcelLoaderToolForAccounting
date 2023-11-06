@@ -1,12 +1,1 @@
-﻿C:\Users\felhasználó\Munka\!PROJEKTEK\2019-1.2.1-EGYETEMI-ÖKO-2019-00005\KÖLTSÉGKÖVETŐ_ÖKO_2. munkaszakasz.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\2020-1.1.2-PIACI-KFI-2021-00219_Smartek\KFI_költségkövető_219.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\ALLEA projekt\KÖLTSÉGFELHASZNÁLÁS_ALLEA.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\ERASMUS\ERASMUS_GTK\GreenCool_KA220_HED_0027563\KÖLTSÉGFELHASZNÁLÁS_Greencool.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\ERASMUS\ERASMUS_GTK\SKIPPER_KA220-HED-000086240\KÖLTSÉGFELHASZNÁLÁS_Skipper.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\ERASMUS\ERASMUS_MIK\SYSPELL_KA226-SCH-092659\KÖLTSÉGFELHASZNÁLÁS_Syspell.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\H2020_HE\EU Master 4 HPC\KÖLTSÉGFELHASZNÁLÁS_EU-Master.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\HSUP\2023\KÖLTSÉGFELHASZNÁLÁS_HSUP.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\NP_2022-II-6_2022\KÖLTSÉGFELHASZNÁLÁS_NP.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\OTKA\OTKA_137743\KÖLTSÉGFELHASZNÁLÁS_137743.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\OTKA\OTKA_137979\KÖLTSÉGFELHASZNÁLÁS_137979.xlsx
-C:\Users\felhasználó\Munka\!PROJEKTEK\RRF-2.3.1-21-2022-00009\RRF-00009_MENL_költségkövető.xlsx
+﻿C:\Users\felhasználó\Desktop\Teszt ktgkövetők\RRF-00008_VIZES_sablon_végleges_Renitől_2023.03.06..xlsx
