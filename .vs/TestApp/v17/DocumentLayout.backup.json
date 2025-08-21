@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FileInputOutputOperations.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
+              "RelativeDocumentMoniker": "TestApp\\FileInputOutputOperations.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
+              "RelativeToolTip": "TestApp\\FileInputOutputOperations.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAWwB0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T14:10:00.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UIController.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\UIController.cs",
+              "RelativeDocumentMoniker": "TestApp\\UIController.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\UIController.cs",
+              "RelativeToolTip": "TestApp\\UIController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAuwGIAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-06T14:36:34.36Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
