@@ -1,5 +1,6 @@
 ﻿using Berbetolto;
 using Microsoft.Office.Interop.Excel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace TestApp {
@@ -121,26 +122,50 @@ namespace TestApp {
         }
 
         private PersonCSVData TransformCreditSalary(PersonData person) {
-            String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, CREDIT_CODE, SALARY_LEDGER_NUMBER, person.Salary,
+            String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";            
+            String code = CREDIT_CODE;
+            String salary = person.Salary;
+            if (person.Salary.StartsWith("-")) {
+                code = DEBIT_CODE;
+                salary = person.Salary.Substring(1);
+            }
+            return new PersonCSVData(person.Note, code, SALARY_LEDGER_NUMBER, salary,
                 comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformCreditTax(PersonData person) {
             String comment = $"{person.DebitCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, CREDIT_CODE, TAX_LEDGER_NUMBER, person.Tax,
+            String code = CREDIT_CODE;
+            String tax = person.Tax;
+            if (person.Tax.StartsWith("-")) {
+                code = DEBIT_CODE;
+                tax = person.Salary.Substring(1);
+            }
+            return new PersonCSVData(person.Note, code, TAX_LEDGER_NUMBER, tax,
                 comment, person.CreditCostCenter, person.CreditCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformDebitSalary(PersonData person) {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, DEBIT_CODE, SALARY_LEDGER_NUMBER, person.Salary,
+            String code = DEBIT_CODE;
+            String salary = person.Salary;
+            if (person.Salary.StartsWith("-")) {
+                code = CREDIT_CODE;
+                salary = person.Salary.Substring(1);
+            }
+            return new PersonCSVData(person.Note, code, SALARY_LEDGER_NUMBER, salary,
                 comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
         }
 
         private PersonCSVData TransformDebitTax(PersonData person) {
             String comment = $"{person.CreditCostCenter} {MonthToFilter} {person.Name}";
-            return new PersonCSVData(person.Note, DEBIT_CODE, TAX_LEDGER_NUMBER, person.Tax,
+            String code = DEBIT_CODE;
+            String tax = person.Tax;
+            if (person.Tax.StartsWith("-")) {
+                code = CREDIT_CODE;
+                tax = person.Salary.Substring(1);
+            }
+            return new PersonCSVData(person.Note, code, TAX_LEDGER_NUMBER, tax,
                 comment, person.DebitCostCenter, person.DebitCostCenter.Substring(0, 3), person.ProjectName);
         }
 

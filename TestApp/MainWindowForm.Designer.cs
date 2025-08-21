@@ -32,7 +32,6 @@
             textBox2 = new TextBox();
             button5 = new Button();
             button3 = new Button();
-            button4 = new Button();
             label3 = new Label();
             button6 = new Button();
             radioButton1 = new RadioButton();
@@ -98,9 +97,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(369, 93);
             label2.Name = "label2";
-            label2.Size = new Size(196, 15);
+            label2.Size = new Size(369, 15);
             label2.TabIndex = 5;
-            label2.Text = "Könyvelési nap (például: 2023.04.26)";
+            label2.Text = "Könyvelési nap (például: 2025.07.31 - általában a hónap utolsó napja)";
             label2.Click += label2_Click;
             // 
             // textBox2
@@ -132,16 +131,6 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += loadFilesButton_Click;
             // 
-            // button4
-            // 
-            button4.Location = new Point(587, 122);
-            button4.Name = "button4";
-            button4.Size = new Size(61, 23);
-            button4.TabIndex = 9;
-            button4.Text = "Mai nap";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += todayButton_Click;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -169,7 +158,7 @@
             radioButton1.Checked = true;
             radioButton1.Location = new Point(51, 50);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(117, 19);
+            radioButton1.Size = new Size(119, 19);
             radioButton1.TabIndex = 12;
             radioButton1.TabStop = true;
             radioButton1.Text = "FEJ-TET generálás";
@@ -217,7 +206,6 @@
             Controls.Add(radioButton1);
             Controls.Add(button6);
             Controls.Add(label3);
-            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button5);
             Controls.Add(textBox2);
@@ -247,7 +235,6 @@
         private TextBox textBox2;
         private Button button5;
         private Button button3;
-        private Button button4;
         private Label label3;
         private Button button6;
         private RadioButton radioButton1;

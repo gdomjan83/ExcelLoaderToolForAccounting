@@ -271,7 +271,6 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\w
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\hostfxr.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\hostpolicy.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\mscordaccore.dll
-C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\mscordaccore_amd64_amd64_6.0.1523.11507.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\mscordbi.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\mscorrc.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\msquic.dll
@@ -502,7 +501,6 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\w
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\zh-Hant\UIAutomationTypes.resources.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\zh-Hant\WindowsBase.resources.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\zh-Hant\WindowsFormsIntegration.resources.dll
-C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.csproj.AssemblyReference.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.csproj.ResolveComReference.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.HelpWindow.resources
@@ -512,10 +510,12 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\w
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.AssemblyInfoInputs.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.AssemblyInfo.cs
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.csproj.CoreCompileInputs.cache
-C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.csproj.CopyComplete
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\refint\Berbetolto.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.pdb
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.genruntimeconfig.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\ref\Berbetolto.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.Properties.Resources.resources
+C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\win-x64\mscordaccore_amd64_amd64_6.0.3624.51421.dll
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.sourcelink.json
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\win-x64\Berbetolto.csproj.Up2Date

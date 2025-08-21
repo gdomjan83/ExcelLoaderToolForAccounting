@@ -1,0 +1,7 @@
+C:\Users\felhasználó\Documents\Bérbetöltő\Berbetolto.pdb
+C:\Users\felhasználó\Documents\Bérbetöltő\D3DCompiler_47_cor3.dll
+C:\Users\felhasználó\Documents\Bérbetöltő\PenImc_cor3.dll
+C:\Users\felhasználó\Documents\Bérbetöltő\PresentationNative_cor3.dll
+C:\Users\felhasználó\Documents\Bérbetöltő\vcruntime140_cor3.dll
+C:\Users\felhasználó\Documents\Bérbetöltő\wpfgfx_cor3.dll
+C:\Users\felhasználó\Documents\Bérbetöltő\Berbetolto.exe

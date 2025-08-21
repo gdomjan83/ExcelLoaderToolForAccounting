@@ -18,7 +18,7 @@ namespace TestApp {
         private const string FILE_LOADED_TEXT = " fájl betöltve.";
         private const string DEFAULT_TEXT = "Kérem töltse be a használni kívánt excel fájlokat!";
         private const string FILE_ALREADY_LOADED_TEXT = "\nIlyen nevű fájl már betöltésre került. Válasszon másik fájlt!";
-        private const string VERSION = "1.01";
+        private const string VERSION = "1.02";
         public GeneratorState RadioButtonState { get; set; }
         public UIController UIController { get; set; }
         public HelpWindow HelpWindow { get; set; }
@@ -172,11 +172,7 @@ namespace TestApp {
             }
             return alreadyInList;
         }
-        private void todayButton_Click(object sender, EventArgs e) {
-            String today = DateTime.Now.ToString();
-            String trimmed = today.Substring(0, 5) + today.Substring(6, 3) + today.Substring(10, 2);
-            textBox2.Text = trimmed;
-        }
+
         private void resetButton_Click(object sender, EventArgs e) {
             NoteCounterData.ResetProperties();
             FileInputOutputOperations.CostExcelFiles.Clear();
@@ -191,13 +187,11 @@ namespace TestApp {
             RadioButtonState = GeneratorState.Salary;
             textBox2.Clear();
             textBox2.ReadOnly = false;
-            button4.Enabled = true;
         }
         private void taxGeneratorButton_CheckedChanged(object sender, EventArgs e) {
             RadioButtonState = GeneratorState.TaxId;
             textBox2.Clear();
             textBox2.ReadOnly = true;
-            button4.Enabled = false;
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e) {
 

@@ -4,6 +4,10 @@ namespace Berbetolto {
         public HelpWindow() {
             InitializeComponent();
             richTextBox1.AppendText("" +
+                "Az 1.02-es verzió óta az alkalmazás képes a bér és járulék korrekciók könyvelésére.\n" +
+                "Ehhez mindössze annyi változtatásra van szükség a költségkövető excelben, hogy a Bérköltség\n" + 
+                "munkalapon az első sorban szerelő Bér és Járulék szöveget ahhoz az oszlophoz kell átmozgatni,\n" + 
+                "amelyek a korrigálandó összegeket tartalmazzák. Az alkalmazás kezeli a (-) negatív összegeket.\n\n" +
                 "Az alkalmazásból kétféle generálás végezhető:\n" +
                 "1. Elkészíthetjük a FEJ és TET fájlokat az SAP vegyes betöltéshez.\n" +
                 "2. Generálhatunk egy listát, ami azokat az adóazonosítókat tartalmazza, amikhez abban a hónapban bérkartonokat kell kérni.\n" +

@@ -3,12 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\mainwindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\mainwindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\fejcsvdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\fejcsvdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\excelrowcolumnoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\excelrowcolumnoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\excelreadoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\excelreadoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\folderoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\folderoperation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\startapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\startapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\windowoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\windowoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\persondataconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\persondataconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\personcsvdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\personcsvdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|c:\\users\\felhaszn\u00E1l\u00F3\\source\\repos\\testapp\\testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DAEB1B9-F9DC-4752-A7DA-291BE610D8B9}|TestApp\\Berbetolto.csproj|solutionrelative:testapp\\fileinputoutputoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,14 +67,79 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FileInputOutputOperations.cs",
-              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
-              "RelativeDocumentMoniker": "TestApp\\FileInputOutputOperations.cs",
-              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
-              "RelativeToolTip": "TestApp\\FileInputOutputOperations.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAWwB0AAAAoAAAAAAAAAA==",
+              "Title": "MainWindowForm.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\MainWindowForm.cs",
+              "RelativeDocumentMoniker": "TestApp\\MainWindowForm.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\MainWindowForm.cs",
+              "RelativeToolTip": "TestApp\\MainWindowForm.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAAwLoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T14:10:00.002Z",
+              "WhenOpened": "2025-08-21T11:28:45.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FejCSVData.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FejCSVData.cs",
+              "RelativeDocumentMoniker": "TestApp\\FejCSVData.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FejCSVData.cs",
+              "RelativeToolTip": "TestApp\\FejCSVData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:18:26.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FolderOperation.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FolderOperation.cs",
+              "RelativeDocumentMoniker": "TestApp\\FolderOperation.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FolderOperation.cs",
+              "RelativeToolTip": "TestApp\\FolderOperation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:18:19.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Validator.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\Validator.cs",
+              "RelativeDocumentMoniker": "TestApp\\Validator.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\Validator.cs",
+              "RelativeToolTip": "TestApp\\Validator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:18:07.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WindowOperations.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\WindowOperations.cs",
+              "RelativeDocumentMoniker": "TestApp\\WindowOperations.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\WindowOperations.cs",
+              "RelativeToolTip": "TestApp\\WindowOperations.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:17:02.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StartApplication.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\StartApplication.cs",
+              "RelativeDocumentMoniker": "TestApp\\StartApplication.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\StartApplication.cs",
+              "RelativeToolTip": "TestApp\\StartApplication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T11:16:59.534Z",
               "EditorCaption": ""
             },
             {
@@ -45,9 +150,74 @@
               "RelativeDocumentMoniker": "TestApp\\UIController.cs",
               "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\UIController.cs",
               "RelativeToolTip": "TestApp\\UIController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAuwGIAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA9wBUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-11-06T14:36:34.36Z"
+              "WhenOpened": "2025-08-21T11:14:16.215Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExcelReadOperation.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\ExcelReadOperation.cs",
+              "RelativeDocumentMoniker": "TestApp\\ExcelReadOperation.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\ExcelReadOperation.cs",
+              "RelativeToolTip": "TestApp\\ExcelReadOperation.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T10:39:50.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExcelRowColumnOperation.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\ExcelRowColumnOperation.cs",
+              "RelativeDocumentMoniker": "TestApp\\ExcelRowColumnOperation.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\ExcelRowColumnOperation.cs",
+              "RelativeToolTip": "TestApp\\ExcelRowColumnOperation.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T10:39:36.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PersonCSVData.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\PersonCSVData.cs",
+              "RelativeDocumentMoniker": "TestApp\\PersonCSVData.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\PersonCSVData.cs",
+              "RelativeToolTip": "TestApp\\PersonCSVData.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA9wB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T10:40:14.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PersonDataConverter.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\PersonDataConverter.cs",
+              "RelativeDocumentMoniker": "TestApp\\PersonDataConverter.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\PersonDataConverter.cs",
+              "RelativeToolTip": "TestApp\\PersonDataConverter.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAwwJoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T10:41:22.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FileInputOutputOperations.cs",
+              "DocumentMoniker": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
+              "RelativeDocumentMoniker": "TestApp\\FileInputOutputOperations.cs",
+              "ToolTip": "C:\\Users\\felhaszn\u00E1l\u00F3\\source\\repos\\TestApp\\TestApp\\FileInputOutputOperations.cs",
+              "RelativeToolTip": "TestApp\\FileInputOutputOperations.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAWwB0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-19T14:10:00.002Z",
+              "EditorCaption": ""
             }
           ]
         }

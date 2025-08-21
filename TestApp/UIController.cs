@@ -58,8 +58,9 @@ namespace TestApp {
         private void FinishTask() {
             MainWindowForm.SetImage(ProgressState.Finished);
             if (MainWindowForm.RadioButtonState == GeneratorState.Salary) {
-                WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
-                WriteProjectTotals();
+                //Egyszerűsítés miatt az alábbiak nem hívjuk.
+                //WriteMissedPeople(FilesProcessor.PersonDataConverter.MissedPeople);
+                //WriteProjectTotals();
                 MessageBox.Show(WARNING_TEXT);
                 NoteCounterData.ResetProperties();
             }

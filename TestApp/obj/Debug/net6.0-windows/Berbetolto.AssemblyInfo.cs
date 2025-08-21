@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Berbetolto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+567519b9f8700f13936c50259bea4c231167a74a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5b15b107e7e045f164494e8ed4b1e46cc654de0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Berbetolto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Berbetolto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

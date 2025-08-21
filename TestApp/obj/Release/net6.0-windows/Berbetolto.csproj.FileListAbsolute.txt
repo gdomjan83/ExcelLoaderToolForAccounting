@@ -3,7 +3,6 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\B
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\Berbetolto.runtimeconfig.json
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\Berbetolto.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\bin\Release\net6.0-windows\Berbetolto.pdb
-C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.csproj.AssemblyReference.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.csproj.ResolveComReference.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.HelpWindow.resources
@@ -19,3 +18,4 @@ C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\B
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.genruntimeconfig.cache
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\ref\Berbetolto.dll
 C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.Properties.Resources.resources
+C:\Users\felhasználó\source\repos\TestApp\TestApp\obj\Release\net6.0-windows\Berbetolto.sourcelink.json

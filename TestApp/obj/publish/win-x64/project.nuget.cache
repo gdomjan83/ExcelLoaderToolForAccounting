@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "KhVooyyiPr5gVaCgS94MYdUViRa/qD/s4XLxhhwQA5wzhR37qRFCGtmB3jw0PcyQ1UKRGhdhQKZ6JpM8jlPRIQ==",
+  "dgSpecHash": "PG472V+Ihr8=",
   "success": true,
   "projectFilePath": "C:\\Users\\felhasználó\\source\\repos\\TestApp\\TestApp\\Berbetolto.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.15\\microsoft.netcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.36\\microsoft.netcore.app.runtime.win-x64.6.0.36.nupkg.sha512",
+    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.36\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.36.nupkg.sha512",
+    "C:\\Users\\felhasználó\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.36\\microsoft.aspnetcore.app.runtime.win-x64.6.0.36.nupkg.sha512"
   ],
   "logs": []
 }
